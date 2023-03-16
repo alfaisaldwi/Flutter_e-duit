@@ -1,120 +1,87 @@
+import 'package:eduit/app/modules/account_page/views/account_page_view.dart';
 import 'package:eduit/app/modules/home/views/home_view.dart';
+import 'package:eduit/app/modules/home_page/views/home_page_view.dart';
+import 'package:eduit/app/modules/kirim_tulisan/views/kirim_tulisan_view.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
-
+import 'package:google_fonts/google_fonts.dart';
 import '../controllers/login_page_controller.dart';
 
 class LoginPageView extends GetView<LoginPageController> {
+  final TextStyle unselectedLabelStyle = TextStyle(
+      color: Colors.white.withOpacity(0.5),
+      fontWeight: FontWeight.w500,
+      fontSize: 12);
+
+  final TextStyle selectedLabelStyle =
+      TextStyle(color: Colors.white, fontWeight: FontWeight.w500, fontSize: 12);
+
+  buildBottomNavigationMenu(context, landingPageController) {
+    return Obx(() => MediaQuery(
+        data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+        child: SizedBox(
+          height: 54,
+          child: BottomNavigationBar(
+            showUnselectedLabels: true,
+            showSelectedLabels: true,
+            onTap: landingPageController.changeTabIndex,
+            currentIndex: landingPageController.tabIndex.value,
+            backgroundColor: Colors.white,
+            unselectedItemColor: Color.fromRGBO(36, 54, 101, 1.0),
+            selectedItemColor: Colors.yellow,
+            unselectedLabelStyle: unselectedLabelStyle,
+            selectedLabelStyle: selectedLabelStyle,
+            items: [
+              BottomNavigationBarItem(
+                icon: Container(
+                  margin: EdgeInsets.only(bottom: 7),
+                  child: Icon(
+                    Icons.border_color_rounded,
+                    size: 20.0,
+                  ),
+                ),
+                label: 'Kirim Tulisan',
+                backgroundColor: Color.fromRGBO(36, 54, 101, 1.0),
+              ),
+              BottomNavigationBarItem(
+                icon: Container(
+                  margin: EdgeInsets.only(bottom: 7),
+                  child: Icon(
+                    Icons.home,
+                    size: 20.0,
+                  ),
+                ),
+                label: 'Home',
+                backgroundColor: Color.fromRGBO(36, 54, 101, 1.0),
+              ),
+              BottomNavigationBarItem(
+                icon: Container(
+                  margin: EdgeInsets.only(bottom: 7),
+                  child: Icon(
+                    Icons.account_circle_outlined,
+                    size: 20.0,
+                  ),
+                ),
+                label: 'Akun',
+                backgroundColor: Color.fromRGBO(36, 54, 101, 1.0),
+              ),
+            ],
+          ),
+        )));
+  }
+
   @override
   Widget build(BuildContext context) {
+    final LoginPageController landingPageController =
+        Get.put(LoginPageController(), permanent: false);
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Container(
-              padding:
-                  EdgeInsets.only(top: 85, left: 40, right: 50, bottom: 20),
-              child: Image.asset('assets/images/logo.png'),
-            ),
-            Container(
-              child: Text(
-                'LOGIN',
-                style: TextStyle(
-                    fontSize: 30,
-                    fontFamily: 'Montserrat',
-                    fontWeight: FontWeight.bold),
-              ),
-            ),
-            SizedBox(
-              height: 50,
-            ),
-            Padding(
-              padding: EdgeInsets.all(18),
-              child: TextFormField(
-                controller: controller.c_email,
-                decoration: InputDecoration(
-                  focusColor: Colors.white,
-                  //add prefix icon
-                  prefixIcon: Icon(
-                    Icons.person_outline_rounded,
-                    color: Colors.grey,
-                  ),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10.0),
-                  ),
-                ),
-              ),
-            ),
-            SizedBox(
-              height: 8,
-            ),
-            Padding(
-              padding: EdgeInsets.all(18),
-              child: TextFormField(
-                obscureText: true,
-                controller: controller.c_pw,
-                decoration: InputDecoration(
-                  focusColor: Colors.white,
-                  //add prefix icon
-                  prefixIcon: Icon(
-                    Icons.lock_outline_rounded,
-                    color: Colors.grey,
-                  ),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10.0),
-                  ),
-                ),
-              ),
-            ),
-            SizedBox(
-              height: 30,
-            ),
-            Container(
-              width: 200,
-              child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.teal[400],
-                  ),
-                  child: Text('Login'),
-                  onPressed: () async {
-                    // await controller.signIn(
-                    //     controller.c_email.text, controller.c_pw.text);
-                    // if (await FirebaseAuth.instance.currentUser?.uid != null) {
-                    //   Navigator.pushReplacement(
-                    //       context,
-                    //       MaterialPageRoute(
-                    //           builder: (context) => HomeView(),
-                    //           maintainState: true));
-                    // } else {
-                    //   showDialog(
-                    //       context: context,
-                    //       builder: (context) => AlertDialog(
-                    //             title: Text('Error'),
-                    //             content: Text('Periksa Email&Password'),
-                    //             actions: <Widget>[
-                    //               ElevatedButton(
-                    //                   onPressed: () {
-                    //                     Navigator.pop(context);
-                    //                   },
-                    //                   child: Text('Ok'))
-                    //             ],
-                    //           ));},
-                    ////////////////
-                    // shape: RoundedRectangleBorder(
-                    //   borderRadius: BorderRadius.circular(8),
-                    // ),
-                    // color: Color(0xFF4f4f4f),
-                    // elevation: 0,
-                    // padding: EdgeInsets.symmetric(vertical: 16),
-                  }),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-          ],
+      bottomNavigationBar:
+          buildBottomNavigationMenu(context, landingPageController),
+      body: Obx(
+        () => IndexedStack(
+          index: landingPageController.tabIndex.value,
+          children: [KirimTulisanView(), HomePageView(), AccountPageView()],
         ),
       ),
     );

@@ -5,6 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -37,11 +38,15 @@ class _SplashScreenState extends State<SplashScreen> {
           // ),
         ),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
+                SizedBox(
+                  height: 250,
+                ),
                 Image.asset(
                   "assets/images/logo.png",
                   height: 250.0,
@@ -51,6 +56,26 @@ class _SplashScreenState extends State<SplashScreen> {
             ),
             CircularProgressIndicator(
               valueColor: AlwaysStoppedAnimation<Color>(Colors.orange),
+            ),
+            Container(
+              width: 170,
+              height: 30,
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: Color(0xff5EE8D1),
+                  width: 1,
+                ),
+                borderRadius: BorderRadius.circular(11),
+                color: Colors.white,
+              ),
+              child: Center(
+                  child: Padding(
+                padding: const EdgeInsets.all(1.0),
+                child: Text(
+                  'Ayo belajar bersama!',
+                  style: GoogleFonts.inter(fontSize: 12, color: Colors.black),
+                ),
+              )),
             ),
           ],
         ),

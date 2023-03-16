@@ -6,10 +6,27 @@ import 'package:get/get.dart';
 import 'package:get/get_connect/http/src/utils/utils.dart';
 
 class LoginPageController extends GetxController {
-  // final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+  var tabIndex = 0.obs;
+
+  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   TextEditingController c_email = TextEditingController();
   TextEditingController c_pw = TextEditingController();
     User? user;
+
+  
+  void changeTabIndex(int index) {
+    tabIndex.value = index;
+  }
+
+  @override
+  void onInit() {
+    super.onInit();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
 
   // FirebaseAuth auth = FirebaseAuth.instance;
   // Future<User?> signIn(String email, String password) async {
