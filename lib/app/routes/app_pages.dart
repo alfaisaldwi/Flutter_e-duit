@@ -10,6 +10,8 @@ import 'package:eduit/app/modules/kirim_tulisan/bindings/kirim_tulisan_binding.d
 import 'package:eduit/app/modules/kirim_tulisan/views/kirim_tulisan_view.dart';
 import 'package:eduit/app/modules/login_page/bindings/login_page_binding.dart';
 import 'package:eduit/app/modules/login_page/views/login_page_view.dart';
+import 'package:eduit/app/modules/navbar_page/bindings/navbar_page_binding.dart';
+import 'package:eduit/app/modules/navbar_page/views/navbar_page_view.dart';
 import 'package:eduit/app/modules/signup_page/bindings/signup_page_binding.dart';
 import 'package:eduit/app/modules/signup_page/views/signup_page_view.dart';
 import 'package:eduit/splash_binding.dart';
@@ -57,6 +59,11 @@ class AppPages {
       name: _Paths.SIGNUP_PAGE,
       page: () => SignupPageView(),
       binding: SignupPageBinding(),
+    ),
+    GetPage(
+      name: _Paths.NAVBAR_PAGE,
+      page: () => NavbarPageView(),
+      binding: NavbarPageBinding(),
     ),
   ];
 }

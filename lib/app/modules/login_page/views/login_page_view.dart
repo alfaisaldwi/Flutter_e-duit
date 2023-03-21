@@ -74,7 +74,7 @@ class LoginPageView extends GetView<LoginPageController> {
   @override
   Widget build(BuildContext context) {
     final LoginPageController landingPageController =
-        Get.put(LoginPageController(), permanent: false);
+        Get.put(LoginPageController(), permanent: true);
     return Scaffold(
       bottomNavigationBar:
           buildBottomNavigationMenu(context, landingPageController),

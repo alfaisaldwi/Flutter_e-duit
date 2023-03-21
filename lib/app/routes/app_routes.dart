@@ -11,6 +11,8 @@ abstract class Routes {
   static const KIRIM_TULISAN = _Paths.KIRIM_TULISAN;
   static const HOME_PAGE = _Paths.HOME_PAGE;
   static const SIGNUP_PAGE = _Paths.SIGNUP_PAGE;
+  static const NAVBAR = _Paths.NAVBAR;
+  static const NAVBAR_PAGE = _Paths.NAVBAR_PAGE;
 }
 
 abstract class _Paths {
@@ -21,4 +23,6 @@ abstract class _Paths {
   static const KIRIM_TULISAN = '/kirim-tulisan';
   static const HOME_PAGE = '/home-page';
   static const SIGNUP_PAGE = '/signup-page';
+  static const NAVBAR = '/navbar';
+  static const NAVBAR_PAGE = '/navbar-page';
 }
