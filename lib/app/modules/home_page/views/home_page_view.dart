@@ -99,7 +99,7 @@ class HomePageView extends GetView<HomePageController> {
                         style: TextStyle(fontSize: 20)),
                   ),
                   SizedBox(
-                    height: 20,
+                    height: 21,
                   ),
                   CustomCarouselSlider(
                     items: controller.itemList,
