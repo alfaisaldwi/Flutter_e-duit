@@ -1,3 +1,5 @@
+import 'package:eduit/app/modules/login_page/controllers/login_page_controller.dart';
+import 'package:eduit/app/navbottom.dart';
 import 'package:get/get.dart';
 
 import 'package:eduit/app/modules/account_info/bindings/account_info_binding.dart';
@@ -23,7 +25,8 @@ part 'app_routes.dart';
 
 class AppPages {
   AppPages._();
-
+  final LoginPageController landingPageController =
+      Get.put(LoginPageController(), permanent: true);
   static const INITIAL = Routes.SPLASHSCREEN;
 
   static final routes = [
@@ -72,5 +75,9 @@ class AppPages {
       page: () => AccountInfoView(),
       binding: AccountInfoBinding(),
     ),
+    // GetPage(
+    // name: _Paths.NAVBOTTOM,
+    // page: () => buildBottomNavigationMenu(Get.context!),
+    // ),
   ];
 }

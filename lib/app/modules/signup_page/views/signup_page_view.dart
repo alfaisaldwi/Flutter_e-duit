@@ -1,4 +1,5 @@
 import 'package:eduit/app/modules/navbar_page/views/navbar_page_view.dart';
+import 'package:eduit/app/navbottom.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -10,7 +11,7 @@ class SignupPageView extends GetView<SignupPageController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: NavbarPageView(),
+      // bottomNavigationBar: NavBottom(),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.only(left: 12.0, right: 12.0),

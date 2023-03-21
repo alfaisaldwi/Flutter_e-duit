@@ -1,4 +1,6 @@
 import 'package:anim_search_bar/anim_search_bar.dart';
+import 'package:eduit/app/modules/login_page/controllers/login_page_controller.dart';
+import 'package:eduit/app/navbottom.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_custom_carousel_slider/flutter_custom_carousel_slider.dart';
 
@@ -9,7 +11,9 @@ import '../controllers/home_page_controller.dart';
 class HomePageView extends GetView<HomePageController> {
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
+      // bottomNavigationBar: Nammm()
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.only(left: 14.0, right: 14, top: 50),
@@ -19,6 +23,7 @@ class HomePageView extends GetView<HomePageController> {
                 children: [
                   AnimSearchBar(
                     rtl: true,
+                    
                     width: 400,
                     helpText: 'Cari..',
                     color: Color(0xffF8C800),

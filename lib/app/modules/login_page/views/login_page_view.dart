@@ -9,81 +9,82 @@ import 'package:google_fonts/google_fonts.dart';
 import '../controllers/login_page_controller.dart';
 
 class LoginPageView extends GetView<LoginPageController> {
-  final TextStyle unselectedLabelStyle = TextStyle(
-      color: Colors.white.withOpacity(0.5),
-      fontWeight: FontWeight.w500,
-      fontSize: 12);
+  // final TextStyle unselectedLabelStyle = TextStyle(
+  //     color: Colors.white.withOpacity(0.5),
+  //     fontWeight: FontWeight.w500,
+  //     fontSize: 12);
 
-  final TextStyle selectedLabelStyle =
-      TextStyle(color: Colors.white, fontWeight: FontWeight.w500, fontSize: 12);
+  // final TextStyle selectedLabelStyle =
+  //     TextStyle(color: Colors.white, fontWeight: FontWeight.w500, fontSize: 12);
 
-  buildBottomNavigationMenu(context, landingPageController) {
-    return Obx(() => MediaQuery(
-        data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
-        child: SizedBox(
-          height: 54,
-          child: BottomNavigationBar(
-            showUnselectedLabels: true,
-            showSelectedLabels: true,
-            onTap: landingPageController.changeTabIndex,
-            currentIndex: landingPageController.tabIndex.value,
-            backgroundColor: Colors.white,
-            unselectedItemColor: Color.fromRGBO(36, 54, 101, 1.0),
-            selectedItemColor: Colors.yellow,
-            unselectedLabelStyle: unselectedLabelStyle,
-            selectedLabelStyle: selectedLabelStyle,
-            items: [
-              BottomNavigationBarItem(
-                icon: Container(
-                  margin: EdgeInsets.only(bottom: 7),
-                  child: Icon(
-                    Icons.border_color_rounded,
-                    size: 20.0,
-                  ),
-                ),
-                label: 'Kirim Tulisan',
-                backgroundColor: Color.fromRGBO(36, 54, 101, 1.0),
-              ),
-              BottomNavigationBarItem(
-                icon: Container(
-                  margin: EdgeInsets.only(bottom: 7),
-                  child: Icon(
-                    Icons.home,
-                    size: 20.0,
-                  ),
-                ),
-                label: 'Home',
-                backgroundColor: Color.fromRGBO(36, 54, 101, 1.0),
-              ),
-              BottomNavigationBarItem(
-                icon: Container(
-                  margin: EdgeInsets.only(bottom: 7),
-                  child: Icon(
-                    Icons.account_circle_outlined,
-                    size: 20.0,
-                  ),
-                ),
-                label: 'Akun',
-                backgroundColor: Color.fromRGBO(36, 54, 101, 1.0),
-              ),
-            ],
-          ),
-        )));
-  }
+  // buildBottomNavigationMenu(context, landingPageController) {
+  //   return Obx(() => MediaQuery(
+  //       data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+  //       child: SizedBox(
+  //         height: 54,
+  //         child: BottomNavigationBar(
+  //           showUnselectedLabels: true,
+  //           showSelectedLabels: true,
+  //           onTap: landingPageController.changeTabIndex,
+  //           currentIndex: landingPageController.tabIndex.value,
+  //           backgroundColor: Colors.white,
+  //           unselectedItemColor: Color.fromRGBO(36, 54, 101, 1.0),
+  //           selectedItemColor: Colors.yellow,
+  //           unselectedLabelStyle: unselectedLabelStyle,
+  //           selectedLabelStyle: selectedLabelStyle,
+  //           items: [
+  //             BottomNavigationBarItem(
+  //               icon: Container(
+  //                 margin: EdgeInsets.only(bottom: 7),
+  //                 child: Icon(
+  //                   Icons.border_color_rounded,
+  //                   size: 20.0,
+  //                 ),
+  //               ),
+  //               label: 'Kirim Tulisan',
+  //               backgroundColor: Color.fromRGBO(36, 54, 101, 1.0),
+  //             ),
+  //             BottomNavigationBarItem(
+  //               icon: Container(
+  //                 margin: EdgeInsets.only(bottom: 7),
+  //                 child: Icon(
+  //                   Icons.home,
+  //                   size: 20.0,
+  //                 ),
+  //               ),
+  //               label: 'Home',
+  //               backgroundColor: Color.fromRGBO(36, 54, 101, 1.0),
+  //             ),
+  //             BottomNavigationBarItem(
+  //               icon: Container(
+  //                 margin: EdgeInsets.only(bottom: 7),
+  //                 child: Icon(
+  //                   Icons.account_circle_outlined,
+  //                   size: 20.0,
+  //                 ),
+  //               ),
+  //               label: 'Akun',
+  //               backgroundColor: Color.fromRGBO(36, 54, 101, 1.0),
+  //             ),
+  //           ],
+  //         ),
+  //       )));
+  // }
 
   @override
   Widget build(BuildContext context) {
-    final LoginPageController landingPageController =
-        Get.put(LoginPageController(), permanent: true);
-    return Scaffold(
-      bottomNavigationBar:
-          buildBottomNavigationMenu(context, landingPageController),
-      body: Obx(
-        () => IndexedStack(
-          index: landingPageController.tabIndex.value,
-          children: [KirimTulisanView(), HomePageView(), AccountPageView()],
-        ),
-      ),
-    );
+    return CircularProgressIndicator();
+    // final LoginPageController landingPageController =
+    //     Get.put(LoginPageController(), permanent: true);
+    // return Scaffold(
+    //   // bottomNavigationBar:
+    //   //     buildBottomNavigationMenu(context, landingPageController),
+    //   // body: Obx(
+    //   //   () => IndexedStack(
+    //   //     index: landingPageController.tabIndex.value,
+    //   //     children: [KirimTulisanView(), HomePageView(), AccountPageView()],
+    //   //   ),
+    //   // ),
+    // );
   }
 }

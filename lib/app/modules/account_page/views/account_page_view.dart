@@ -1,8 +1,11 @@
 import 'package:eduit/app/modules/account_info/views/account_info_view.dart';
+import 'package:eduit/app/modules/signup_page/views/signup_page_view.dart';
+import 'package:eduit/app/navbottom.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
 import '../controllers/account_page_controller.dart';
 
@@ -10,6 +13,7 @@ class AccountPageView extends GetView<AccountPageController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // bottomNavigationBar: NavBottom(),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.only(left: 12.0, right: 12.0),
@@ -92,7 +96,13 @@ class AccountPageView extends GetView<AccountPageController> {
                     style: GoogleFonts.inter(fontSize: 12, color: Colors.black),
                   ),
                   onPressed: () async {
-                    Get.to(AccountInfoView());
+                    PersistentNavBarNavigator.pushNewScreen(
+                      context,
+                      screen: AccountInfoView(),
+                      withNavBar: true, // OPTIONAL VALUE. True by default.
+                      pageTransitionAnimation:
+                          PageTransitionAnimation.cupertino,
+                    );
                     // await controller.signIn(
                     //     controller.c_email.text, controller.c_pw.text);
                     // if (await FirebaseAuth.instance.currentUser?.uid )!= null) {
@@ -144,7 +154,13 @@ class AccountPageView extends GetView<AccountPageController> {
                   'Buat akun',
                   style: GoogleFonts.inter(fontSize: 12, color: Colors.black),
                 ),
-                onPressed: () {
+                onPressed: () async {
+                  await PersistentNavBarNavigator.pushNewScreen(
+                    context,
+                    screen: SignupPageView(),
+                    withNavBar: true, // OPTIONAL VALUE. True by default.
+                    pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                  );
                   Get.toNamed('signup-page');
                 },
               ),

@@ -14,6 +14,7 @@ abstract class Routes {
   static const NAVBAR = _Paths.NAVBAR;
   static const NAVBAR_PAGE = _Paths.NAVBAR_PAGE;
   static const ACCOUNT_INFO = _Paths.ACCOUNT_INFO;
+  static const NAVBOTTOM = _Paths.NAVBOTTOM;
 }
 
 abstract class _Paths {
@@ -27,4 +28,5 @@ abstract class _Paths {
   static const NAVBAR = '/navbar';
   static const NAVBAR_PAGE = '/navbar-page';
   static const ACCOUNT_INFO = '/account-info';
+  static const NAVBOTTOM = '/navbottom';
 }
