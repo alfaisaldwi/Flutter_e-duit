@@ -13,6 +13,7 @@ abstract class Routes {
   static const SIGNUP_PAGE = _Paths.SIGNUP_PAGE;
   static const NAVBAR = _Paths.NAVBAR;
   static const NAVBAR_PAGE = _Paths.NAVBAR_PAGE;
+  static const ACCOUNT_INFO = _Paths.ACCOUNT_INFO;
 }
 
 abstract class _Paths {
@@ -25,4 +26,5 @@ abstract class _Paths {
   static const SIGNUP_PAGE = '/signup-page';
   static const NAVBAR = '/navbar';
   static const NAVBAR_PAGE = '/navbar-page';
+  static const ACCOUNT_INFO = '/account-info';
 }

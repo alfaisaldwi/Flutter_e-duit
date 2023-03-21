@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
 
+import 'package:eduit/app/modules/account_info/bindings/account_info_binding.dart';
+import 'package:eduit/app/modules/account_info/views/account_info_view.dart';
 import 'package:eduit/app/modules/account_page/bindings/account_page_binding.dart';
 import 'package:eduit/app/modules/account_page/views/account_page_view.dart';
 import 'package:eduit/app/modules/home/bindings/home_binding.dart';
@@ -64,6 +66,11 @@ class AppPages {
       name: _Paths.NAVBAR_PAGE,
       page: () => NavbarPageView(),
       binding: NavbarPageBinding(),
+    ),
+    GetPage(
+      name: _Paths.ACCOUNT_INFO,
+      page: () => AccountInfoView(),
+      binding: AccountInfoBinding(),
     ),
   ];
 }

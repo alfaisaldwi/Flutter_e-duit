@@ -1,3 +1,4 @@
+import 'package:eduit/app/modules/account_info/views/account_info_view.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -91,6 +92,7 @@ class AccountPageView extends GetView<AccountPageController> {
                     style: GoogleFonts.inter(fontSize: 12, color: Colors.black),
                   ),
                   onPressed: () async {
+                    Get.to(AccountInfoView());
                     // await controller.signIn(
                     //     controller.c_email.text, controller.c_pw.text);
                     // if (await FirebaseAuth.instance.currentUser?.uid )!= null) {

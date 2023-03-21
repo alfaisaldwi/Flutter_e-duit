@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 import 'package:get/get_connect/http/src/utils/utils.dart';
 
 class LoginPageController extends GetxController {
-  var tabIndex = 0.obs;
+  var tabIndex = 1.obs;
 
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   TextEditingController c_email = TextEditingController();
