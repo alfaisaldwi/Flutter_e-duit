@@ -1,5 +1,3 @@
-import 'package:eduit/app/modules/login_page/controllers/login_page_controller.dart';
-import 'package:eduit/app/navbottom.dart';
 import 'package:get/get.dart';
 
 import 'package:eduit/app/modules/account_info/bindings/account_info_binding.dart';
@@ -10,14 +8,18 @@ import 'package:eduit/app/modules/home/bindings/home_binding.dart';
 import 'package:eduit/app/modules/home/views/home_view.dart';
 import 'package:eduit/app/modules/home_page/bindings/home_page_binding.dart';
 import 'package:eduit/app/modules/home_page/views/home_page_view.dart';
+import 'package:eduit/app/modules/kamus_keuangan_page/bindings/kamus_keuangan_page_binding.dart';
+import 'package:eduit/app/modules/kamus_keuangan_page/views/kamus_keuangan_page_view.dart';
 import 'package:eduit/app/modules/kirim_tulisan/bindings/kirim_tulisan_binding.dart';
 import 'package:eduit/app/modules/kirim_tulisan/views/kirim_tulisan_view.dart';
 import 'package:eduit/app/modules/login_page/bindings/login_page_binding.dart';
+import 'package:eduit/app/modules/login_page/controllers/login_page_controller.dart';
 import 'package:eduit/app/modules/login_page/views/login_page_view.dart';
 import 'package:eduit/app/modules/navbar_page/bindings/navbar_page_binding.dart';
 import 'package:eduit/app/modules/navbar_page/views/navbar_page_view.dart';
 import 'package:eduit/app/modules/signup_page/bindings/signup_page_binding.dart';
 import 'package:eduit/app/modules/signup_page/views/signup_page_view.dart';
+import 'package:eduit/app/navbottom.dart';
 import 'package:eduit/splash_binding.dart';
 import 'package:eduit/splashscreen.dart';
 
@@ -79,5 +81,10 @@ class AppPages {
     // name: _Paths.NAVBOTTOM,
     // page: () => buildBottomNavigationMenu(Get.context!),
     // ),
+    GetPage(
+      name: _Paths.KAMUS_KEUANGAN_PAGE,
+      page: () => KamusKeuanganPageView(),
+      binding: KamusKeuanganPageBinding(),
+    ),
   ];
 }

@@ -15,6 +15,7 @@ abstract class Routes {
   static const NAVBAR_PAGE = _Paths.NAVBAR_PAGE;
   static const ACCOUNT_INFO = _Paths.ACCOUNT_INFO;
   static const NAVBOTTOM = _Paths.NAVBOTTOM;
+  static const KAMUS_KEUANGAN_PAGE = _Paths.KAMUS_KEUANGAN_PAGE;
 }
 
 abstract class _Paths {
@@ -29,4 +30,5 @@ abstract class _Paths {
   static const NAVBAR_PAGE = '/navbar-page';
   static const ACCOUNT_INFO = '/account-info';
   static const NAVBOTTOM = '/navbottom';
+  static const KAMUS_KEUANGAN_PAGE = '/kamus-keuangan-page';
 }

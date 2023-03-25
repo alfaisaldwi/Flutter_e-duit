@@ -6,6 +6,7 @@ import 'package:eduit/app/modules/kirim_tulisan/views/kirim_tulisan_view.dart';
 import 'package:eduit/app/modules/navbar_page/controllers/navbar_page_controller.dart';
 import 'package:eduit/app/modules/signup_page/views/signup_page_view.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -33,26 +34,30 @@ class NavbarPageView extends GetView<NavbarPageController> {
   List<PersistentBottomNavBarItem> _navbarItem() {
     return [
       PersistentBottomNavBarItem(
-        icon: Icon(Icons.border_color_rounded),
-      ),
+          title: 'Kirim Tulisan',
+          icon: Icon(
+            Icons.border_color_rounded,
+            color: Color.fromRGBO(36, 54, 101, 1.0),
+          ),
+          activeColorPrimary: Color(0xffF8C800),
+          inactiveColorPrimary: Colors.grey,
+          inactiveColorSecondary: Colors.white),
       PersistentBottomNavBarItem(
-        icon: Icon(Icons.home),
-      ),
+          title: 'Home',
+          icon: Icon(
+            Icons.home,
+            color: Color.fromRGBO(36, 54, 101, 1.0),
+          ),
+          activeColorPrimary: Color(0xffF8C800),
+          inactiveColorPrimary: CupertinoColors.systemGrey),
       PersistentBottomNavBarItem(
-        icon: Icon(Icons.account_circle_outlined),
-        routeAndNavigatorSettings: RouteAndNavigatorSettings(
-            onGenerateRoute: (RouteSettings settings) {
-          WidgetBuilder builder;
-          // Manage your route names here
-          switch (settings.name) {
-            case '/account-info':
-              builder = (BuildContext context) => AccountInfoView();
-              break;
-            default:
-              throw Exception('Invalid route: ${settings.name}');
-          }
-        }),
-      ),
+          title: 'Akun',
+          activeColorSecondary: Colors.black,
+          icon: Icon(Icons.person_outline,
+              color: Color.fromRGBO(36, 54, 101, 1.0)),
+          activeColorPrimary: Color(0xffF8C800),
+          inactiveColorPrimary: Colors.grey,
+          inactiveColorSecondary: Colors.white),
     ];
   }
 
@@ -62,10 +67,19 @@ class NavbarPageView extends GetView<NavbarPageController> {
       Get.context!,
       screens: _buildScreen(),
       items: _navbarItem(),
-      popAllScreensOnTapOfSelectedTab: true,
-      popActionScreens: PopActionScreensType.all,
-      backgroundColor: Color.fromRGBO(36, 54, 101, 1.0),
-      navBarStyle: NavBarStyle.style13,
+      backgroundColor: Colors.white,
+      navBarStyle: NavBarStyle.style3,
+      decoration: NavBarDecoration(
+        colorBehindNavBar: Colors.black,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.5),
+            spreadRadius: 3,
+            blurRadius: 3,
+            offset: Offset(0, 2), // changes position of shadow
+          ),
+        ],
+      ),
       controller: contr,
     );
   }
