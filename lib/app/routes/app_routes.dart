@@ -16,6 +16,8 @@ abstract class Routes {
   static const ACCOUNT_INFO = _Paths.ACCOUNT_INFO;
   static const NAVBOTTOM = _Paths.NAVBOTTOM;
   static const KAMUS_KEUANGAN_PAGE = _Paths.KAMUS_KEUANGAN_PAGE;
+  static const ARTIKEL_PODCAST = _Paths.ARTIKEL_PODCAST;
+  static const DAFTAR_YMYB = _Paths.DAFTAR_YMYB;
 }
 
 abstract class _Paths {
@@ -31,4 +33,6 @@ abstract class _Paths {
   static const ACCOUNT_INFO = '/account-info';
   static const NAVBOTTOM = '/navbottom';
   static const KAMUS_KEUANGAN_PAGE = '/kamus-keuangan-page';
+  static const ARTIKEL_PODCAST = '/artikel-podcast';
+  static const DAFTAR_YMYB = '/daftar-ymyb';
 }

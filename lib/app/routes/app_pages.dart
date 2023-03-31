@@ -4,6 +4,10 @@ import 'package:eduit/app/modules/account_info/bindings/account_info_binding.dar
 import 'package:eduit/app/modules/account_info/views/account_info_view.dart';
 import 'package:eduit/app/modules/account_page/bindings/account_page_binding.dart';
 import 'package:eduit/app/modules/account_page/views/account_page_view.dart';
+import 'package:eduit/app/modules/artikel_podcast/bindings/artikel_podcast_binding.dart';
+import 'package:eduit/app/modules/artikel_podcast/views/artikel_podcast_view.dart';
+import 'package:eduit/app/modules/daftar_ymyb/bindings/daftar_ymyb_binding.dart';
+import 'package:eduit/app/modules/daftar_ymyb/views/daftar_ymyb_view.dart';
 import 'package:eduit/app/modules/home/bindings/home_binding.dart';
 import 'package:eduit/app/modules/home/views/home_view.dart';
 import 'package:eduit/app/modules/home_page/bindings/home_page_binding.dart';
@@ -85,6 +89,16 @@ class AppPages {
       name: _Paths.KAMUS_KEUANGAN_PAGE,
       page: () => KamusKeuanganPageView(),
       binding: KamusKeuanganPageBinding(),
+    ),
+    GetPage(
+      name: _Paths.ARTIKEL_PODCAST,
+      page: () => ArtikelPodcastView(),
+      binding: ArtikelPodcastBinding(),
+    ),
+    GetPage(
+      name: _Paths.DAFTAR_YMYB,
+      page: () => DaftarYmybView(),
+      binding: DaftarYmybBinding(),
     ),
   ];
 }
