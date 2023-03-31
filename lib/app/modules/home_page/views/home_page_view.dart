@@ -1,6 +1,7 @@
 import 'package:anim_search_bar/anim_search_bar.dart';
 import 'package:eduit/app/modules/artikel_podcast/controllers/artikel_podcast_controller.dart';
 import 'package:eduit/app/modules/artikel_podcast/views/artikel_podcast_view.dart';
+import 'package:eduit/app/modules/daftar_ymyb/views/daftar_ymyb_view.dart';
 import 'package:eduit/app/modules/kamus_keuangan_page/views/kamus_keuangan_page_view.dart';
 import 'package:eduit/app/modules/login_page/controllers/login_page_controller.dart';
 import 'package:eduit/app/navbottom.dart';
@@ -166,7 +167,7 @@ class HomePageView extends GetView<HomePageController> {
                           onTap: () async {
                             await PersistentNavBarNavigator.pushNewScreen(
                               context,
-                              screen: KamusKeuanganPageView(),
+                              screen: DaftarYmybView(),
                               withNavBar:
                                   true, // OPTIONAL VALUE. True by default.
                               pageTransitionAnimation:
