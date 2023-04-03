@@ -24,6 +24,9 @@ class NavbarPageView extends GetView<NavbarPageController> {
   final contr = PersistentTabController(initialIndex: 1);
 
   List<Widget> _buildScreen() {
+
+
+
     return [
       KirimTulisanView(),
       HomePageView(),

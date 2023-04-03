@@ -18,6 +18,8 @@ abstract class Routes {
   static const KAMUS_KEUANGAN_PAGE = _Paths.KAMUS_KEUANGAN_PAGE;
   static const ARTIKEL_PODCAST = _Paths.ARTIKEL_PODCAST;
   static const DAFTAR_YMYB = _Paths.DAFTAR_YMYB;
+  static const KONSULTASI = _Paths.KONSULTASI;
+  static const KONTEN_EDU = _Paths.KONTEN_EDU;
 }
 
 abstract class _Paths {
@@ -35,4 +37,6 @@ abstract class _Paths {
   static const KAMUS_KEUANGAN_PAGE = '/kamus-keuangan-page';
   static const ARTIKEL_PODCAST = '/artikel-podcast';
   static const DAFTAR_YMYB = '/daftar-ymyb';
+  static const KONSULTASI = '/konsultasi';
+  static const KONTEN_EDU = '/konten-edu';
 }

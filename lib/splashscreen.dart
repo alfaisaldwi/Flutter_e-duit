@@ -16,11 +16,9 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    if (FirebaseAuth.instance.currentUser == null) {
+   
       Timer(Duration(seconds: 4), () => Get.offAndToNamed(Routes.NAVBAR_PAGE));
-    } else {
-      Timer(Duration(seconds: 4), () => Get.offAllNamed(Routes.HOME));
-    }
+
   }
 
   @override

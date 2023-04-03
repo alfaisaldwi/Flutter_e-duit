@@ -3,6 +3,7 @@ import 'package:eduit/app/modules/artikel_podcast/controllers/artikel_podcast_co
 import 'package:eduit/app/modules/artikel_podcast/views/artikel_podcast_view.dart';
 import 'package:eduit/app/modules/daftar_ymyb/views/daftar_ymyb_view.dart';
 import 'package:eduit/app/modules/kamus_keuangan_page/views/kamus_keuangan_page_view.dart';
+import 'package:eduit/app/modules/konsultasi/views/konsultasi_view.dart';
 import 'package:eduit/app/modules/login_page/controllers/login_page_controller.dart';
 import 'package:eduit/app/navbottom.dart';
 import 'package:flutter/material.dart';
@@ -197,21 +198,33 @@ class HomePageView extends GetView<HomePageController> {
                     SizedBox(
                       height: 10,
                     ),
-                    Container(
-                      height: 100,
-                      width: double.infinity,
-                      //color: Colors.purple,
-                      alignment: Alignment.center,
-                      padding: const EdgeInsets.all(10),
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Color(0xff5EE8D1), width: 3),
-                        borderRadius: BorderRadius.circular(4.0),
-                      ),
-                      child: Image.asset(
-                        'assets/images/home_konsul.png',
-                        height: double.infinity,
+                    GestureDetector(
+                      onTap: () async {
+                        await PersistentNavBarNavigator.pushNewScreen(
+                          context,
+                          screen: KonsultasiView(),
+                          withNavBar: true, // OPTIONAL VALUE. True by default.
+                          pageTransitionAnimation:
+                              PageTransitionAnimation.cupertino,
+                        );
+                      },
+                      child: Container(
+                        height: 100,
                         width: double.infinity,
-                        fit: BoxFit.cover,
+                        //color: Colors.purple,
+                        alignment: Alignment.center,
+                        padding: const EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                          border:
+                              Border.all(color: Color(0xff5EE8D1), width: 3),
+                          borderRadius: BorderRadius.circular(4.0),
+                        ),
+                        child: Image.asset(
+                          'assets/images/home_konsul.png',
+                          height: double.infinity,
+                          width: double.infinity,
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     ),
                     SizedBox(

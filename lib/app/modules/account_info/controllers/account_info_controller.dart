@@ -1,20 +1,15 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 
 class AccountInfoController extends GetxController {
-  //TODO: Implement AccountInfoController
+  FirebaseAuth auth = FirebaseAuth.instance;
 
-  final count = 0.obs;
-  @override
-  void onInit() {
-    super.onInit();
+
+  Stream<User?> get firebaseUserStream => auth.authStateChanges();
+  void asignOutUser() {
+    auth.signOut();
   }
-
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {}
-  void increment() => count.value++;
+  Future<User?> getCurrentUser() async {
+    return auth.currentUser;
+}
 }

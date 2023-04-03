@@ -1,3 +1,4 @@
+import 'package:eduit/app/modules/account_page/views/account_page_view.dart';
 import 'package:eduit/app/modules/login_page/controllers/login_page_controller.dart';
 import 'package:eduit/app/modules/navbar_page/views/navbar_page_view.dart';
 import 'package:eduit/app/navbottom.dart';
@@ -10,6 +11,7 @@ import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import '../controllers/account_info_controller.dart';
 
 class AccountInfoView extends GetView<AccountInfoController> {
+  final pUser = Get.put(LoginPageController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,9 +35,9 @@ class AccountInfoView extends GetView<AccountInfoController> {
               Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
-                  'Tamuu .',
+                  '${controller.auth.currentUser?.email}',
                   style:
-                      GoogleFonts.inter(fontSize: 30, color: Color(0xff034779)),
+                      GoogleFonts.inter(fontSize: 24, color: Color(0xff034779)),
                 ),
               ),
               SizedBox(
@@ -164,9 +166,10 @@ class AccountInfoView extends GetView<AccountInfoController> {
                           fontWeight: FontWeight.bold),
                     ),
                     onPressed: () async {
+                      controller.asignOutUser();
                       PersistentNavBarNavigator.pushNewScreen(
                         context,
-                        screen: AccountInfoView(),
+                        screen: AccountPageView(),
                         withNavBar: true, // OPTIONAL VALUE. True by default.
                         pageTransitionAnimation:
                             PageTransitionAnimation.cupertino,

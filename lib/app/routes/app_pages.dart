@@ -16,6 +16,10 @@ import 'package:eduit/app/modules/kamus_keuangan_page/bindings/kamus_keuangan_pa
 import 'package:eduit/app/modules/kamus_keuangan_page/views/kamus_keuangan_page_view.dart';
 import 'package:eduit/app/modules/kirim_tulisan/bindings/kirim_tulisan_binding.dart';
 import 'package:eduit/app/modules/kirim_tulisan/views/kirim_tulisan_view.dart';
+import 'package:eduit/app/modules/konsultasi/bindings/konsultasi_binding.dart';
+import 'package:eduit/app/modules/konsultasi/views/konsultasi_view.dart';
+import 'package:eduit/app/modules/konten_edu/bindings/konten_edu_binding.dart';
+import 'package:eduit/app/modules/konten_edu/views/konten_edu_view.dart';
 import 'package:eduit/app/modules/login_page/bindings/login_page_binding.dart';
 import 'package:eduit/app/modules/login_page/controllers/login_page_controller.dart';
 import 'package:eduit/app/modules/login_page/views/login_page_view.dart';
@@ -99,6 +103,16 @@ class AppPages {
       name: _Paths.DAFTAR_YMYB,
       page: () => DaftarYmybView(),
       binding: DaftarYmybBinding(),
+    ),
+    GetPage(
+      name: _Paths.KONSULTASI,
+      page: () => KonsultasiView(),
+      binding: KonsultasiBinding(),
+    ),
+    GetPage(
+      name: _Paths.KONTEN_EDU,
+      page: () => KontenEduView(),
+      binding: KontenEduBinding(),
     ),
   ];
 }

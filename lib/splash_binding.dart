@@ -4,6 +4,9 @@ import 'package:eduit/app/modules/home_page/controllers/home_page_controller.dar
 import 'package:eduit/app/modules/kirim_tulisan/controllers/kirim_tulisan_controller.dart';
 import 'package:get/get.dart';
 
+import 'app/modules/account_info/controllers/account_info_controller.dart';
+import 'app/modules/login_page/controllers/login_page_controller.dart';
+
 class SplashBinding extends Bindings {
   @override
   void dependencies() {
@@ -18,6 +21,12 @@ class SplashBinding extends Bindings {
     );
     Get.lazyPut<ArtikelPodcastController>(
       () => ArtikelPodcastController(),
+    );
+        Get.lazyPut<AccountInfoController>(
+      () => AccountInfoController(),
+    );
+      Get.lazyPut<LoginPageController>(
+      () => LoginPageController(),
     );
   }
 }
