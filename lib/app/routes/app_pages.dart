@@ -29,6 +29,14 @@ import 'package:eduit/app/modules/navbar_page/bindings/navbar_page_binding.dart'
 import 'package:eduit/app/modules/navbar_page/views/navbar_page_view.dart';
 import 'package:eduit/app/modules/signup_page/bindings/signup_page_binding.dart';
 import 'package:eduit/app/modules/signup_page/views/signup_page_view.dart';
+import 'package:eduit/app/modules/utang_apbn/bindings/utang_apbn_binding.dart';
+import 'package:eduit/app/modules/utang_apbn/views/utang_apbn_view.dart';
+import 'package:eduit/app/modules/utang_belajar/bindings/utang_belajar_binding.dart';
+import 'package:eduit/app/modules/utang_belajar/views/utang_belajar_view.dart';
+import 'package:eduit/app/modules/utang_home/bindings/utang_home_binding.dart';
+import 'package:eduit/app/modules/utang_home/views/utang_home_view.dart';
+import 'package:eduit/app/modules/utang_terkini/bindings/utang_terkini_binding.dart';
+import 'package:eduit/app/modules/utang_terkini/views/utang_terkini_view.dart';
 import 'package:eduit/app/navbottom.dart';
 import 'package:eduit/splash_binding.dart';
 import 'package:eduit/splashscreen.dart';
@@ -120,6 +128,26 @@ class AppPages {
       name: _Paths.GAME_QUIZ,
       page: () => GameQuizView(),
       binding: GameQuizBinding(),
+    ),
+    GetPage(
+      name: _Paths.UTANG_HOME,
+      page: () => UtangHomeView(),
+      binding: UtangHomeBinding(),
+    ),
+    GetPage(
+      name: _Paths.UTANG_BELAJAR,
+      page: () => UtangBelajarView(),
+      binding: UtangBelajarBinding(),
+    ),
+    GetPage(
+      name: _Paths.UTANG_TERKINI,
+      page: () => UtangTerkiniView(),
+      binding: UtangTerkiniBinding(),
+    ),
+    GetPage(
+      name: _Paths.UTANG_APBN,
+      page: () => UtangApbnView(),
+      binding: UtangApbnBinding(),
     ),
   ];
 }

@@ -21,6 +21,10 @@ abstract class Routes {
   static const KONSULTASI = _Paths.KONSULTASI;
   static const KONTEN_EDU = _Paths.KONTEN_EDU;
   static const GAME_QUIZ = _Paths.GAME_QUIZ;
+  static const UTANG_HOME = _Paths.UTANG_HOME;
+  static const UTANG_BELAJAR = _Paths.UTANG_BELAJAR;
+  static const UTANG_TERKINI = _Paths.UTANG_TERKINI;
+  static const UTANG_APBN = _Paths.UTANG_APBN;
 }
 
 abstract class _Paths {
@@ -41,4 +45,8 @@ abstract class _Paths {
   static const KONSULTASI = '/konsultasi';
   static const KONTEN_EDU = '/konten-edu';
   static const GAME_QUIZ = '/game-quiz';
+  static const UTANG_HOME = '/utang-home';
+  static const UTANG_BELAJAR = '/utang-belajar';
+  static const UTANG_TERKINI = '/utang-terkini';
+  static const UTANG_APBN = '/utang-apbn';
 }
