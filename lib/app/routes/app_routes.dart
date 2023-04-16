@@ -20,6 +20,7 @@ abstract class Routes {
   static const DAFTAR_YMYB = _Paths.DAFTAR_YMYB;
   static const KONSULTASI = _Paths.KONSULTASI;
   static const KONTEN_EDU = _Paths.KONTEN_EDU;
+  static const GAME_QUIZ = _Paths.GAME_QUIZ;
 }
 
 abstract class _Paths {
@@ -39,4 +40,5 @@ abstract class _Paths {
   static const DAFTAR_YMYB = '/daftar-ymyb';
   static const KONSULTASI = '/konsultasi';
   static const KONTEN_EDU = '/konten-edu';
+  static const GAME_QUIZ = '/game-quiz';
 }

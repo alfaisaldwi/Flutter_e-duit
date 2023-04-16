@@ -8,6 +8,8 @@ import 'package:eduit/app/modules/artikel_podcast/bindings/artikel_podcast_bindi
 import 'package:eduit/app/modules/artikel_podcast/views/artikel_podcast_view.dart';
 import 'package:eduit/app/modules/daftar_ymyb/bindings/daftar_ymyb_binding.dart';
 import 'package:eduit/app/modules/daftar_ymyb/views/daftar_ymyb_view.dart';
+import 'package:eduit/app/modules/game_quiz/bindings/game_quiz_binding.dart';
+import 'package:eduit/app/modules/game_quiz/views/game_quiz_view.dart';
 import 'package:eduit/app/modules/home/bindings/home_binding.dart';
 import 'package:eduit/app/modules/home/views/home_view.dart';
 import 'package:eduit/app/modules/home_page/bindings/home_page_binding.dart';
@@ -113,6 +115,11 @@ class AppPages {
       name: _Paths.KONTEN_EDU,
       page: () => KontenEduView(),
       binding: KontenEduBinding(),
+    ),
+    GetPage(
+      name: _Paths.GAME_QUIZ,
+      page: () => GameQuizView(),
+      binding: GameQuizBinding(),
     ),
   ];
 }

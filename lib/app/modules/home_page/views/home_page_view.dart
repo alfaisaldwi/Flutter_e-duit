@@ -2,6 +2,7 @@ import 'package:anim_search_bar/anim_search_bar.dart';
 import 'package:eduit/app/modules/artikel_podcast/controllers/artikel_podcast_controller.dart';
 import 'package:eduit/app/modules/artikel_podcast/views/artikel_podcast_view.dart';
 import 'package:eduit/app/modules/daftar_ymyb/views/daftar_ymyb_view.dart';
+import 'package:eduit/app/modules/game_quiz/views/game_quiz_view.dart';
 import 'package:eduit/app/modules/kamus_keuangan_page/views/kamus_keuangan_page_view.dart';
 import 'package:eduit/app/modules/konsultasi/views/konsultasi_view.dart';
 import 'package:eduit/app/modules/login_page/controllers/login_page_controller.dart';
@@ -39,23 +40,66 @@ class HomePageView extends GetView<HomePageController> {
                       },
                       onSubmitted: (String) {},
                     ),
-                    Container(
-                      height: 180,
-                      width: double.infinity,
-                      //color: Colors.purple,
-                      padding: EdgeInsets.all(
-                        3,
-                      ),
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Color(0xff5EE8D1), width: 3),
-                        borderRadius: BorderRadius.circular(8.0),
-                      ),
-                      child: Image.asset(
-                        'assets/images/home_kuis.png',
-                        height: double.infinity,
+                    GestureDetector(
+                      onTap: (() async {
+                        await PersistentNavBarNavigator.pushNewScreen(
+                          context,
+                          screen: GameQuizView(),
+                          withNavBar: true, // OPTIONAL VALUE. True by default.
+                          pageTransitionAnimation:
+                              PageTransitionAnimation.cupertino,
+                        );
+                      }),
+                      child: Container(
+                        height: 180,
                         width: double.infinity,
-                        fit: BoxFit.cover,
+                        padding: EdgeInsets.all(
+                          3,
+                        ),
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          border:
+                              Border.all(color: Color(0xff5EE8D1), width: 3),
+                          borderRadius: BorderRadius.circular(8.0),
+                        ),
+                        child: Image.asset(
+                          'assets/images/home_kuis.png',
+                          height: double.infinity,
+                          width: double.infinity,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    GestureDetector(
+                      onTap: () async {
+                        await PersistentNavBarNavigator.pushNewScreen(
+                          context,
+                          screen: KonsultasiView(),
+                          withNavBar: true, // OPTIONAL VALUE. True by default.
+                          pageTransitionAnimation:
+                              PageTransitionAnimation.cupertino,
+                        );
+                      },
+                      child: Container(
+                        height: 100,
+                        width: double.infinity,
+                        //color: Colors.purple,
+                        alignment: Alignment.center,
+                        padding: const EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                          border:
+                              Border.all(color: Color(0xff5EE8D1), width: 3),
+                          borderRadius: BorderRadius.circular(4.0),
+                        ),
+                        child: Image.asset(
+                          'assets/images/home_konsul.png',
+                          height: double.infinity,
+                          width: double.infinity,
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     ),
                     SizedBox(
@@ -194,38 +238,6 @@ class HomePageView extends GetView<HomePageController> {
                           ),
                         ),
                       ],
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    GestureDetector(
-                      onTap: () async {
-                        await PersistentNavBarNavigator.pushNewScreen(
-                          context,
-                          screen: KonsultasiView(),
-                          withNavBar: true, // OPTIONAL VALUE. True by default.
-                          pageTransitionAnimation:
-                              PageTransitionAnimation.cupertino,
-                        );
-                      },
-                      child: Container(
-                        height: 100,
-                        width: double.infinity,
-                        //color: Colors.purple,
-                        alignment: Alignment.center,
-                        padding: const EdgeInsets.all(10),
-                        decoration: BoxDecoration(
-                          border:
-                              Border.all(color: Color(0xff5EE8D1), width: 3),
-                          borderRadius: BorderRadius.circular(4.0),
-                        ),
-                        child: Image.asset(
-                          'assets/images/home_konsul.png',
-                          height: double.infinity,
-                          width: double.infinity,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
                     ),
                     SizedBox(
                       height: 15,

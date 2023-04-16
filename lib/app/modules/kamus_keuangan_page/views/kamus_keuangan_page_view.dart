@@ -39,6 +39,7 @@ class KamusKeuanganPageView extends GetView<KamusKeuanganPageController> {
                 ListView.builder(
                   shrinkWrap: true,
                   scrollDirection: Axis.vertical,
+                  physics: ScrollPhysics(),
                   itemCount: kamusData.length,
                   itemBuilder: (context, index) {
                     return Column(

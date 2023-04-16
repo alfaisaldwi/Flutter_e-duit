@@ -1,5 +1,6 @@
 import 'package:eduit/app/modules/account_page/controllers/account_page_controller.dart';
 import 'package:eduit/app/modules/artikel_podcast/controllers/artikel_podcast_controller.dart';
+import 'package:eduit/app/modules/game_quiz/controllers/game_quiz_controller.dart';
 import 'package:eduit/app/modules/home_page/controllers/home_page_controller.dart';
 import 'package:eduit/app/modules/kirim_tulisan/controllers/kirim_tulisan_controller.dart';
 import 'package:get/get.dart';
@@ -22,10 +23,13 @@ class SplashBinding extends Bindings {
     Get.lazyPut<ArtikelPodcastController>(
       () => ArtikelPodcastController(),
     );
-        Get.lazyPut<AccountInfoController>(
+    Get.lazyPut<AccountInfoController>(
       () => AccountInfoController(),
     );
-      Get.lazyPut<LoginPageController>(
+    Get.lazyPut<GameQuizController>(
+      () => GameQuizController(),
+    );
+    Get.lazyPut<LoginPageController>(
       () => LoginPageController(),
     );
   }

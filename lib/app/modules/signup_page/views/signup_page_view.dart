@@ -21,7 +21,7 @@ class SignupPageView extends GetView<SignupPageController> {
                   EdgeInsets.only(top: 85, left: 40, right: 50, bottom: 20),
             ),
             Padding(
-              padding: EdgeInsets.only(left: 20, top: 80),
+              padding: EdgeInsets.only(left: 20, top: 0),
               child: Column(
                 children: [
                   Align(
