@@ -1,8 +1,10 @@
 import 'package:eduit/app/data/quiz_list.dart';
+import 'package:eduit/app/modules/home_page/views/home_page_view.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
 import '../controllers/game_quiz_controller.dart';
 
@@ -118,16 +120,18 @@ class GameQuizView extends GetView<GameQuizController> {
                                 width: 46,
                               ),
                               ElevatedButton(
-                                onPressed: () {
+                                onPressed: () async {
                                   Get.back();
-                                  Get.toNamed(
-                                    '/studiku/quiz/result',
-                                    arguments: [
-                                      Get.arguments[0],
-                                      Get.arguments[1],
-                                    ],
-                                  );
-                                  controller.submitAnswer();
+                                  await controller.submitAnswer();
+                                  //         PersistentNavBarNavigator.pushNewScreen(
+                                  //   context,
+                                  //   screen: HomePageView(),
+                                  //   withNavBar:
+                                  //       true, // OPTIONAL VALUE. True by default.
+                                  //   pageTransitionAnimation:
+                                  //       PageTransitionAnimation.cupertino,
+                                  // );
+                                  print(controller.isAnswer);
                                 },
                                 style: ElevatedButton.styleFrom(
                                     backgroundColor: Colors.green),

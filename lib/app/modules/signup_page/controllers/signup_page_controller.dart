@@ -1,20 +1,46 @@
+import 'dart:developer';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class SignupPageController extends GetxController {
-  //TODO: Implement SignupPageController
+  FirebaseAuth auth = FirebaseAuth.instance;
+  TextEditingController c_email = TextEditingController();
+  TextEditingController c_pw = TextEditingController();
+  TextEditingController c_namalengkap = TextEditingController();
+  TextEditingController c_username = TextEditingController();
+  TextEditingController c_nohp = TextEditingController();
+  FirebaseFirestore firestore = FirebaseFirestore.instance;
 
-  final count = 0.obs;
-  @override
-  void onInit() {
-    super.onInit();
+  Future<User?> signUpUser(String email, String password) async {
+    try {
+      UserCredential result = await auth.createUserWithEmailAndPassword(
+          email: email, password: password);
+
+      if (result.user != null) {
+        String uid = result.user!.uid;
+
+        await firestore.collection("profile").doc(uid).set({
+          "email": c_email.text,
+          "username": c_username.text,
+          "nama": c_namalengkap.text,
+          "nohp": c_nohp.text,
+          "uid": uid,
+          "createdAt": DateTime.now().toIso8601String(),
+        });
+      }
+      User? user = result.user;
+      return user;
+    } catch (e) {
+      log(e.toString());
+      return null;
+    }
   }
 
-  @override
-  void onReady() {
-    super.onReady();
+  Stream<User?> get firebaseUserStream => auth.authStateChanges();
+  void asignOutUser() {
+    auth.signOut();
   }
-
-  @override
-  void onClose() {}
-  void increment() => count.value++;
 }

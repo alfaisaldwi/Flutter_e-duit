@@ -3,6 +3,7 @@ import 'package:eduit/app/modules/artikel_podcast/controllers/artikel_podcast_co
 import 'package:eduit/app/modules/game_quiz/controllers/game_quiz_controller.dart';
 import 'package:eduit/app/modules/home_page/controllers/home_page_controller.dart';
 import 'package:eduit/app/modules/kirim_tulisan/controllers/kirim_tulisan_controller.dart';
+import 'package:eduit/app/modules/signup_page/controllers/signup_page_controller.dart';
 import 'package:get/get.dart';
 
 import 'app/modules/account_info/controllers/account_info_controller.dart';
@@ -31,6 +32,9 @@ class SplashBinding extends Bindings {
     );
     Get.lazyPut<LoginPageController>(
       () => LoginPageController(),
+    );
+      Get.lazyPut<SignupPageController>(
+      () => SignupPageController(),
     );
   }
 }

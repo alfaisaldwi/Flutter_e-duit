@@ -22,7 +22,7 @@ List<QuizModel> quizData = [
   QuizModel(
       4,
       "Percayakah kamu kalau semakin besar keuntungan investasi, semakin besar risiko yang harus ditanggung?",
-      ['Ya', 'Tidak ', 'Mungkin']),
+      ['Ya', 'Tidak', 'Mungkin']),
   QuizModel(5, "Seberapa tahukah kamu tentang keuangan atau produk keuangan?",
       ['Belum paham banyak', 'Cukup paham banyak', 'Sudah paham sekali']),
 ];
