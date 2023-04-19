@@ -10,10 +10,6 @@ class GameQuizController extends GetxController {
   RxBool isClick = false.obs;
   FirebaseFirestore firestore = FirebaseFirestore.instance;
   FirebaseAuth auth = FirebaseAuth.instance;
-  RxList sksk = [
-    ["qweqwe", "12"],
-    ["aaaa", "222"]
-  ].obs;
 
   // final Rx<QuizModel?> dataQuiz = (null as QuizModel?).obs;
 
@@ -30,45 +26,62 @@ class GameQuizController extends GetxController {
   }
 
   submitAnswer() async {
-    String nilai;
+    String? nilai;
     String uid = auth.currentUser!.uid;
+    List konserv = [
+      'Ingin mengamankan uang, agar tidak boros walau tidak mendapatan keuntungan',
+      'Kurang dari 1 tahun',
+      'Mencairkan seluruh uang yang tersisa',
+      'Tidak',
+      'Belum paham banyak'
+    ];
+
+    List moder = [
+      'Ingin mendapat keuntungan dari investasi meski untuk jangka waktu panjang',
+      '1 sampai 5 tahun',
+      'Tidak melakukan apa-apa',
+      'Mungkin',
+      'Cukup paham banyak',
+    ];
+
+    List agres = [
+      'Ingin memperoleh keuntungan & pertumbuhan dana investasi secara signifikan',
+      'Lebih dari 5 tahun',
+      'Menambahkan uang pada produk investasinya',
+      'Ya',
+      'Sudah paham sekali'
+    ];
 
     List p = userAnswer.expand((jawab) => jawab).toList();
+    var firstListSetKonserv = konserv.toSet();
+    var firstListSetModer = moder.toSet();
+    var firstListSetAgres = agres.toSet();
+    var secondListSet = p.toSet();
 
-    if (p.contains(
-            'Ingin mengamankan uang, agar tidak boros walau tidak mendapatan keuntungan') &&
-        p.contains('Kurang dari 1 tahun') &&
-        p.contains('Mencairkan seluruh uang yang tersisa') &&
-        p.contains('Tidak') &&
-        p.contains('Belum paham banyak')) {
+    if (firstListSetKonserv.intersection(secondListSet).length >= 3) {
       nilai = 'Konservatif';
-      print('----------- $p');
-
+      print('-----BERHASIL------ $p');
+      print(firstListSetKonserv.intersection(secondListSet));
       await firestore.collection("profile").doc(uid).set({
         "nilai": nilai,
       }, SetOptions(merge: true)).then((value) {});
-    } else if (p.contains(
-            'Ingin mendapat keuntungan dari investasi meski untuk jangka waktu panjang') &&
-        p.contains('1 sampai 5 tahun') &&
-        p.contains('Tidak melakukan apa-apa') &&
-        p.contains('Mungkin') &&
-        p.contains('Cukup paham banyak')) {
-      nilai = 'Moderat';
+    }
 
+    //MODERAT
+    else if (firstListSetModer.intersection(secondListSet).length >= 3) {
+      nilai = 'Moderat';
       await firestore.collection("profile").doc(uid).set({
         "nilai": nilai,
-      });
-    } else if (p.contains(
-            'Ingin memperoleh keuntungan & pertumbuhan dana investasi secara signifikan') &&
-        p.contains('1 sampai 5 tahun') &&
-        p.contains('Tidak melakukan apa-apa') &&
-        p.contains('Mungkin') &&
-        p.contains('Cukup paham banyak')) {
+      }, SetOptions(merge: true)).then((value) {});
+    }
+
+    //AGRESIF
+    else if (firstListSetAgres.intersection(secondListSet).length >= 3) {
       nilai = 'Agresif';
 
       await firestore.collection("profile").doc(uid).set({
         "nilai": nilai,
-      });
+      }, SetOptions(merge: true)).then((value) {});
     } else {
       // nilai = 'konservatif';
 
@@ -76,16 +89,9 @@ class GameQuizController extends GetxController {
       //   "nilai": nilai,
       // }, SetOptions(merge: true)).then((value) {});
       print('gagal');
-      print(userAnswer);
-      print(sksk);
+      // print(userAnswer);
+
       print('----------- $p');
     }
   }
-
-  // submitAnswer() async {
-  //   Map<String, dynamic> isAnswerUser = {
-  //     "answer": userAnswer,
-  //   };
-  // }
-
 }
