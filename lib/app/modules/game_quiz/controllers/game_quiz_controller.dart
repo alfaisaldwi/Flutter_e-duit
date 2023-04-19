@@ -15,6 +15,12 @@ class GameQuizController extends GetxController {
 
   late final Rx<QuizModel> quizData;
 
+
+  Stream<DocumentSnapshot<Map<String, dynamic>>> streamUser() async* {
+    String uid = await auth.currentUser!.uid;
+    yield* firestore.collection("profile").doc(uid).snapshots();
+  }
+
   changeIndexAnswerNow(int paramIndexAnswer) {
     indexAnswerNow.value = paramIndexAnswer;
   }
@@ -24,6 +30,7 @@ class GameQuizController extends GetxController {
 
     // isAnswer[indexAnswerNow.value] = true;
   }
+
 
   submitAnswer() async {
     String? nilai;
@@ -82,12 +89,40 @@ class GameQuizController extends GetxController {
       await firestore.collection("profile").doc(uid).set({
         "nilai": nilai,
       }, SetOptions(merge: true)).then((value) {});
-    } else {
-      // nilai = 'konservatif';
+    }
 
-      // await firestore.collection("profile").doc(uid).set({
-      //   "nilai": nilai,
-      // }, SetOptions(merge: true)).then((value) {});
+    //KONSERV 2
+    else if (firstListSetKonserv.intersection(secondListSet).length >= 2) {
+      nilai = 'Konservatif';
+      print('-----BERHASIL------ $p');
+      print(firstListSetKonserv.intersection(secondListSet));
+      await firestore.collection("profile").doc(uid).set({
+        "nilai": nilai,
+      }, SetOptions(merge: true)).then((value) {});
+    }
+
+    //MODERAT 2
+    else if (firstListSetModer.intersection(secondListSet).length >= 2) {
+      nilai = 'Moderat';
+      await firestore.collection("profile").doc(uid).set({
+        "nilai": nilai,
+      }, SetOptions(merge: true)).then((value) {});
+    }
+
+    //AGRESIF 2
+    else if (firstListSetAgres.intersection(secondListSet).length >= 2) {
+      nilai = 'Agresif';
+
+      await firestore.collection("profile").doc(uid).set({
+        "nilai": nilai,
+      }, SetOptions(merge: true)).then((value) {});
+    } else {
+      nilai = 'Moderat';
+
+      await firestore.collection("profile").doc(uid).set({
+        "nilai": nilai,
+      }, SetOptions(merge: true)).then((value) {});
+
       print('gagal');
       // print(userAnswer);
 
