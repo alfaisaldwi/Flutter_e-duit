@@ -90,7 +90,6 @@ class GameQuizView extends GetView<GameQuizController> {
                 GestureDetector(
                   onTap: () {
                     print(controller.userAnswer);
-                    // print(quizData[controller.indexAnswerNow.value].);
                     if (controller.indexAnswerNow.value >= 4) {
                       Future.delayed(
                         const Duration(seconds: 1),
@@ -122,7 +121,10 @@ class GameQuizView extends GetView<GameQuizController> {
                               ElevatedButton(
                                 onPressed: () async {
                                   Get.back();
-                                  await controller.submitAnswer();
+                                  controller.userAnswer
+                                      .add(controller.isAnswer.value);
+
+                                  controller.submitAnswer();
                                   //         PersistentNavBarNavigator.pushNewScreen(
                                   //   context,
                                   //   screen: HomePageView(),

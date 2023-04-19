@@ -60,7 +60,7 @@ class HomePageView extends GetView<HomePageController> {
                         alignment: Alignment.center,
                         decoration: BoxDecoration(
                           border:
-                              Border.all(color: Color(0xff5EE8D1), width: 3),
+                              Border.all(color: Color(0xff5EE8D1), width: 2),
                           borderRadius: BorderRadius.circular(8.0),
                         ),
                         child: Image.asset(
@@ -92,7 +92,7 @@ class HomePageView extends GetView<HomePageController> {
                         padding: const EdgeInsets.all(10),
                         decoration: BoxDecoration(
                           border:
-                              Border.all(color: Color(0xff5EE8D1), width: 3),
+                              Border.all(color: Color(0xff5EE8D1), width: 2),
                           borderRadius: BorderRadius.circular(4.0),
                         ),
                         child: Image.asset(
@@ -129,7 +129,7 @@ class HomePageView extends GetView<HomePageController> {
                             alignment: Alignment.center,
                             decoration: BoxDecoration(
                               border: Border.all(
-                                  color: Color(0xff5EE8D1), width: 3),
+                                  color: Color(0xff5EE8D1), width: 2),
                               borderRadius: BorderRadius.circular(4.0),
                             ),
                             child: Image.asset(
@@ -158,7 +158,7 @@ class HomePageView extends GetView<HomePageController> {
                             alignment: Alignment.center,
                             decoration: BoxDecoration(
                               border: Border.all(
-                                  color: Color(0xff5EE8D1), width: 3),
+                                  color: Color(0xff5EE8D1), width: 2),
                               borderRadius: BorderRadius.circular(4.0),
                             ),
                             child: Image.asset(
@@ -198,7 +198,7 @@ class HomePageView extends GetView<HomePageController> {
                             padding: EdgeInsets.all(5),
                             decoration: BoxDecoration(
                               border: Border.all(
-                                  color: Color(0xff5EE8D1), width: 3),
+                                  color: Color(0xff5EE8D1), width: 2),
                               borderRadius: BorderRadius.circular(4.0),
                             ),
                             child: Image.asset(
@@ -227,7 +227,7 @@ class HomePageView extends GetView<HomePageController> {
                             alignment: Alignment.center,
                             decoration: BoxDecoration(
                               border: Border.all(
-                                  color: Color(0xff5EE8D1), width: 3),
+                                  color: Color(0xff5EE8D1), width: 2),
                               borderRadius: BorderRadius.circular(4.0),
                             ),
                             child: Image.asset(
