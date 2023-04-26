@@ -18,6 +18,36 @@ class DaftarYmybView extends GetView<DaftarYmybController> {
             padding: const EdgeInsets.only(left: 32.0, right: 32, top: 100),
             child: Column(children: [
               Container(
+                height: 200,
+                width: 200,
+                //color: Colors.purple,
+                padding: EdgeInsets.all(
+                  15,
+                ),
+                alignment: Alignment.center,
+                decoration: BoxDecoration(),
+                child: Image.asset(
+                  'assets/images/ymyb_home.png',
+                  height: double.infinity,
+                  width: double.infinity,
+                  fit: BoxFit.cover,
+                ),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Text(
+                'Komunitas YMYB',
+                textAlign: TextAlign.justify,
+                style: GoogleFonts.inter(
+                    color: Color(0xff034779),
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold),
+              ),
+              SizedBox(
+                height: 15,
+              ),
+              Container(
                 height: 230,
                 width: double.infinity,
                 //color: Colors.purple,

@@ -5,6 +5,7 @@ import 'package:eduit/app/modules/daftar_ymyb/views/daftar_ymyb_view.dart';
 import 'package:eduit/app/modules/game_quiz/views/game_quiz_view.dart';
 import 'package:eduit/app/modules/kamus_keuangan_page/views/kamus_keuangan_page_view.dart';
 import 'package:eduit/app/modules/konsultasi/views/konsultasi_view.dart';
+import 'package:eduit/app/modules/konten_edu/views/konten_edu_view.dart';
 import 'package:eduit/app/modules/login_page/controllers/login_page_controller.dart';
 import 'package:eduit/app/modules/utang_home/views/utang_home_view.dart';
 import 'package:eduit/app/navbottom.dart';
@@ -116,7 +117,7 @@ class HomePageView extends GetView<HomePageController> {
                               settings: RouteSettings(
                                   arguments: ArtikelPodcastController),
                               context,
-                              screen: ArtikelPodcastView(),
+                              screen: KontenEduView(),
                               withNavBar:
                                   true, // OPTIONAL VALUE. True by default.
                               pageTransitionAnimation:
@@ -242,13 +243,6 @@ class HomePageView extends GetView<HomePageController> {
                     ),
                     SizedBox(
                       height: 15,
-                    ),
-                    CustomCarouselSlider(
-                      items: controller.itemList,
-                      height: 130,
-                      subHeight: 50,
-                      width: MediaQuery.of(context).size.width * .9,
-                      autoplay: true,
                     ),
                   ],
                 ),

@@ -12,8 +12,6 @@ import '../controllers/game_quiz_controller.dart';
 class GameQuizView extends GetView<GameQuizController> {
   @override
   Widget build(BuildContext context) {
- 
-
     return Scaffold(
         body: Obx(
       () => Container(
@@ -92,6 +90,40 @@ class GameQuizView extends GetView<GameQuizController> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  GestureDetector(
+                    onTap: () {
+                      if (controller.indexAnswerNow.value != 0) {
+                        controller.changeIndexAnswerNow(
+                            controller.indexAnswerNow.value - 1);
+                      }
+                    },
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      alignment: Alignment.centerRight,
+                      margin: const EdgeInsets.symmetric(
+                        vertical: 10,
+                      ),
+                      height: 32,
+                      width: 90,
+                      decoration: BoxDecoration(
+                          border: Border.all(color: Color(0xffF8C800)),
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(15)),
+                      child: Center(
+                        child: Text(
+                          'Ulang',
+                          style: GoogleFonts.inter(
+                            fontSize: 12,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 20,
+                  ),
                   GestureDetector(
                     onTap: () {
                       print(controller.userAnswer);
@@ -190,40 +222,6 @@ class GameQuizView extends GetView<GameQuizController> {
                                       controller.indexAnswerNow.value
                                   ? Colors.black
                                   : Colors.black),
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    width: 20,
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      if (controller.indexAnswerNow.value != 0) {
-                        controller.changeIndexAnswerNow(
-                            controller.indexAnswerNow.value - 1);
-                      }
-                    },
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
-                      alignment: Alignment.centerRight,
-                      margin: const EdgeInsets.symmetric(
-                        vertical: 10,
-                      ),
-                      height: 32,
-                      width: 90,
-                      decoration: BoxDecoration(
-                          border: Border.all(color: Color(0xffF8C800)),
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(15)),
-                      child: Center(
-                        child: Text(
-                          'Kembali',
-                          style: GoogleFonts.inter(
-                            fontSize: 12,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black,
-                          ),
                         ),
                       ),
                     ),
