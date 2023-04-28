@@ -5,6 +5,7 @@ import 'package:eduit/app/modules/home_page/controllers/home_page_controller.dar
 import 'package:eduit/app/modules/kirim_tulisan/controllers/kirim_tulisan_controller.dart';
 import 'package:eduit/app/modules/konten_edu/controllers/konten_edu_controller.dart';
 import 'package:eduit/app/modules/signup_page/controllers/signup_page_controller.dart';
+import 'package:eduit/app/modules/utang_belajar/controllers/utang_belajar_controller.dart';
 import 'package:get/get.dart';
 
 import 'app/modules/account_info/controllers/account_info_controller.dart';
@@ -39,6 +40,9 @@ class SplashBinding extends Bindings {
     );
     Get.lazyPut<KontenEduController>(
       () => KontenEduController(),
+    );
+    Get.lazyPut<UtangBelajarController>(
+      () => UtangBelajarController(),
     );
   }
 }

@@ -1,20 +1,8 @@
 import 'package:get/get.dart';
 
 class UtangBelajarController extends GetxController {
-  //TODO: Implement UtangBelajarController
-
-  final count = 0.obs;
-  @override
-  void onInit() {
-    super.onInit();
-  }
-
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {}
-  void increment() => count.value++;
+  RxBool isExpanded = true.obs;
+  RxBool isExpanded2 = true.obs;
+  RxBool isExpanded3 = true.obs;
+  RxBool isExpanded4 = true.obs;
 }

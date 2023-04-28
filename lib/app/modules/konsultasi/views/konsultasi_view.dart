@@ -1,6 +1,7 @@
 import 'package:eduit/app/data/konsul_list.dart';
 import 'package:flutter/material.dart';
-
+import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
@@ -15,7 +16,7 @@ class KonsultasiView extends GetView<KonsultasiController> {
         child: Container(
           color: Colors.white,
           child: Padding(
-            padding: const EdgeInsets.only(left: 15.0, right: 15, top: 100),
+            padding: const EdgeInsets.only(left: 15.0, right: 15, top: 70),
             child: Column(children: [
               Align(
                 alignment: Alignment.center,
@@ -88,7 +89,18 @@ class KonsultasiView extends GetView<KonsultasiController> {
                                               fontSize: 12,
                                               color: Colors.black),
                                         ),
-                                        onPressed: () async {},
+                                        onPressed: () async {
+                                          try {
+                                            final Uri _url = Uri.parse(
+                                                'https://wa.me/${konsulData[index].nowa}?text=Haloo Pak/Bu, Saya ingin konsultasi masalah perencanaan keuangan. "');
+                                            await launchUrl(_url,
+                                                mode: LaunchMode
+                                                    .externalApplication);
+                                          } catch (err) {
+                                            debugPrint(
+                                                'Something bad happened');
+                                          }
+                                        },
                                       ),
                                     )
                                   ],

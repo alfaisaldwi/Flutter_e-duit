@@ -61,115 +61,191 @@ class UtangBelajarView extends GetView<UtangBelajarController> {
                 SizedBox(
                   height: 10,
                 ),
-                Container(
-                  height: 88,
-                  width: double.infinity,
-                  padding: EdgeInsets.all(6),
-                  //color: Colors.purple,
-                  alignment: Alignment.center,
-                  child: Image.asset(
-                    'assets/images/belajar1.png',
-                    height: double.infinity,
+                GestureDetector(
+                  onTap: () {
+                    if (controller.isExpanded.isTrue) {
+                      controller.isExpanded.value = false;
+                      print('awal true');
+                    } else if (controller.isExpanded.isFalse) {
+                      controller.isExpanded.value = true;
+                      print('awal false');
+                    } else {
+                      controller.isExpanded.isTrue;
+                    }
+                  },
+                  child: Container(
+                    height: 88,
                     width: double.infinity,
-                    fit: BoxFit.fill,
-                  ),
-                ),
-                Card(
-                  child: Padding(
-                    padding:
-                        const EdgeInsets.only(left: 16, right: 16, bottom: 10),
-                    child: Text(
-                      'Adanya kebutuhan belanja yang tidak bisa ditunda, misalnya penyediaan fasilitas kesehatan, pendidikan, perlindungan sosial dan ketahanan pangan. Pembiayaan pada pembangunan infrastruktur juga menjadi fokus pemerintah dengan harapan Indeks Pembangunan Manusia (IPM) meningkat dan setara dengan negara-negara maju kedepannya.',
-                      textAlign: TextAlign.justify,
-                      style: GoogleFonts.inter(
-                          fontSize: 14, color: Color(0xff034779)),
+                    padding: EdgeInsets.all(6),
+                    //color: Colors.purple,
+                    alignment: Alignment.center,
+                    child: Image.asset(
+                      'assets/images/belajar1.png',
+                      height: double.infinity,
+                      width: double.infinity,
+                      fit: BoxFit.fill,
                     ),
                   ),
                 ),
+                Obx(() => AnimatedContainer(
+                      duration: Duration(milliseconds: 100),
+                      curve: Curves.easeInOut,
+                      height: controller.isExpanded.isTrue ? 100 : 1,
+                      width: double.infinity,
+                      child: Card(
+                        child: Padding(
+                          padding: const EdgeInsets.only(
+                              left: 16, right: 16, bottom: 10),
+                          child: Text(
+                            'Adanya kebutuhan belanja yang tidak bisa ditunda, misalnya penyediaan fasilitas kesehatan, pendidikan, perlindungan sosial dan ketahanan pangan. Pembiayaan pada pembangunan infrastruktur juga menjadi fokus pemerintah dengan harapan Indeks Pembangunan Manusia (IPM) meningkat dan setara dengan negara-negara maju kedepannya.',
+                            textAlign: TextAlign.justify,
+                            style: GoogleFonts.inter(
+                                fontSize: 14, color: Color(0xff034779)),
+                          ),
+                        ),
+                      ),
+                    )),
                 SizedBox(
                   height: 15,
                 ),
-                Container(
-                  height: 88,
-                  width: double.infinity,
-                  padding: EdgeInsets.all(6),
-                  //color: Colors.purple,
-                  alignment: Alignment.center,
-                  child: Image.asset(
-                    'assets/images/belajar2.png',
-                    height: double.infinity,
+                GestureDetector(
+                  onTap: () {
+                    if (controller.isExpanded2.isTrue) {
+                      controller.isExpanded2.value = false;
+                      print('awal true');
+                    } else if (controller.isExpanded2.isFalse) {
+                      controller.isExpanded2.value = true;
+                      print('awal false');
+                    } else {
+                      controller.isExpanded2.isTrue;
+                    }
+                  },
+                  child: Container(
+                    height: 88,
                     width: double.infinity,
-                    fit: BoxFit.fill,
-                  ),
-                ),
-                Card(
-                  child: Padding(
-                    padding:
-                        const EdgeInsets.only(left: 16, right: 16, bottom: 10),
-                    child: Text(
-                      'Legacy atau warisan yang baik muncul ketika utang digunakan untuk membiayai hal-hal yang produktif dan memberikan manfaat bagi generasi mendatang, seperti belanja pembangunan infrastruktur, kesehatan dan pendidikan. Serta dapat memberikan keadilan dengan adanya aset yang diwariskan kepada generasi selanjutnya.',
-                      textAlign: TextAlign.justify,
-                      style: GoogleFonts.inter(
-                          fontSize: 14, color: Color(0xff034779)),
+                    padding: EdgeInsets.all(6),
+                    //color: Colors.purple,
+                    alignment: Alignment.center,
+                    child: Image.asset(
+                      'assets/images/belajar2.png',
+                      height: double.infinity,
+                      width: double.infinity,
+                      fit: BoxFit.fill,
                     ),
                   ),
                 ),
+                Obx(() => AnimatedContainer(
+                      duration: Duration(milliseconds: 100),
+                      curve: Curves.easeInOut,
+                      height: controller.isExpanded2.isTrue ? 100 : 1,
+                      width: double.infinity,
+                      child: Card(
+                        child: Padding(
+                          padding: const EdgeInsets.only(
+                              left: 16, right: 16, bottom: 10),
+                          child: Text(
+                            'Legacy atau warisan yang baik muncul ketika utang digunakan untuk membiayai hal-hal yang produktif dan memberikan manfaat bagi generasi mendatang, seperti belanja pembangunan infrastruktur, kesehatan dan pendidikan. Serta dapat memberikan keadilan dengan adanya aset yang diwariskan kepada generasi selanjutnya.',
+                            textAlign: TextAlign.justify,
+                            style: GoogleFonts.inter(
+                                fontSize: 14, color: Color(0xff034779)),
+                          ),
+                        ),
+                      ),
+                    )),
                 SizedBox(
                   height: 15,
                 ),
-                Container(
-                  height: 88,
-                  width: double.infinity,
-                  padding: EdgeInsets.all(6),
-                  //color: Colors.purple,
-                  alignment: Alignment.center,
-                  child: Image.asset(
-                    'assets/images/belajar3.png',
-                    height: double.infinity,
+                GestureDetector(
+                  onTap: () {
+                    if (controller.isExpanded3.isTrue) {
+                      controller.isExpanded3.value = false;
+                      print('awal true');
+                    } else if (controller.isExpanded3.isFalse) {
+                      controller.isExpanded3.value = true;
+                      print('awal false');
+                    } else {
+                      controller.isExpanded3.isTrue;
+                    }
+                  },
+                  child: Container(
+                    height: 88,
                     width: double.infinity,
-                    fit: BoxFit.fill,
-                  ),
-                ),
-                Card(
-                  child: Padding(
-                    padding:
-                        const EdgeInsets.only(left: 16, right: 16, bottom: 10),
-                    child: Text(
-                      'Dengan kebijakan berutang, ekonomi Indonesia mampu tumbuh pada level saat ini. Sebagai contoh, jika pembangunan jembatan di tahun 2020 senilai Rp250miliar ditunda hingga Indonesia memiliki dana tersebut ditahun 2023, biaya pembangunan jembatan tersebut tidak lagi sama seperti tahun 2020, akan ada kenaikan harga baik dari bahan baku dan jasa, maka pemerintah mengambil kebijakan berutang untuk mengurangi kenaikan harga dan mempercepat pertumbuhan ekonomi. ',
-                      textAlign: TextAlign.justify,
-                      style: GoogleFonts.inter(
-                          fontSize: 14, color: Color(0xff034779)),
+                    padding: EdgeInsets.all(6),
+                    //color: Colors.purple,
+                    alignment: Alignment.center,
+                    child: Image.asset(
+                      'assets/images/belajar3.png',
+                      height: double.infinity,
+                      width: double.infinity,
+                      fit: BoxFit.fill,
                     ),
                   ),
                 ),
+                Obx(() => AnimatedContainer(
+                      duration: Duration(milliseconds: 100),
+                      curve: Curves.easeInOut,
+                      height: controller.isExpanded3.isTrue ? 100 : 1,
+                      width: double.infinity,
+                      child: Card(
+                        child: Padding(
+                          padding: const EdgeInsets.only(
+                              left: 16, right: 16, bottom: 10),
+                          child: Text(
+                            'Dengan kebijakan berutang, ekonomi Indonesia mampu tumbuh pada level saat ini. Sebagai contoh, jika pembangunan jembatan di tahun 3020 senilai Rp250miliar ditunda hingga Indonesia memiliki dana tersebut ditahun 2023, biaya pembangunan jembatan tersebut tidak lagi sama seperti tahun 2020, akan ada kenaikan harga baik dari bahan baku dan jasa, maka pemerintah mengambil kebijakan berutang untuk mengurangi kenaikan harga dan mempercepat pertumbuhan ekonomi. ',
+                            textAlign: TextAlign.justify,
+                            style: GoogleFonts.inter(
+                                fontSize: 14, color: Color(0xff034779)),
+                          ),
+                        ),
+                      ),
+                    )),
                 SizedBox(
                   height: 15,
                 ),
-                Container(
-                  height: 88,
-                  width: double.infinity,
-                  padding: EdgeInsets.all(6),
-                  //color: Colors.purple,
-                  alignment: Alignment.center,
-                  child: Image.asset(
-                    'assets/images/belajar4.png',
-                    height: double.infinity,
+                GestureDetector(
+                  onTap: () {
+                    if (controller.isExpanded4.isTrue) {
+                      controller.isExpanded4.value = false;
+                      print('awal true');
+                    } else if (controller.isExpanded4.isFalse) {
+                      controller.isExpanded4.value = true;
+                      print('awal false');
+                    } else {
+                      controller.isExpanded4.isTrue;
+                    }
+                  },
+                  child: Container(
+                    height: 88,
                     width: double.infinity,
-                    fit: BoxFit.fill,
-                  ),
-                ),
-                Card(
-                  child: Padding(
-                    padding:
-                        const EdgeInsets.only(left: 16, right: 16, bottom: 10),
-                    child: Text(
-                      'Indonesia memilik instrumen utang Pemerintah yang diperdagangkan di pasar keuangan, yang digunakan sebagai acuan (benchmark) bagi industri keuangan. Penerbitan instrumen utang Pemerintah merupakan alternatif investasi yang ditawarkan kepada masyarakat.',
-                      textAlign: TextAlign.justify,
-                      style: GoogleFonts.inter(
-                          fontSize: 14, color: Color(0xff034779)),
+                    padding: EdgeInsets.all(6),
+                    //color: Colors.purple,
+                    alignment: Alignment.center,
+                    child: Image.asset(
+                      'assets/images/belajar4.png',
+                      height: double.infinity,
+                      width: double.infinity,
+                      fit: BoxFit.fill,
                     ),
                   ),
                 ),
+                Obx(() => AnimatedContainer(
+                      duration: Duration(milliseconds: 100),
+                      curve: Curves.easeInOut,
+                      height: controller.isExpanded4.isTrue ? 100 : 1,
+                      width: double.infinity,
+                      child: Card(
+                        child: Padding(
+                          padding: const EdgeInsets.only(
+                              left: 16, right: 16, bottom: 10),
+                          child: Text(
+                            'Indonesia memilik instrumen utang Pemerintah yang diperdagangkan di pasar keuangan, yang digunakan sebagai acuan (benchmark) bagi industri keuangan. Penerbitan instrumen utang Pemerintah merupakan alternatif investasi yang ditawarkan kepada masyarakat.',
+                            textAlign: TextAlign.justify,
+                            style: GoogleFonts.inter(
+                                fontSize: 14, color: Color(0xff034779)),
+                          ),
+                        ),
+                      ),
+                    )),
                 SizedBox(
                   height: 20,
                 ),

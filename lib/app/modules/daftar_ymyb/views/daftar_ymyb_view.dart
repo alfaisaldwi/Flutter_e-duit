@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 import '../controllers/daftar_ymyb_controller.dart';
 
@@ -242,13 +244,13 @@ class DaftarYmybView extends GetView<DaftarYmybController> {
                           fontWeight: FontWeight.bold),
                     ),
                     onPressed: () async {
-                      PersistentNavBarNavigator.pushNewScreen(
-                        context,
-                        screen: AccountInfoView(),
-                        withNavBar: true, // OPTIONAL VALUE. True by default.
-                        pageTransitionAnimation:
-                            PageTransitionAnimation.cupertino,
-                      );
+                      try {
+                        final Uri _url = Uri.parse('https://www.djppr.kemenkeu.go.id/registrasi');
+                        await launchUrl(_url,
+                            mode: LaunchMode.externalApplication);
+                      } catch (err) {
+                        debugPrint('Something bad happened');
+                      }
                     }),
               ),
               SizedBox(
