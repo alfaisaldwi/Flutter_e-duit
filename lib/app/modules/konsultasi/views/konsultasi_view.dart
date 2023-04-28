@@ -1,6 +1,9 @@
+import 'package:eduit/app/data/konsul_list.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
 import '../controllers/konsultasi_controller.dart';
 
@@ -12,26 +15,93 @@ class KonsultasiView extends GetView<KonsultasiController> {
         child: Container(
           color: Colors.white,
           child: Padding(
-            padding: const EdgeInsets.only(left: 32.0, right: 32, top: 100),
+            padding: const EdgeInsets.only(left: 15.0, right: 15, top: 100),
             child: Column(children: [
-              Container(
-                height: 330,
-                width: double.infinity,
-                //color: Colors.purple,
-                padding: EdgeInsets.all(
-                  3,
-                ),
+              Align(
                 alignment: Alignment.center,
-                decoration: BoxDecoration(),
-                child: Image.asset(
-                  'assets/images/konsul_head.png',
-                  height: double.infinity,
-                  width: double.infinity,
-                  fit: BoxFit.cover,
+                child: Text(
+                  'Perencanaan Keuangan',
+                  style: GoogleFonts.inter(
+                      fontSize: 26,
+                      fontWeight: FontWeight.bold,
+                      color: Color(0xff034779)),
                 ),
               ),
+              ListView.builder(
+                  shrinkWrap: true,
+                  scrollDirection: Axis.vertical,
+                  physics: ScrollPhysics(),
+                  itemCount: konsulData.length,
+                  itemBuilder: (context, index) {
+                    return Container(
+                      height: 125,
+                      padding: EdgeInsets.only(left: 5, right: 5, bottom: 20),
+                      width: double.infinity,
+                      child: Row(children: [
+                        Image.asset('assets/images/konsul_logo.png',
+                            width: 120),
+                        Expanded(
+                          child: Padding(
+                            padding: const EdgeInsets.only(
+                                left: 3.0, right: 4.0, bottom: 4.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                SizedBox(
+                                  height: 8,
+                                ),
+                                Text(
+                                  '${konsulData[index].nama}',
+                                  textAlign: TextAlign.left,
+                                  maxLines: 2,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: GoogleFonts.inter(
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                SizedBox(
+                                  height: 28,
+                                ),
+                                Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      'Perencana Keuangan',
+                                      style: GoogleFonts.inter(fontSize: 12),
+                                    ),
+                                    Container(
+                                      width: 90,
+                                      height: 30,
+                                      child: ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            backgroundColor: Colors.white,
+                                            shape: StadiumBorder(
+                                                side: BorderSide(
+                                                    width: 2,
+                                                    color: Color(0xffF8C800)))),
+                                        child: Text(
+                                          'Chat',
+                                          style: GoogleFonts.inter(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 12,
+                                              color: Colors.black),
+                                        ),
+                                        onPressed: () async {},
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                        )
+                      ]),
+                    );
+                  }),
               SizedBox(
-                height: 10,
+                height: 40,
               ),
             ]),
           ),

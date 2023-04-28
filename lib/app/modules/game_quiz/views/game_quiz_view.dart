@@ -91,11 +91,22 @@ class GameQuizView extends GetView<GameQuizController> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   GestureDetector(
-                    onTap: () {
-                      if (controller.indexAnswerNow.value != 0) {
-                        controller.changeIndexAnswerNow(
-                            controller.indexAnswerNow.value - 1);
-                      }
+                    onTap: () async {
+                      controller.isAnswer.clear();
+                      controller.userAnswer.clear();
+                      controller.changeIndexAnswerNow(0);
+                      PersistentNavBarNavigator.pushNewScreen(
+                        context,
+                        screen: GameQuizView(),
+                        withNavBar: true, // OPTIONAL VALUE. True by default.
+                        pageTransitionAnimation:
+                            PageTransitionAnimation.cupertino,
+                      );
+
+                      // if (controller.indexAnswerNow.value != 0) {
+                      //   controller.changeIndexAnswerNow(
+                      //       controller.indexAnswerNow.value - 1);
+                      // }
                     },
                     child: Container(
                       padding: const EdgeInsets.symmetric(horizontal: 10),

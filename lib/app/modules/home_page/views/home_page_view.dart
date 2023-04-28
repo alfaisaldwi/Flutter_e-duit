@@ -1,4 +1,6 @@
 import 'package:anim_search_bar/anim_search_bar.dart';
+import 'package:eduit/app/modules/account_info/views/account_info_view.dart';
+import 'package:eduit/app/modules/account_page/views/account_page_view.dart';
 import 'package:eduit/app/modules/artikel_podcast/controllers/artikel_podcast_controller.dart';
 import 'package:eduit/app/modules/artikel_podcast/views/artikel_podcast_view.dart';
 import 'package:eduit/app/modules/daftar_ymyb/views/daftar_ymyb_view.dart';
@@ -9,6 +11,7 @@ import 'package:eduit/app/modules/konten_edu/views/konten_edu_view.dart';
 import 'package:eduit/app/modules/login_page/controllers/login_page_controller.dart';
 import 'package:eduit/app/modules/utang_home/views/utang_home_view.dart';
 import 'package:eduit/app/navbottom.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_custom_carousel_slider/flutter_custom_carousel_slider.dart';
 
@@ -44,13 +47,25 @@ class HomePageView extends GetView<HomePageController> {
                     ),
                     GestureDetector(
                       onTap: (() async {
-                        await PersistentNavBarNavigator.pushNewScreen(
-                          context,
-                          screen: GameQuizView(),
-                          withNavBar: true, // OPTIONAL VALUE. True by default.
-                          pageTransitionAnimation:
-                              PageTransitionAnimation.cupertino,
-                        );
+                        if (FirebaseAuth.instance.currentUser != null) {
+                          await PersistentNavBarNavigator.pushNewScreen(
+                            context,
+                            screen: GameQuizView(),
+                            withNavBar:
+                                true, // OPTIONAL VALUE. True by default.
+                            pageTransitionAnimation:
+                                PageTransitionAnimation.cupertino,
+                          );
+                        } else {
+                          await PersistentNavBarNavigator.pushNewScreen(
+                            context,
+                            screen: AccountPageView(),
+                            withNavBar:
+                                true, // OPTIONAL VALUE. True by default.
+                            pageTransitionAnimation:
+                                PageTransitionAnimation.cupertino,
+                          );
+                        }
                       }),
                       child: Container(
                         height: 180,

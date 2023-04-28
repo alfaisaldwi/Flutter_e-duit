@@ -11,7 +11,7 @@ void main() async{
       title: "E-duit",
       debugShowCheckedModeBanner: false,
       initialRoute: AppPages.INITIAL,
-      getPages: AppPages.routes,
+      getPages: AppPages.routes,  
     ),
   );
 }

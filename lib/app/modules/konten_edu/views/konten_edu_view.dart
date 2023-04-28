@@ -35,37 +35,41 @@ class KontenEduView extends GetView<KontenEduController> {
                   child: Row(children: [
                     Image.asset('assets/images/thumbnail1.png', width: 140),
                     Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          SizedBox(
-                            height: 8,
-                          ),
-                          Text(
-                            'Kawasan SCBD, Third Place sekaligus Runaway Citayam Fashion Week',
-                            textAlign: TextAlign.left,
-                            maxLines: 3,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                          SizedBox(
-                            height: 20,
-                          ),
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text('Admin'),
-                              Wrap(children: [
-                                Icon(
-                                  Icons.date_range,
-                                  size: 18,
-                                ),
-                                Text('09 Maret 2023'),
-                              ]),
-                            ],
-                          )
-                        ],
+                      child: Padding(
+                        padding: const EdgeInsets.only(
+                            left: 8.0, right: 8.0, bottom: 4.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            SizedBox(
+                              height: 8,
+                            ),
+                            Text(
+                              'Kawasan SCBD, Third Place sekaligus Runaway Citayam Fashion Week',
+                              textAlign: TextAlign.left,
+                              maxLines: 3,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text('Admin'),
+                                Wrap(children: [
+                                  Icon(
+                                    Icons.date_range,
+                                    size: 18,
+                                  ),
+                                  Text('09 Maret 2023'),
+                                ]),
+                              ],
+                            )
+                          ],
+                        ),
                       ),
                     )
                   ]),
