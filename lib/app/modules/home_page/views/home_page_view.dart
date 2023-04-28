@@ -88,7 +88,7 @@ class HomePageView extends GetView<HomePageController> {
                       ),
                     ),
                     SizedBox(
-                      height: 10,
+                      height: 27,
                     ),
                     GestureDetector(
                       onTap: () async {
@@ -120,7 +120,7 @@ class HomePageView extends GetView<HomePageController> {
                       ),
                     ),
                     SizedBox(
-                      height: 10,
+                      height: 27,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -188,7 +188,7 @@ class HomePageView extends GetView<HomePageController> {
                       ],
                     ),
                     SizedBox(
-                      height: 10,
+                      height: 27,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
