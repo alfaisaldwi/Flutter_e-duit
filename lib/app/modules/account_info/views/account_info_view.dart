@@ -1,4 +1,5 @@
 import 'package:eduit/app/modules/account_page/views/account_page_view.dart';
+import 'package:eduit/app/modules/game_quiz/views/game_quiz_view.dart';
 import 'package:eduit/app/modules/login_page/controllers/login_page_controller.dart';
 import 'package:eduit/app/modules/navbar_page/views/navbar_page_view.dart';
 import 'package:eduit/app/navbottom.dart';
@@ -54,34 +55,99 @@ class AccountInfoView extends GetView<AccountInfoController> {
                       SizedBox(
                         height: 10,
                       ),
-                       if (dataResult['nilai'] == null)
-                      Padding(
-                        padding: const EdgeInsets.only(left: 8.0),
-                        child: Align(
-                          alignment: Alignment.centerLeft,
-                          child: Text(
-                            'Kamu tipe investor yang seperti apa?',
-                            style: GoogleFonts.inter(
-                              fontSize: 12,
+                      if (dataResult['nilai'] == null ||
+                          dataResult['nilai'] == '')
+                        Padding(
+                          padding: const EdgeInsets.only(left: 8.0),
+                          child: Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              'Kamu tipe investor yang seperti apa?',
+                              style: GoogleFonts.inter(
+                                fontSize: 12,
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 8.0, top: 5),
-                        child: Align(
-                          alignment: Alignment.centerLeft,
-                          child: Text(
-                            'Yuk, cek profil risiko kamu dalam berinvestasi!',
-                            style: GoogleFonts.inter(
-                              fontSize: 12,
+                      if (dataResult['nilai'] == null ||
+                          dataResult['nilai'] == '')
+                        Padding(
+                          padding: const EdgeInsets.only(left: 8.0, top: 5),
+                          child: Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              'Yuk, cek profil risiko kamu dalam berinvestasi!',
+                              style: GoogleFonts.inter(
+                                fontSize: 12,
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                      SizedBox(
-                        height: 30,
-                      ),
+                      if (dataResult['nilai'] == null ||
+                          dataResult['nilai'] == '')
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: GestureDetector(
+                            onTap: () async {
+                              await PersistentNavBarNavigator.pushNewScreen(
+                                context,
+                                screen: GameQuizView(),
+                                withNavBar:
+                                    true, // OPTIONAL VALUE. True by default.
+                                pageTransitionAnimation:
+                                    PageTransitionAnimation.cupertino,
+                              );
+                            },
+                            child: Container(
+                              height: 120,
+                              width: double.infinity,
+                              //color: Colors.purple,
+                              alignment: Alignment.center,
+                              padding: const EdgeInsets.all(2),
+                              decoration: BoxDecoration(
+                                border: Border.all(
+                                  color: Color(0xff034779),
+                                ),
+                              ),
+                              child: Image.asset(
+                                'assets/images/account_kuis.png',
+                                fit: BoxFit.cover,
+                                width: double.infinity,
+                                height: double.infinity,
+                              ),
+                            ),
+                          ),
+                        ),
+                      if (dataResult['nilai'] == 'Konservatif')
+                        Container(
+                          height: 240,
+                          width: double.infinity,
+                          //color: Colors.purple,
+                          alignment: Alignment.center,
+                          padding: const EdgeInsets.all(24),
+                          decoration: BoxDecoration(),
+                          child: Image.asset(
+                            'assets/images/kamu_konserv.png',
+                            fit: BoxFit.cover,
+                            width: double.infinity,
+                            height: double.infinity,
+                          ),
+                        ),
+                      if (dataResult['nilai'] == 'Moderat')
+                        Container(
+                          height: 240,
+                          width: double.infinity,
+                          //color: Colors.purple,
+                          alignment: Alignment.center,
+                          padding: const EdgeInsets.all(24),
+                          decoration: BoxDecoration(),
+                          child: Image.asset(
+                            'assets/images/kamu_moderat.png',
+                            fit: BoxFit.cover,
+                            width: double.infinity,
+                            height: double.infinity,
+                          ),
+                        ),
                       if (dataResult['nilai'] == 'Agresif')
                         Container(
                           height: 240,
@@ -97,9 +163,6 @@ class AccountInfoView extends GetView<AccountInfoController> {
                             height: double.infinity,
                           ),
                         ),
-                      SizedBox(
-                        height: 10,
-                      ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -107,7 +170,7 @@ class AccountInfoView extends GetView<AccountInfoController> {
                             child: Container(
                               width: 167,
                               height: 120,
-                              padding: EdgeInsets.all(12),
+                              padding: EdgeInsets.all(10),
                               child: Column(
                                 mainAxisSize: MainAxisSize.min,
                                 children: <Widget>[
@@ -119,7 +182,7 @@ class AccountInfoView extends GetView<AccountInfoController> {
                                   SizedBox(
                                     height: 18,
                                   ),
-                                  Text('5',
+                                  Text('${dataResult['tulisan'] ?? 0}',
                                       style: GoogleFonts.inter(
                                           fontSize: 35,
                                           fontWeight: FontWeight.bold,
@@ -144,7 +207,7 @@ class AccountInfoView extends GetView<AccountInfoController> {
                                   SizedBox(
                                     height: 18,
                                   ),
-                                  Text('5',
+                                  Text('${dataResult['poin'] ?? 0}',
                                       style: GoogleFonts.inter(
                                           fontSize: 35,
                                           fontWeight: FontWeight.bold,

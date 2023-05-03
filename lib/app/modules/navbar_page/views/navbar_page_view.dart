@@ -24,14 +24,11 @@ class NavbarPageView extends GetView<NavbarPageController> {
   final contr = PersistentTabController(initialIndex: 1);
 
   List<Widget> _buildScreen() {
-
-
-
     return [
       KirimTulisanView(),
       HomePageView(),
       AccountPageView(),
-    ];
+    ].obs;
   }
 
   List<PersistentBottomNavBarItem> _navbarItem() {
@@ -66,24 +63,26 @@ class NavbarPageView extends GetView<NavbarPageController> {
 
   @override
   Widget build(BuildContext context) {
-    return PersistentTabView(
-      Get.context!,
-      screens: _buildScreen(),
-      items: _navbarItem(),
-      backgroundColor: Colors.white,
-      navBarStyle: NavBarStyle.style3,
-      decoration: NavBarDecoration(
-        colorBehindNavBar: Colors.black,
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.5),
-            spreadRadius: 3,
-            blurRadius: 3,
-            offset: Offset(0, 2), // changes position of shadow
+    return Obx(() => PersistentTabView(
+          Get.context!,
+          screens: _buildScreen(),
+          items: _navbarItem(),
+          stateManagement: true,
+          resizeToAvoidBottomInset: false,
+          backgroundColor: Colors.white,
+          navBarStyle: NavBarStyle.style3,
+          decoration: NavBarDecoration(
+            colorBehindNavBar: Colors.black,
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.5),
+                spreadRadius: 3,
+                blurRadius: 3,
+                offset: Offset(0, 2), // changes position of shadow
+              ),
+            ],
           ),
-        ],
-      ),
-      controller: contr,
-    );
+          controller: contr,
+        ));
   }
 }

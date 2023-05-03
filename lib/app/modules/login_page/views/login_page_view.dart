@@ -62,7 +62,7 @@ class LoginPageView extends GetView<LoginPageController> {
               child: TextFormField(
                 controller: controller.c_email,
                 decoration: InputDecoration(
-                  hintText: 'Username/email',
+                  hintText: 'Email',
                   focusColor: Colors.white,
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(26.0),

@@ -32,7 +32,6 @@ class SignupPageController extends GetxController {
         });
       }
       User? user = result.user;
-      return user;
     } catch (e) {
       log(e.toString());
       return null;

@@ -182,6 +182,9 @@ class GameQuizView extends GetView<GameQuizController> {
                                           PageTransitionAnimation.fade,
                                     );
                                     print(controller.isAnswer);
+                                    controller.userAnswer.clear();
+                                    controller.isAnswer.clear();
+                                    controller.indexAnswerNow(0);
                                   },
                                   style: ElevatedButton.styleFrom(
                                       backgroundColor: Colors.green),

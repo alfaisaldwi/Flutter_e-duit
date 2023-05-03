@@ -168,8 +168,28 @@ class SignupPageView extends GetView<SignupPageController> {
                     style: GoogleFonts.inter(fontSize: 12, color: Colors.black),
                   ),
                   onPressed: () async {
-                    await controller.signUpUser(
-                        controller.c_email.text, controller.c_pw.text);
+                    if (controller.c_email.text.isNotEmpty &&
+                        controller.c_pw.text.isNotEmpty &&
+                        controller.c_namalengkap.text.isNotEmpty &&
+                        controller.c_username.text.isNotEmpty &&
+                        controller.c_nohp.text.isNotEmpty) {
+                      await controller.signUpUser(
+                          controller.c_email.text, controller.c_pw.text);
+                    } else {
+                      showDialog(
+                          context: context,
+                          builder: (context) => AlertDialog(
+                                title: Text('Error'),
+                                content: Text('Tolong isi semua fieldnya ya..'),
+                                actions: <Widget>[
+                                  ElevatedButton(
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                      },
+                                      child: Text('Ok'))
+                                ],
+                              ));
+                    }
                   }),
             ),
             SizedBox(
