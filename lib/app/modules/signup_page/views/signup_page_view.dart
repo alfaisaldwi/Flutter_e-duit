@@ -100,6 +100,7 @@ class SignupPageView extends GetView<SignupPageController> {
             Padding(
               padding: EdgeInsets.all(10),
               child: TextFormField(
+                keyboardType: TextInputType.emailAddress,
                 controller: controller.c_email,
                 decoration: InputDecoration(
                   focusColor: Colors.white,
@@ -122,6 +123,7 @@ class SignupPageView extends GetView<SignupPageController> {
             Padding(
               padding: EdgeInsets.all(10),
               child: TextFormField(
+                keyboardType: TextInputType.number,
                 controller: controller.c_nohp,
                 decoration: InputDecoration(
                   focusColor: Colors.white,
@@ -175,6 +177,20 @@ class SignupPageView extends GetView<SignupPageController> {
                         controller.c_nohp.text.isNotEmpty) {
                       await controller.signUpUser(
                           controller.c_email.text, controller.c_pw.text);
+                      showDialog(
+                          context: context,
+                          builder: (context) => AlertDialog(
+                                title: Text('Berhasil'),
+                                content:
+                                    Text('Silahkan Login Untuk Melanjutkan'),
+                                actions: <Widget>[
+                                  ElevatedButton(
+                                      onPressed: () {
+                                        Get.toNamed('account-page');
+                                      },
+                                      child: Text('Ok'))
+                                ],
+                              ));
                     } else {
                       showDialog(
                           context: context,

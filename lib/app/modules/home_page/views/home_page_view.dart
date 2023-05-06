@@ -27,6 +27,7 @@ class HomePageView extends GetView<HomePageController> {
       // bottomNavigationBar: Nammm()
       body: SingleChildScrollView(
         child: Container(
+          height: MediaQuery.of(context).size.height,
           color: Colors.white,
           child: Padding(
             padding: const EdgeInsets.only(left: 14.0, right: 14, top: 20),
@@ -43,7 +44,10 @@ class HomePageView extends GetView<HomePageController> {
                       onSuffixTap: () {
                         controller.tsearch.clear();
                       },
-                      onSubmitted: (String) {},
+                      onSubmitted: (value) {
+                        controller.filterDic(value);
+                        print(value);
+                      },
                     ),
                     GestureDetector(
                       onTap: (() async {

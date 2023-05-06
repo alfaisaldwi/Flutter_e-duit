@@ -1,4 +1,4 @@
-import 'package:eduit/app/data/listkamus.dart';
+import 'package:eduit/app/data/list_kamus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 

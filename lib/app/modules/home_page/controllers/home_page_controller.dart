@@ -1,10 +1,12 @@
+import 'package:eduit/app/data/kamusModel.dart';
+import 'package:eduit/app/data/konten_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_custom_carousel_slider/flutter_custom_carousel_slider.dart';
 import 'package:get/get.dart';
 
 class HomePageController extends GetxController {
   TextEditingController tsearch = TextEditingController();
-
+  var kmodel = KamusModel;
   List<CarouselItem> itemList = [
     CarouselItem(
       image: const NetworkImage(
@@ -49,4 +51,33 @@ class HomePageController extends GetxController {
       onImageTap: (i) {},
     ),
   ];
+
+  Rx<List<KamusModel>> foundDic = Rx<List<KamusModel>>([]);
+
+  @override
+  void onInit() {
+    super.onInit();
+    foundDic.value;
+  }
+
+  @override
+  void onReady() {
+    super.onReady();
+  }
+
+  @override
+  void onClose() {}
+
+  void filterDic(String DicName) {
+    List<KamusModel>? result = [];
+    if (DicName.isEmpty) {
+      result = kamusData;
+    } else {
+      result = kamusData
+          .where((element) =>
+              'kata'.toString().toLowerCase().contains(DicName.toLowerCase()))
+          .toList();
+    }
+    foundDic.value = result;
+  }
 }
