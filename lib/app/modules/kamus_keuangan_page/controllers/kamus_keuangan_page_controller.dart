@@ -1,12 +1,17 @@
+import 'package:eduit/app/data/kamusModel.dart';
+import 'package:eduit/app/data/list_kamus.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 class KamusKeuanganPageController extends GetxController {
-  //TODO: Implement KamusKeuanganPageController
+  TextEditingController cFind = TextEditingController();
+  List<KamusModel> kms = kamusData;
+  Rx<List<KamusModel>> foundDic = Rx<List<KamusModel>>([]);
 
-  final count = 0.obs;
   @override
   void onInit() {
     super.onInit();
+    foundDic.value = kamusData;
   }
 
   @override
@@ -16,5 +21,34 @@ class KamusKeuanganPageController extends GetxController {
 
   @override
   void onClose() {}
-  void increment() => count.value++;
+
+  void filterDic(String DicName) {
+    List<KamusModel>? result = [];
+    if (DicName.isEmpty) {
+      result = kamusData;
+    } else {
+      final suggest = kms.where((kamus) {
+        final kataTitle = kamus.kata!.toLowerCase();
+        final input = DicName.toLowerCase();
+        return kataTitle.contains(input);
+      }).toList();
+
+      foundDic.value = suggest;
+      // kamus2 = suggest.obs;
+      //   result = kamusData
+      //       .where((element) =>
+      //           kms[].arti.toString().toLowerCase().contains(DicName.toLowerCase()))
+      //       .toList();
+      // }
+    }
+  }
+
+  // void searchKamus(String query) {
+  //   final suggest = kms.where((kamus) {
+  //     final kataTitle = kamus.kata!.toLowerCase();
+  //     final input = query.toLowerCase();
+  //     return kataTitle.contains(input);
+  //   }).toList();
+  //   kamus2 = suggest.obs;
+  // }
 }

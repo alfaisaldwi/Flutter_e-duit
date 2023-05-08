@@ -5,6 +5,8 @@ import 'package:eduit/app/modules/artikel_podcast/controllers/artikel_podcast_co
 import 'package:eduit/app/modules/artikel_podcast/views/artikel_podcast_view.dart';
 import 'package:eduit/app/modules/daftar_ymyb/views/daftar_ymyb_view.dart';
 import 'package:eduit/app/modules/game_quiz/views/game_quiz_view.dart';
+import 'package:eduit/app/modules/kamus_keuangan_page/controllers/kamus_keuangan_page_controller.dart';
+import 'package:eduit/app/modules/kamus_keuangan_page/views/kamus_find.dart';
 import 'package:eduit/app/modules/kamus_keuangan_page/views/kamus_keuangan_page_view.dart';
 import 'package:eduit/app/modules/konsultasi/views/konsultasi_view.dart';
 import 'package:eduit/app/modules/konten_edu/views/konten_edu_view.dart';
@@ -23,6 +25,7 @@ import '../controllers/home_page_controller.dart';
 class HomePageView extends GetView<HomePageController> {
   @override
   Widget build(BuildContext context) {
+    var cSearch = KamusKeuanganPageController();
     return Scaffold(
       // bottomNavigationBar: Nammm()
       body: SingleChildScrollView(
@@ -45,7 +48,15 @@ class HomePageView extends GetView<HomePageController> {
                         controller.tsearch.clear();
                       },
                       onSubmitted: (value) {
-                        controller.filterDic(value);
+                        cSearch.filterDic(value);
+                        Get.to(() => KamusKeuanganPageView(), arguments: value);
+                        PersistentNavBarNavigator.pushNewScreen(
+                          context,
+                          screen: KamusKeuanganPageView(),
+                          withNavBar: true, // OPTIONAL VALUE. True by default.
+                          pageTransitionAnimation:
+                              PageTransitionAnimation.cupertino,
+                        );
                         print(value);
                       },
                     ),

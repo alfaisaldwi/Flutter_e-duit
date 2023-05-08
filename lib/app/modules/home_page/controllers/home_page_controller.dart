@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 class HomePageController extends GetxController {
   TextEditingController tsearch = TextEditingController();
   var kmodel = KamusModel;
+  List<KamusModel> kms = kamusData;
   List<CarouselItem> itemList = [
     CarouselItem(
       image: const NetworkImage(
@@ -79,5 +80,15 @@ class HomePageController extends GetxController {
           .toList();
     }
     foundDic.value = result;
+  }
+
+  void searchKamus(String query) {
+    final suggest = kms.where((kamusData) {
+      final kataTitle = kamusData.kata!.toLowerCase();
+      final input = query.toLowerCase();
+      return kataTitle.contains(input);
+    }).toList;
+
+    
   }
 }

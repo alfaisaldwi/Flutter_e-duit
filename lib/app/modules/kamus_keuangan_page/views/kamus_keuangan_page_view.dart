@@ -10,6 +10,7 @@ import '../controllers/kamus_keuangan_page_controller.dart';
 class KamusKeuanganPageView extends GetView<KamusKeuanganPageController> {
   @override
   Widget build(BuildContext context) {
+    var g = Get.arguments;
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
@@ -28,51 +29,79 @@ class KamusKeuanganPageView extends GetView<KamusKeuanganPageController> {
                         color: Color(0xff034779)),
                   ),
                 ),
+                SizedBox(
+                  height: 5,
+                ),
                 Align(
                   alignment: Alignment.centerLeft,
-                  child: Text(
-                    '---Search---',
-                    style: GoogleFonts.inter(
-                        fontSize: 18, color: Color(0xff034779)),
+                  child: Container(
+                    width: 250,
+                    height: 35,
+                    child: TextField(
+                      textAlign: TextAlign.left,
+                      controller: controller.cFind,
+                      style: GoogleFonts.inter(
+                          fontSize: 14, color: Color(0xff034779)),
+                      decoration: InputDecoration(
+                        suffixIcon: Icon(
+                          Icons.search,
+                          color: Color(0xff034779),
+                        ),
+                        hintText: 'Search',
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(18),
+                          borderSide: BorderSide(
+                            width: 2,
+                            color: Color(0xff034779),
+                          ),
+                        ),
+                      ),
+                      onChanged: (value) => controller.filterDic(value),
+                    ),
                   ),
                 ),
-                ListView.builder(
-                  shrinkWrap: true,
-                  scrollDirection: Axis.vertical,
-                  physics: ScrollPhysics(),
-                  itemCount: kamusData.length,
-                  itemBuilder: (context, index) {
-                    return Column(
-                      children: [
-                        Table(
-                          children: [
-                            TableRow(children: [
-                              Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(vertical: 8.0),
-                                child: Text(
-                                  "${kamusData[index].kata}",
-                                  textAlign: TextAlign.justify,
-                                  style: TextStyle(
-                                      fontSize: 15.0,
-                                      fontWeight: FontWeight.bold),
+                Obx(
+                  () => ListView.builder(
+                    shrinkWrap: true,
+                    scrollDirection: Axis.vertical,
+                    physics: ScrollPhysics(),
+                    itemCount: controller.foundDic.value.length,
+                    itemBuilder: (context, index) {
+                      final kamus = controller.kms[index];
+                      return Column(
+                        children: [
+                          Table(
+                            children: [
+                              TableRow(children: [
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.symmetric(vertical: 8.0),
+                                  child: Obx(() => Text(
+                                        "${controller.foundDic.value[index].kata}",
+                                        textAlign: TextAlign.justify,
+                                        style: TextStyle(
+                                            fontSize: 15.0,
+                                            fontWeight: FontWeight.bold),
+                                      )),
                                 ),
-                              ),
-                              Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(vertical: 8.0),
-                                child: Text(
-                                  "${kamusData[index].arti}",
-                                  style: TextStyle(fontSize: 15.0),
-                                  textAlign: TextAlign.justify,
-                                ),
-                              ),
-                            ]),
-                          ],
-                        ),
-                      ],
-                    );
-                  },
+                                Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 8.0),
+                                    child: Text(
+                                      "${controller.foundDic.value[index].arti}",
+                                      style: TextStyle(fontSize: 15.0),
+                                      textAlign: TextAlign.justify,
+                                    )),
+                              ]),
+                            ],
+                          ),
+                        ],
+                      );
+                    },
+                  ),
+                ),
+                SizedBox(
+                  height: 400,
                 )
               ],
             ),
