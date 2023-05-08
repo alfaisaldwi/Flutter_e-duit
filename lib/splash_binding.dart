@@ -48,5 +48,8 @@ class SplashBinding extends Bindings {
     Get.lazyPut<KamusKeuanganPageController>(
       () => KamusKeuanganPageController(),
     );
+    Get.lazyPut<KirimTulisanController>(
+      () => KirimTulisanController(),
+    );
   }
 }

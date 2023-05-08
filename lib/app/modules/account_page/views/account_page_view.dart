@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:eduit/app/modules/account_info/controllers/account_info_controller.dart';
 import 'package:eduit/app/modules/account_info/views/account_info_view.dart';
 import 'package:eduit/app/modules/game_quiz/views/game_quiz_view.dart';
@@ -8,10 +10,14 @@ import 'package:eduit/app/modules/signup_page/views/signup_page_view.dart';
 import 'package:eduit/app/navbottom.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
+import 'package:share_plus/share_plus.dart';
 
 import '../controllers/account_page_controller.dart';
 
@@ -291,48 +297,99 @@ class AccountPageView extends GetView<AccountPageController> {
                                       ),
                                     ),
                                   if (dataResult['nilai'] == 'Konservatif')
-                                    Container(
-                                      height: 240,
-                                      width: double.infinity,
-                                      //color: Colors.purple,
-                                      alignment: Alignment.center,
-                                      padding: const EdgeInsets.all(24),
-                                      decoration: BoxDecoration(),
-                                      child: Image.asset(
-                                        'assets/images/kamu_konserv.png',
-                                        fit: BoxFit.cover,
+                                    GestureDetector(
+                                      onTap: () async {
+                                        final bytes = await rootBundle.load(
+                                            'assets/images/kamu_konserv.png');
+                                        final list = bytes.buffer.asUint8List();
+
+                                        final tempDir =
+                                            await getTemporaryDirectory();
+                                        final file = await File(
+                                                '${tempDir.path}/image.jpg')
+                                            .create();
+                                        file.writeAsBytesSync(list);
+                                        Share.shareXFiles([XFile(file.path)],
+                                            text:
+                                                'Saya adalah seorang Investor tipe Konservatif, Ayo mainkan Game ini untuk mengetahui tipe Investormu!');
+                                      },
+                                      child: Container(
+                                        height: 240,
                                         width: double.infinity,
-                                        height: double.infinity,
+                                        //color: Colors.purple,
+                                        alignment: Alignment.center,
+                                        padding: const EdgeInsets.all(4),
+                                        decoration: BoxDecoration(),
+                                        child: Image.asset(
+                                          'assets/images/kamu_konserv.png',
+                                          fit: BoxFit.fitWidth,
+                                          width: double.infinity,
+                                          height: double.infinity,
+                                        ),
                                       ),
                                     ),
                                   if (dataResult['nilai'] == 'Moderat')
-                                    Container(
-                                      height: 240,
-                                      width: double.infinity,
-                                      //color: Colors.purple,
-                                      alignment: Alignment.center,
-                                      padding: const EdgeInsets.all(24),
-                                      decoration: BoxDecoration(),
-                                      child: Image.asset(
-                                        'assets/images/kamu_moderat.png',
-                                        fit: BoxFit.cover,
+                                    GestureDetector(
+                                      onTap: () async {
+                                        final bytes = await rootBundle.load(
+                                            'assets/images/kamu_moderat.png');
+                                        final list = bytes.buffer.asUint8List();
+
+                                        final tempDir =
+                                            await getTemporaryDirectory();
+                                        final file = await File(
+                                                '${tempDir.path}/image.jpg')
+                                            .create();
+                                        file.writeAsBytesSync(list);
+                                        Share.shareXFiles([XFile(file.path)],
+                                            text:
+                                                'Saya adalah seorang Investor tipe Moderat, Ayo mainkan Game ini untuk mengetahui tipe Investormu!');
+                                      },
+                                      child: Container(
+                                        height: 240,
                                         width: double.infinity,
-                                        height: double.infinity,
+                                        //color: Colors.purple,
+                                        alignment: Alignment.center,
+                                        padding: const EdgeInsets.all(4),
+                                        decoration: BoxDecoration(),
+                                        child: Image.asset(
+                                          'assets/images/kamu_moderat.png',
+                                          fit: BoxFit.fitWidth,
+                                          width: double.infinity,
+                                          height: double.infinity,
+                                        ),
                                       ),
                                     ),
                                   if (dataResult['nilai'] == 'Agresif')
-                                    Container(
-                                      height: 240,
-                                      width: double.infinity,
-                                      //color: Colors.purple,
-                                      alignment: Alignment.center,
-                                      padding: const EdgeInsets.all(24),
-                                      decoration: BoxDecoration(),
-                                      child: Image.asset(
-                                        'assets/images/kamu_agresif.png',
-                                        fit: BoxFit.cover,
+                                    GestureDetector(
+                                      onTap: () async {
+                                        final bytes = await rootBundle.load(
+                                            'assets/images/kamu_agresif.png');
+                                        final list = bytes.buffer.asUint8List();
+
+                                        final tempDir =
+                                            await getTemporaryDirectory();
+                                        final file = await File(
+                                                '${tempDir.path}/image.jpg')
+                                            .create();
+                                        file.writeAsBytesSync(list);
+                                        Share.shareXFiles([XFile(file.path)],
+                                            text:
+                                                'Saya adalah seorang Investor tipe Agresif, Ayo mainkan Game ini untuk mengetahui tipe Investormu!');
+                                      },
+                                      child: Container(
+                                        height: 240,
                                         width: double.infinity,
-                                        height: double.infinity,
+                                        //color: Colors.purple,
+                                        alignment: Alignment.center,
+                                        padding: const EdgeInsets.all(4),
+                                        decoration: BoxDecoration(),
+                                        child: Image.asset(
+                                          'assets/images/kamu_agresif.png',
+                                          fit: BoxFit.fitWidth,
+                                          width: double.infinity,
+                                          height: double.infinity,
+                                        ),
                                       ),
                                     ),
                                   Row(

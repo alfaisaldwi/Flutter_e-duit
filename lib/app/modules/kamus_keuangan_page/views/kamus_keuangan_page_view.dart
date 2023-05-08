@@ -68,6 +68,13 @@ class KamusKeuanganPageView extends GetView<KamusKeuanganPageController> {
                     itemCount: controller.foundDic.value.length,
                     itemBuilder: (context, index) {
                       final kamus = controller.kms[index];
+                      if (controller.foundDic.value.length <= 1) {
+                        return Text(
+                          'Maaf pencarian tidak ditemukan',
+                          style: GoogleFonts.inter(
+                              fontSize: 15.0, fontWeight: FontWeight.bold),
+                        );
+                      }
                       return Column(
                         children: [
                           Table(
@@ -79,7 +86,7 @@ class KamusKeuanganPageView extends GetView<KamusKeuanganPageController> {
                                   child: Obx(() => Text(
                                         "${controller.foundDic.value[index].kata}",
                                         textAlign: TextAlign.justify,
-                                        style: TextStyle(
+                                        style: GoogleFonts.inter(
                                             fontSize: 15.0,
                                             fontWeight: FontWeight.bold),
                                       )),
@@ -89,8 +96,9 @@ class KamusKeuanganPageView extends GetView<KamusKeuanganPageController> {
                                         vertical: 8.0),
                                     child: Text(
                                       "${controller.foundDic.value[index].arti}",
-                                      style: TextStyle(fontSize: 15.0),
-                                      textAlign: TextAlign.justify,
+                                      style: GoogleFonts.inter(
+                                        fontSize: 15.0,
+                                      ),
                                     )),
                               ]),
                             ],
