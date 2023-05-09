@@ -15,7 +15,10 @@ class KirimTulisanController extends GetxController {
   var name = '';
 
   DateTime dateToday =
-      DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day);
+      DateTime(DateTime.now().day, DateTime.now().month, DateTime.now().year);
+
+  Stream qSnapShot =
+      FirebaseFirestore.instance.collection('konten').snapshots();
 
   @override
   void onInit() {
@@ -42,7 +45,8 @@ class KirimTulisanController extends GetxController {
         "judul": judul,
         "isi": isi,
         "imgUrl": img,
-        "tanggal": dateToday.toString().substring(0, 10)
+        "tanggal": dateToday.toString().substring(0, 10),
+        "poin": 10
       });
     }
   }

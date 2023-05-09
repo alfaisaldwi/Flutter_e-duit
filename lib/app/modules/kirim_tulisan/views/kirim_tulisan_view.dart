@@ -1,5 +1,7 @@
+import 'package:eduit/app/modules/account_page/views/account_page_view.dart';
 import 'package:eduit/app/modules/kirim_tulisan/views/buat_tulisan_view.dart';
 import 'package:eduit/app/navbottom.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
@@ -37,6 +39,15 @@ class KirimTulisanView extends GetView<KirimTulisanController> {
               Card(
                 child: GestureDetector(
                   onTap: () {
+                    if (FirebaseAuth.instance.currentUser == null) {
+                      PersistentNavBarNavigator.pushNewScreen(
+                        context,
+                        screen: AccountPageView(),
+                        withNavBar: true, // OPTIONAL VALUE. True by default.
+                        pageTransitionAnimation:
+                            PageTransitionAnimation.cupertino,
+                      );
+                    }
                     PersistentNavBarNavigator.pushNewScreen(
                       context,
                       screen: BuatTulisanView(),
@@ -120,23 +131,23 @@ class KirimTulisanView extends GetView<KirimTulisanController> {
                     ]),
               ),
               StreamBuilder(
-                  stream: FirebaseFirestore.instance
-                      .collection("konten")
-                      .snapshots(),
+                  stream: controller.qSnapShot,
                   builder: (context, snapshot) {
-                    return ListView.builder(
-                      shrinkWrap: true,
-                      scrollDirection: Axis.vertical,
-                      physics: ScrollPhysics(),
-                      itemCount: snapshot.data!.docs.length,
-                      itemBuilder: (context, index) {
-                        DocumentSnapshot konten = snapshot.data!.docs[index];
-                        if (snapshot.hasError || snapshot.data == null) {
-                          return CircularProgressIndicator(); // add this to showcase the error
-                        }
-                        if (snapshot.hasData) {
+                    if (snapshot.connectionState == ConnectionState.waiting ||
+                        snapshot.connectionState == ConnectionState.none) {
+                      return const CircularProgressIndicator();
+                    } else {
+                      return ListView.builder(
+                        shrinkWrap: true,
+                        scrollDirection: Axis.vertical,
+                        physics: ScrollPhysics(),
+                        itemCount: snapshot.data.docs.length,
+                        itemBuilder: (context, index) {
+                          DocumentSnapshot konten = snapshot.data.docs[index];
+
                           return Container(
-                            padding: EdgeInsets.symmetric(horizontal: 10),
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 10, vertical: 20),
                             color: Colors.white,
                             width: double.infinity,
                             child: Row(
@@ -168,7 +179,7 @@ class KirimTulisanView extends GetView<KirimTulisanController> {
                                   Container(
                                     width: 30,
                                     child: Text(
-                                      '${konten['poin']}',
+                                      konten['poin'] ?? '0',
                                       textAlign: TextAlign.justify,
                                       style: GoogleFonts.inter(
                                         color: Color(0xff656464),
@@ -178,10 +189,9 @@ class KirimTulisanView extends GetView<KirimTulisanController> {
                                   ),
                                 ]),
                           );
-                        }
-                        return CircularProgressIndicator();
-                      },
-                    );
+                        },
+                      );
+                    }
                   }),
               SizedBox(
                 height: 200,

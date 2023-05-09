@@ -1,8 +1,12 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_custom_carousel_slider/flutter_custom_carousel_slider.dart';
 import 'package:get/get.dart';
 
 class KontenEduController extends GetxController {
+  
+  Stream qSnapShot =
+      FirebaseFirestore.instance.collection('konten').snapshots();
   List<CarouselItem> itemList = [
     CarouselItem(
       image: AssetImage('assets/images/thumbnail1.png'),

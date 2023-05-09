@@ -34,21 +34,9 @@ class KamusKeuanganPageController extends GetxController {
       }).toList();
 
       foundDic.value = suggest;
-      // kamus2 = suggest.obs;
-      //   result = kamusData
-      //       .where((element) =>
-      //           kms[].arti.toString().toLowerCase().contains(DicName.toLowerCase()))
-      //       .toList();
-      // }
+
     }
   }
 
-  // void searchKamus(String query) {
-  //   final suggest = kms.where((kamus) {
-  //     final kataTitle = kamus.kata!.toLowerCase();
-  //     final input = query.toLowerCase();
-  //     return kataTitle.contains(input);
-  //   }).toList();
-  //   kamus2 = suggest.obs;
-  // }
+
 }

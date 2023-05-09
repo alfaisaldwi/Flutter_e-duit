@@ -1,5 +1,5 @@
 import 'package:eduit/app/data/kamusModel.dart';
-import 'package:eduit/app/data/konten_list.dart';
+import 'package:eduit/app/data/list_kamus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_custom_carousel_slider/flutter_custom_carousel_slider.dart';
 import 'package:get/get.dart';

@@ -1,8 +1,12 @@
-class KamusModel {
+class KontenModel {
   int id;
   String? judul;
+  String? isi;
   String? tanggal;
   String? penulis;
+  String? link;
+  String? img;
 
-  KamusModel(this.id,this.judul,this.tanggal,this.penulis);
+  KontenModel(
+      this.id, this.judul,this.isi, this.tanggal, this.penulis, this.img, this.link);
 }
