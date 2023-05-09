@@ -13,7 +13,6 @@ import 'package:image_picker/image_picker.dart';
 class BuatTulisanView extends GetView<KirimTulisanController> {
   @override
   Widget build(BuildContext context) {
-    String imageUrl = '';
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
@@ -96,7 +95,7 @@ class BuatTulisanView extends GetView<KirimTulisanController> {
                 style:
                     ElevatedButton.styleFrom(backgroundColor: Colors.cyan[400]),
                 child: Text(
-                  'Add Image',
+                  'Add Image ',
                   style: TextStyle(
                       fontFamily: 'Montserrat', fontWeight: FontWeight.bold),
                 ),
@@ -121,7 +120,9 @@ class BuatTulisanView extends GetView<KirimTulisanController> {
                   try {
                     await referenceImagetoUpload.putFile(File(file.path));
 
-                    imageUrl = await referenceImagetoUpload.getDownloadURL();
+                    controller.cImg.text =
+                        await referenceImagetoUpload.getDownloadURL();
+                    print(controller.cImg.text);
                   } catch (e) {}
                 },
               ),
@@ -130,31 +131,76 @@ class BuatTulisanView extends GetView<KirimTulisanController> {
               height: 30,
             ),
             Container(
-              width: 160,
-              child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                      backgroundColor: Color(0xffF8C800),
-                      shape: StadiumBorder()),
-                  child: Text(
-                    'Kirim Tulisan',
-                    style: GoogleFonts.inter(fontSize: 12, color: Colors.black),
-                  ),
-                  onPressed: () async {
-                    showDialog(
-                        context: context,
-                        builder: (context) => AlertDialog(
-                              title: Text('Error'),
-                              content: Text('Tolong isi semua fieldnya ya..'),
-                              actions: <Widget>[
-                                ElevatedButton(
-                                    onPressed: () {
-                                      Navigator.pop(context);
-                                    },
-                                    child: Text('Ok'))
-                              ],
-                            ));
-                  }),
-            ),
+                width: 160,
+                child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: Color(0xffF8C800),
+                        shape: StadiumBorder()),
+                    child: Text(
+                      'Kirim Tulisan',
+                      style:
+                          GoogleFonts.inter(fontSize: 12, color: Colors.black),
+                    ),
+                    onPressed: () async {
+                      if (controller.cJudul.text.isEmpty ||
+                          controller.cIsi.text.isEmpty) {
+                        print(controller.name);
+                        print(controller.dateToday.toString().substring(0, 10));
+
+                        showDialog(
+                            context: context,
+                            builder: (context) => AlertDialog(
+                                  title: Text('Gagal !'),
+                                  content:
+                                      Text('Tolong isi semua fieldnya ya..'),
+                                  actions: <Widget>[
+                                    ElevatedButton(
+                                        onPressed: () {
+                                          Navigator.pop(context);
+                                          controller.cImg.text = '';
+                                        },
+                                        child: Text('Ok'))
+                                  ],
+                                ));
+                      } else if (controller.cImg.text == '' ||
+                          controller.cImg.text.isEmpty) {
+                        showDialog(
+                            context: context,
+                            builder: (context) => AlertDialog(
+                                  title: Text('Gagal !'),
+                                  content:
+                                      Text('Upload Foto / Sedang Upload Foto'),
+                                  actions: <Widget>[
+                                    ElevatedButton(
+                                        onPressed: () {
+                                          Navigator.pop(context);
+                                          controller.cImg.text = '';
+                                        },
+                                        child: Text('Ok'))
+                                  ],
+                                ));
+                      } else {
+                        print('=====================${controller.name}');
+                        controller.postTulisan();
+                        showDialog(
+                            context: context,
+                            builder: (context) => AlertDialog(
+                                  title: Text('Berhasil'),
+                                  content: Text(
+                                      'Silahkan lihat artikel kamu dihalaman Artikel'),
+                                  actions: <Widget>[
+                                    ElevatedButton(
+                                        onPressed: () {
+                                          controller.cIsi.clear();
+                                          controller.cJudul.clear();
+                                          controller.cImg.text = '';
+                                          Get.to(() => NavbarPageView());
+                                        },
+                                        child: Text('Ok'))
+                                  ],
+                                ));
+                      }
+                    })),
             SizedBox(
               height: 40,
             ),
