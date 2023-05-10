@@ -1,11 +1,14 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_custom_carousel_slider/flutter_custom_carousel_slider.dart';
+
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:url_launcher/url_launcher.dart';
+
 import '../controllers/konten_edu_controller.dart';
 
-class DetailKontentView extends GetView<KontenEduController> {
+class DetailKontentLokalView extends GetView<KontenEduController> {
   var konten = Get.arguments;
   @override
   Widget build(BuildContext context) {
@@ -18,9 +21,21 @@ class DetailKontentView extends GetView<KontenEduController> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Center(
-                    child: Image.network(konten['img'],
-                        width: 400, height: 180)),
+                GestureDetector(
+                  onTap: () async {
+                    try {
+                      final Uri _url = Uri.parse(
+                          'https://wa.me/${konten.link}?text=Haloo Pak/Bu, Saya ingin konsultasi masalah perencanaan keuangan. "');
+                      await launchUrl(_url,
+                          mode: LaunchMode.externalApplication);
+                    } catch (err) {
+                      debugPrint('Something bad happened');
+                    }
+                  },
+                  child: Center(
+                      child: Image.network('${konten.img}',
+                          width: 400, height: 180)),
+                ),
                 SizedBox(
                   height: 15,
                 ),
@@ -34,7 +49,7 @@ class DetailKontentView extends GetView<KontenEduController> {
                         child: Container(
                           width: 180,
                           child: Text(
-                            '${konten['judul']}',
+                            '${konten.judul}',
                             style: GoogleFonts.inter(fontSize: 14),
                             textAlign: TextAlign.left,
                             maxLines: 3,
@@ -60,7 +75,7 @@ class DetailKontentView extends GetView<KontenEduController> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      '${konten['penulis']}',
+                      '${konten.penulis}',
                       style: GoogleFonts.inter(fontSize: 15),
                     ),
                     Wrap(children: [
@@ -68,7 +83,7 @@ class DetailKontentView extends GetView<KontenEduController> {
                         Icons.date_range,
                         size: 18,
                       ),
-                      Text('${konten['tanggal']}', style: GoogleFonts.inter()),
+                      Text('${konten.tanggal}', style: GoogleFonts.inter()),
                     ]),
                     Icon(
                       Icons.thumb_up_alt_outlined,
@@ -83,7 +98,7 @@ class DetailKontentView extends GetView<KontenEduController> {
                 Container(
                   color: Colors.white,
                   child: Text(
-                    '${konten['isi']}',
+                    '${konten.isi}',
                     textAlign: TextAlign.justify,
                     style: GoogleFonts.inter(height: 1.8),
                   ),

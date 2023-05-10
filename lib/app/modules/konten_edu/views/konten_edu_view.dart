@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:eduit/app/data/konten_list.dart';
 import 'package:eduit/app/data/konten_model.dart';
 import 'package:eduit/app/data/list_kamus.dart';
+import 'package:eduit/app/modules/konten_edu/views/detail_konten_lokal.dart';
 import 'package:eduit/app/modules/konten_edu/views/detail_kontent.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_custom_carousel_slider/flutter_custom_carousel_slider.dart';
@@ -41,8 +42,8 @@ class KontenEduView extends GetView<KontenEduController> {
                     itemBuilder: (context, index) {
                       return GestureDetector(
                         onTap: () {
-                          Get.to(() => DetailKontentView(),
-                              arguments: kontenData);
+                          Get.to(() => DetailKontentLokalView(),
+                              arguments: kontenData[index]);
                         },
                         child: Container(
                           height: 120,
