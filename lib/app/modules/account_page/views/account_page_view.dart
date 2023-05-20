@@ -441,7 +441,8 @@ class AccountPageView extends GetView<AccountPageController> {
                                               SizedBox(
                                                 height: 18,
                                               ),
-                                              Text('${dataResult['poin'] ?? 0}',
+                                              Text(
+                                                  '${dataResult['poin'].toString() ?? 0}',
                                                   style: GoogleFonts.inter(
                                                       fontSize: 35,
                                                       fontWeight:

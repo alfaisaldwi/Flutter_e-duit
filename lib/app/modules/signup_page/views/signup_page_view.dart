@@ -186,7 +186,7 @@ class SignupPageView extends GetView<SignupPageController> {
                                 actions: <Widget>[
                                   ElevatedButton(
                                       onPressed: () {
-                                        Get.toNamed('account-page');
+                                        Get.toNamed('/navbar-page');
                                       },
                                       child: Text('Ok'))
                                 ],

@@ -24,8 +24,7 @@ class DetailKontentLokalView extends GetView<KontenEduController> {
                 GestureDetector(
                   onTap: () async {
                     try {
-                      final Uri _url = Uri.parse(
-                          'https://wa.me/${konten.link}?text=Haloo Pak/Bu, Saya ingin konsultasi masalah perencanaan keuangan. "');
+                      final Uri _url = Uri.parse('${konten.link}');
                       await launchUrl(_url,
                           mode: LaunchMode.externalApplication);
                     } catch (err) {

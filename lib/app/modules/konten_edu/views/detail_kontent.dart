@@ -19,8 +19,12 @@ class DetailKontentView extends GetView<KontenEduController> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Center(
-                    child: Image.network(konten['img'],
-                        width: 400, height: 180)),
+                    child: Image.network(
+                  konten[0]['imgUrl'],
+                  width: 450,
+                  height: 230,
+                  fit: BoxFit.fill,
+                )),
                 SizedBox(
                   height: 15,
                 ),
@@ -34,7 +38,7 @@ class DetailKontentView extends GetView<KontenEduController> {
                         child: Container(
                           width: 180,
                           child: Text(
-                            '${konten['judul']}',
+                            '${konten[0]['judul']}',
                             style: GoogleFonts.inter(fontSize: 14),
                             textAlign: TextAlign.left,
                             maxLines: 3,
@@ -60,7 +64,7 @@ class DetailKontentView extends GetView<KontenEduController> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      '${konten['penulis']}',
+                      '${konten[0]['penulis']}',
                       style: GoogleFonts.inter(fontSize: 15),
                     ),
                     Wrap(children: [
@@ -68,13 +72,28 @@ class DetailKontentView extends GetView<KontenEduController> {
                         Icons.date_range,
                         size: 18,
                       ),
-                      Text('${konten['tanggal']}', style: GoogleFonts.inter()),
+                      Text('${konten[0]['tanggal']}',
+                          style: GoogleFonts.inter()),
                     ]),
-                    Icon(
-                      Icons.thumb_up_alt_outlined,
-                      color: Color(0xff034779),
-                      size: 28,
-                    ),
+                    Wrap(children: [
+                      GestureDetector(
+                        onTap: () async {
+                          controller.postLike(konten[1]);
+                        },
+                        child: Icon(
+                          Icons.thumb_up_alt_outlined,
+                          color: Color(0xff034779),
+                          size: 24,
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(6.0),
+                        child: Text(
+                          konten[0]['likes'].toString(),
+                          style: GoogleFonts.inter(fontSize: 16),
+                        ),
+                      ),
+                    ]),
                   ],
                 ),
                 SizedBox(
@@ -83,7 +102,7 @@ class DetailKontentView extends GetView<KontenEduController> {
                 Container(
                   color: Colors.white,
                   child: Text(
-                    '${konten['isi']}',
+                    '${konten[0]['isi']}',
                     textAlign: TextAlign.justify,
                     style: GoogleFonts.inter(height: 1.8),
                   ),

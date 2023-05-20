@@ -113,7 +113,7 @@ class KontenEduView extends GetView<KontenEduController> {
                               return GestureDetector(
                                 onTap: () {
                                   Get.to(() => DetailKontentView(),
-                                      arguments: konten);
+                                      arguments: [konten, konten.id]);
                                 },
                                 child: Container(
                                   height: 120,

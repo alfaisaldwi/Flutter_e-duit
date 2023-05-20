@@ -28,6 +28,8 @@ class SignupPageController extends GetxController {
           "nama": c_namalengkap.text,
           "nohp": c_nohp.text,
           "uid": uid,
+          "poin": 0,
+          "listliked": ['asdasfasdasdasd'],
           "createdAt": DateTime.now().toIso8601String(),
         });
       }

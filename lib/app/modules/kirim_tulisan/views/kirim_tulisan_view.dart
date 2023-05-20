@@ -168,7 +168,7 @@ class KirimTulisanView extends GetView<KirimTulisanController> {
                                   Container(
                                     width: 120,
                                     child: Text(
-                                      '${konten['tanggal']}',
+                                      '${konten['tanggal'].toString()}',
                                       textAlign: TextAlign.justify,
                                       style: GoogleFonts.inter(
                                         color: Color(0xff656464),
@@ -179,7 +179,7 @@ class KirimTulisanView extends GetView<KirimTulisanController> {
                                   Container(
                                     width: 30,
                                     child: Text(
-                                      konten['poin'] ?? '0',
+                                      konten['poin'].toString() ?? ' 0 ',
                                       textAlign: TextAlign.justify,
                                       style: GoogleFonts.inter(
                                         color: Color(0xff656464),

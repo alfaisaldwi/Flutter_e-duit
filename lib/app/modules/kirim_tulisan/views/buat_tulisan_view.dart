@@ -145,7 +145,7 @@ class BuatTulisanView extends GetView<KirimTulisanController> {
                       if (controller.cJudul.text.isEmpty ||
                           controller.cIsi.text.isEmpty) {
                         print(controller.name);
-                        print(controller.dateToday.toString().substring(0, 10));
+                        print(controller.formatDate);
 
                         showDialog(
                             context: context,
@@ -194,7 +194,7 @@ class BuatTulisanView extends GetView<KirimTulisanController> {
                                           controller.cIsi.clear();
                                           controller.cJudul.clear();
                                           controller.cImg.text = '';
-                                          Get.to(() => NavbarPageView());
+                                          Get.toNamed('navbar-page');
                                         },
                                         child: Text('Ok'))
                                   ],
