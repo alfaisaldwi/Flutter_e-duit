@@ -94,80 +94,74 @@ class KontenEduView extends GetView<KontenEduController> {
                         ),
                       );
                     }),
-                StreamBuilder(
-                    stream: controller.qSnapShot,
-                    builder: (context, snapshot) {
-                      if (snapshot.connectionState == ConnectionState.waiting ||
-                          snapshot.connectionState == ConnectionState.none) {
-                        return const CircularProgressIndicator();
-                      } else {
-                        return ListView.builder(
-                            shrinkWrap: true,
-                            scrollDirection: Axis.vertical,
-                            physics: ScrollPhysics(),
-                            itemCount: snapshot.data.docs.length,
-                            itemBuilder: (context, index) {
-                              DocumentSnapshot konten =
-                                  snapshot.data.docs[index];
-
-                              return GestureDetector(
-                                onTap: () {
-                                  Get.to(() => DetailKontentView(),
-                                      arguments: [konten, konten.id]);
-                                },
-                                child: Container(
-                                  height: 120,
-                                  padding: EdgeInsets.all(5),
-                                  width: double.infinity,
-                                  child: Row(children: [
-                                    Image.network(konten['imgUrl'],
-                                        width: 140, height: 140),
-                                    Expanded(
-                                      child: Padding(
-                                        padding: const EdgeInsets.only(
-                                            left: 8.0, right: 8.0, bottom: 4.0),
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            SizedBox(
-                                              height: 8,
-                                            ),
-                                            Text(
-                                              '${konten['judul']}',
-                                              textAlign: TextAlign.left,
-                                              maxLines: 3,
-                                              overflow: TextOverflow.ellipsis,
-                                            ),
-                                            Row(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.center,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: [
-                                                Text('${konten['penulis']}'),
-                                                Wrap(children: [
-                                                  Icon(
-                                                    Icons.date_range,
-                                                    size: 18,
-                                                  ),
-                                                  Text('${konten['tanggal']}'),
-                                                ]),
-                                              ],
-                                            )
-                                          ],
-                                        ),
-                                      ),
+                Obx(() => ListView.builder(
+                    shrinkWrap: true,
+                    scrollDirection: Axis.vertical,
+                    physics: ScrollPhysics(),
+                    itemCount: controller.documents.length,
+                    itemBuilder: (context, index) {
+                      final konten = controller.documents[index];
+                      print(controller.documents);
+                      return GestureDetector(
+                        onTap: () {
+                          controller.getLikeCount(konten.id);
+                          print(controller.likeCount);
+                          Get.to(() => DetailKontentView(),
+                              arguments: [konten, konten.id]);
+                        },
+                        child: Container(
+                          height: 120,
+                          padding: EdgeInsets.all(5),
+                          width: double.infinity,
+                          child: Row(children: [
+                            Image.network(
+                              konten['imgUrl'],
+                              width: 140,
+                              height: 140,
+                              fit: BoxFit.fill,
+                            ),
+                            Expanded(
+                              child: Padding(
+                                padding: const EdgeInsets.only(
+                                    left: 8.0, right: 8.0, bottom: 4.0),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    SizedBox(
+                                      height: 8,
+                                    ),
+                                    Text(
+                                      '${konten['judul']}',
+                                      textAlign: TextAlign.left,
+                                      maxLines: 3,
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                    Row(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text('${konten['penulis']}'),
+                                        Wrap(children: [
+                                          Icon(
+                                            Icons.date_range,
+                                            size: 18,
+                                          ),
+                                          Text('${konten['tanggal']}'),
+                                        ]),
+                                      ],
                                     )
-                                  ]),
+                                  ],
                                 ),
-                              );
-                            });
-                      }
-                    }),
+                              ),
+                            )
+                          ]),
+                        ),
+                      );
+                    }))
               ],
             ),
           ),

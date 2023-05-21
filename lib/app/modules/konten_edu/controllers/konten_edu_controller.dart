@@ -1,10 +1,13 @@
-import 'dart:math';
-
+import 'dart:io';
+import 'package:flutter_share/flutter_share.dart';
+import 'package:http/http.dart' as http;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_custom_carousel_slider/flutter_custom_carousel_slider.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
+import 'package:path_provider/path_provider.dart';
 
 class KontenEduController extends GetxController {
   final CollectionReference dbKonten =
@@ -14,7 +17,29 @@ class KontenEduController extends GetxController {
   Stream qSnapShot =
       FirebaseFirestore.instance.collection('konten').snapshots();
   var uid = FirebaseAuth.instance.currentUser!.uid;
+  RxInt likeCount = 0.obs;
   var liked = [];
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  RxList<DocumentSnapshot> documents = <DocumentSnapshot>[].obs;
+
+  Future<void> getData() async {
+    try {
+      final querySnapshot = await _firestore.collection('konten').get();
+      documents.value = querySnapshot.docs;
+    } catch (e) {
+      print('Error: $e');
+    }
+  }
+
+  void getLikeCount(docUid) async {
+    // Mengambil jumlah like dari Firestore
+    final DocumentSnapshot doc =
+        await FirebaseFirestore.instance.collection('konten').doc(docUid).get();
+
+    // Mengupdate jumlah like menggunakan nilai dari Firestore
+    likeCount.value = (doc.data() as Map<String, dynamic>)['likes'] as int;
+  }
+
   List<CarouselItem> itemList = [
     CarouselItem(
       image: AssetImage('assets/images/thumbnail1.png'),
@@ -56,6 +81,23 @@ class KontenEduController extends GetxController {
       onImageTap: (i) {},
     )
   ];
+
+  Future<String> downloadImage(String imageUrl) async {
+    final response = await http.get(Uri.parse(imageUrl));
+    final directory = await getTemporaryDirectory();
+    final path = '${directory.path}/image.jpg';
+    final file = File(path);
+    await file.writeAsBytes(response.bodyBytes);
+    return path;
+  }
+
+  void shareImage(String imagePath, String title) async {
+    await FlutterShare.shareFile(
+      title: title,
+      filePath: imagePath,
+    );
+  }
+
   @override
   void onInit() {
     super.onInit();
@@ -69,9 +111,11 @@ class KontenEduController extends GetxController {
       });
       print('---------------$liked');
     });
+    getData();
   }
 
   void postLike(String docId) async {
+    // finds id
     // final querySnapshot = await dbKonten.get();
     // final documents = querySnapshot.docs;
 
@@ -82,18 +126,38 @@ class KontenEduController extends GetxController {
 
     if (liked.contains(docId)) {
       print('cancel');
-    } else {
-      var q = liked.toList();
-      var w = liked.add(docId);
 
-      var epd = liked.expand((jawab) => jawab).toList();
+      Fluttertoast.showToast(
+        msg: 'Kamu sudah menyukai artikel ini',
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        backgroundColor: Colors.grey[800],
+        textColor: Colors.white,
+        fontSize: 14.0,
+      );
+    } else {
+      List<dynamic> tambahObjekKeList() {
+        var newObjek = docId;
+        liked.add(newObjek);
+        return liked;
+      }
+
+      liked = tambahObjekKeList();
+
+      liked.expand((jawab) => jawab);
       await dbKonten.doc(docId).update({"likes": FieldValue.increment(1)});
-      dbProfile.doc(uid).update({
-        "listliked": [docId]
-      });
+      dbProfile.doc(uid).update({"listliked": liked});
       dbProfile.doc(uid).update({"poin": FieldValue.increment(5)});
-      print("masuk, $epd");
-      print([w]);
+      // print("masuk, $w");
+      Fluttertoast.showToast(
+        msg: 'Kamu menyukai artikel ini',
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.grey[800],
+        textColor: Colors.white,
+        fontSize: 14.0,
+      );
     }
     print(liked);
   }

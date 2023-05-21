@@ -1,6 +1,4 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_custom_carousel_slider/flutter_custom_carousel_slider.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../controllers/konten_edu_controller.dart';
@@ -49,10 +47,25 @@ class DetailKontentView extends GetView<KontenEduController> {
                       SizedBox(
                         width: 20,
                       ),
-                      Icon(
-                        Icons.share,
-                        size: 28,
-                        color: Color(0xff034779),
+                      GestureDetector(
+                        onTap: () async {
+                          String title =
+                              '${konten[0]['judul']}\nAyo download aplikasi e-duit untuk melihat artikel ini!';
+                          String imageUrl = '${konten[0]['imgUrl']}';
+                          String imagePath =
+                              await controller.downloadImage(imageUrl);
+                          controller.shareImage(imagePath, title);
+
+                          // Share.share('${[konten[0]['imgUrl']]}',
+                          //     subject: '${[
+                          //       konten[0]['judul']
+                          //     ]}\n Ayo download aplikasi e-duit untuk melihat artikel ini!');
+                        },
+                        child: Icon(
+                          Icons.share,
+                          size: 28,
+                          color: Color(0xff034779),
+                        ),
                       ),
                     ],
                   ),
@@ -78,7 +91,9 @@ class DetailKontentView extends GetView<KontenEduController> {
                     Wrap(children: [
                       GestureDetector(
                         onTap: () async {
+                          controller.getLikeCount(konten[1]);
                           controller.postLike(konten[1]);
+                          print(controller.likeCount);
                         },
                         child: Icon(
                           Icons.thumb_up_alt_outlined,
@@ -88,10 +103,10 @@ class DetailKontentView extends GetView<KontenEduController> {
                       ),
                       Padding(
                         padding: const EdgeInsets.all(6.0),
-                        child: Text(
-                          konten[0]['likes'].toString(),
-                          style: GoogleFonts.inter(fontSize: 16),
-                        ),
+                        child: Obx(() => Text(
+                              controller.likeCount.toString(),
+                              style: GoogleFonts.inter(fontSize: 16),
+                            )),
                       ),
                     ]),
                   ],
@@ -106,7 +121,10 @@ class DetailKontentView extends GetView<KontenEduController> {
                     textAlign: TextAlign.justify,
                     style: GoogleFonts.inter(height: 1.8),
                   ),
-                )
+                ),
+                SizedBox(
+                  height: 200,
+                ),
               ],
             ),
           ),

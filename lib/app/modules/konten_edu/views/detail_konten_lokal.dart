@@ -1,9 +1,15 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_custom_carousel_slider/flutter_custom_carousel_slider.dart';
 
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../controllers/konten_edu_controller.dart';
@@ -59,10 +65,25 @@ class DetailKontentLokalView extends GetView<KontenEduController> {
                       SizedBox(
                         width: 20,
                       ),
-                      Icon(
-                        Icons.share,
-                        size: 28,
-                        color: Color(0xff034779),
+                      GestureDetector(
+                        onTap: () async {
+                           String title =
+                              '${[konten.judul]}\n Link : ${[konten.link]} \nAyo download aplikasi e-duit untuk melihat artikel ini!';
+                          String imageUrl = '${konten[0]['imgUrl']}';
+                          String imagePath =
+                              await controller.downloadImage(imageUrl);
+                          controller.shareImage(imagePath,title);
+                         
+                          // Share.share('${[konten.img]}',
+                          //     subject: '${[konten.judul]}\n Link : ${[
+                          //       konten.link
+                          //     ]}');
+                        },
+                        child: Icon(
+                          Icons.share,
+                          size: 28,
+                          color: Color(0xff034779),
+                        ),
                       ),
                     ],
                   ),
@@ -87,7 +108,7 @@ class DetailKontentLokalView extends GetView<KontenEduController> {
                     Icon(
                       Icons.thumb_up_alt_outlined,
                       color: Color(0xff034779),
-                      size: 28,
+                      size: 1,
                     ),
                   ],
                 ),
