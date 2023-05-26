@@ -6,6 +6,7 @@ import 'package:eduit/app/modules/kamus_keuangan_page/controllers/kamus_keuangan
 import 'package:eduit/app/modules/kirim_tulisan/controllers/kirim_tulisan_controller.dart';
 import 'package:eduit/app/modules/konten_edu/controllers/konten_edu_controller.dart';
 import 'package:eduit/app/modules/signup_page/controllers/signup_page_controller.dart';
+import 'package:eduit/app/modules/utang_apbn/controllers/utang_apbn_controller.dart';
 import 'package:eduit/app/modules/utang_belajar/controllers/utang_belajar_controller.dart';
 import 'package:get/get.dart';
 
@@ -19,7 +20,7 @@ class SplashBinding extends Bindings {
       () => AccountPageController(),
     );
     Get.lazyPut<HomePageController>(
-      () => HomePageController(),
+      () => HomePageController(),fenix: true
     );
     Get.lazyPut<KirimTulisanController>(
       () => KirimTulisanController(),
@@ -50,6 +51,9 @@ class SplashBinding extends Bindings {
     );
     Get.lazyPut<KirimTulisanController>(
       () => KirimTulisanController(),
+    );
+      Get.lazyPut<UtangApbnController>(
+      () => UtangApbnController(),
     );
   }
 }

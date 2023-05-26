@@ -1,6 +1,7 @@
 import 'package:eduit/app/modules/navbar_page/views/navbar_page_view.dart';
 import 'package:eduit/app/navbottom.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -187,6 +188,14 @@ class SignupPageView extends GetView<SignupPageController> {
                                   ElevatedButton(
                                       onPressed: () {
                                         Get.toNamed('/navbar-page');
+                                        Fluttertoast.showToast(
+                                          msg: 'Selamat akun berhasil dibuat',
+                                          toastLength: Toast.LENGTH_SHORT,
+                                          gravity: ToastGravity.BOTTOM,
+                                          backgroundColor: Colors.grey[800],
+                                          textColor: Colors.white,
+                                          fontSize: 14.0,
+                                        );
                                       },
                                       child: Text('Ok'))
                                 ],

@@ -142,6 +142,8 @@ class HomePageView extends GetView<HomePageController> {
                       children: [
                         GestureDetector(
                           onTap: () async {
+                            print(FirebaseAuth.instance.currentUser);
+
                             await PersistentNavBarNavigator
                                 .pushNewScreenWithRouteSettings(
                               settings: RouteSettings(

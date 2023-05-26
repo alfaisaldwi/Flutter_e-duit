@@ -27,11 +27,11 @@ class BuatTulisanView extends GetView<KirimTulisanController> {
               child: Column(
                 children: [
                   Align(
-                    alignment: Alignment.centerLeft,
+                    alignment: Alignment.center,
                     child: Text(
-                      'Buat Tulisan',
+                      'Kirim Tulisan',
                       style: GoogleFonts.inter(
-                          fontSize: 36,
+                          fontSize: 26,
                           fontWeight: FontWeight.bold,
                           color: Color(0xff034779)),
                     ),
@@ -42,89 +42,107 @@ class BuatTulisanView extends GetView<KirimTulisanController> {
             SizedBox(
               height: 18,
             ),
-            Padding(
-              padding: const EdgeInsets.only(left: 18.0),
-              child: Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  'Judul',
-                  style: GoogleFonts.inter(fontSize: 12),
-                ),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.all(10),
-              child: TextFormField(
-                controller: controller.cJudul,
-                decoration: InputDecoration(
-                  focusColor: Colors.white,
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(26.0),
-                  ),
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 18.0),
-              child: Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  'Isi',
-                  style: GoogleFonts.inter(fontSize: 12),
-                ),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.all(10),
-              child: TextFormField(
-                controller: controller.cIsi,
-                decoration: InputDecoration(
-                  focusColor: Colors.white,
-                  border: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Color(0xff5EE8D1),
+            Card(
+              color: Color(0xffF5F5F5),
+              child: Container(
+                padding: EdgeInsets.all(22),
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(left: 18.0),
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          'Judul',
+                          style: GoogleFonts.inter(
+                              fontWeight: FontWeight.w600, color: Colors.black),
+                        ),
+                      ),
                     ),
-                    borderRadius: BorderRadius.circular(50.0),
-                  ),
+                    Padding(
+                      padding: EdgeInsets.all(12),
+                      child: TextFormField(
+                        controller: controller.cJudul,
+                        decoration: InputDecoration(
+                          focusColor: Colors.white,
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 18.0),
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          'Deskripsi',
+                          style: GoogleFonts.inter(
+                              fontWeight: FontWeight.w600, color: Colors.black),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.all(12),
+                      child: TextFormField(
+                        minLines: 6,
+                        maxLines: 16,
+                        controller: controller.cIsi,
+                        decoration: InputDecoration(
+                          focusColor: Colors.white,
+                          border: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Color(0xff5EE8D1),
+                            ),
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Container(
+                      width: 300,
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            side: BorderSide(color: Colors.black),
+                            backgroundColor: Colors.white),
+                        child: Text(
+                          'Pilih Cover',
+                          style: GoogleFonts.inter(
+                              fontWeight: FontWeight.w600, color: Colors.black),
+                        ),
+                        onPressed: () async {
+                          ImagePicker imagePicker = ImagePicker();
+                          XFile? file = await imagePicker.pickImage(
+                              source: ImageSource.gallery);
+                          print('${file?.path}');
+
+                          if (file == null) return;
+
+                          String uniqueFileName =
+                              DateTime.now().microsecondsSinceEpoch.toString();
+                          Reference referenceRoot =
+                              FirebaseStorage.instance.ref();
+                          Reference referenceDirImage =
+                              referenceRoot.child('images');
+
+                          Reference referenceImagetoUpload =
+                              referenceDirImage.child(uniqueFileName);
+
+                          referenceImagetoUpload.putFile(File(file.path));
+
+                          try {
+                            await referenceImagetoUpload
+                                .putFile(File(file.path));
+
+                            controller.cImg.text =
+                                await referenceImagetoUpload.getDownloadURL();
+                            print(controller.cImg.text);
+                          } catch (e) {}
+                        },
+                      ),
+                    ),
+                  ],
                 ),
-              ),
-            ),
-            Container(
-              width: 300,
-              child: ElevatedButton(
-                style:
-                    ElevatedButton.styleFrom(backgroundColor: Colors.cyan[400]),
-                child: Text(
-                  'Add Image ',
-                  style: TextStyle(
-                      fontFamily: 'Montserrat', fontWeight: FontWeight.bold),
-                ),
-                onPressed: () async {
-                  ImagePicker imagePicker = ImagePicker();
-                  XFile? file =
-                      await imagePicker.pickImage(source: ImageSource.gallery);
-                  print('${file?.path}');
-
-                  if (file == null) return;
-
-                  String uniqueFileName =
-                      DateTime.now().microsecondsSinceEpoch.toString();
-                  Reference referenceRoot = FirebaseStorage.instance.ref();
-                  Reference referenceDirImage = referenceRoot.child('images');
-
-                  Reference referenceImagetoUpload =
-                      referenceDirImage.child(uniqueFileName);
-
-                  referenceImagetoUpload.putFile(File(file.path));
-
-                  try {
-                    await referenceImagetoUpload.putFile(File(file.path));
-
-                    controller.cImg.text =
-                        await referenceImagetoUpload.getDownloadURL();
-                    print(controller.cImg.text);
-                  } catch (e) {}
-                },
               ),
             ),
             SizedBox(
@@ -134,12 +152,13 @@ class BuatTulisanView extends GetView<KirimTulisanController> {
                 width: 160,
                 child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                        backgroundColor: Color(0xffF8C800),
+                        backgroundColor: Colors.white,
+                        side: BorderSide(color: Color(0xff034779)),
                         shape: StadiumBorder()),
                     child: Text(
                       'Kirim Tulisan',
-                      style:
-                          GoogleFonts.inter(fontSize: 12, color: Colors.black),
+                      style: GoogleFonts.inter(
+                          fontSize: 12, color: Color(0xff034779)),
                     ),
                     onPressed: () async {
                       if (controller.cJudul.text.isEmpty ||

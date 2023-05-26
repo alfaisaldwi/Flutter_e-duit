@@ -12,14 +12,11 @@ class KirimTulisanController extends GetxController {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
   final CollectionReference dbKonten =
       FirebaseFirestore.instance.collection('konten');
-  final CollectionReference dbProfile = FirebaseFirestore.instance
-      .collection('profile')
-    ..where("uid", isEqualTo: FirebaseAuth.instance.currentUser!.uid);
-  var uid = FirebaseAuth.instance.currentUser!.uid;
+  // final CollectionReference dbProfile = FirebaseFirestore.instance
+  //     .collection('profile')
+  //   ..where("uid", isEqualTo: FirebaseAuth.instance.currentUser!.uid);
 
   var name = '';
-  // DateTime dateToday =
-  //     DateTime(DateTime.now().day, DateTime.now().month, DateTime.now().year);
 
   String formatDate = DateFormat.yMd().format(DateTime.now());
 
@@ -31,19 +28,25 @@ class KirimTulisanController extends GetxController {
 
   @override
   void onInit() {
-    super.onInit();
-    FirebaseFirestore.instance
-        .collection("profile")
-        .where("uid", isEqualTo: FirebaseAuth.instance.currentUser!.uid)
-        .snapshots()
-        .listen((data) {
-      data.docs.forEach((doc) {
-        name = doc.data()['username'];
+    if (FirebaseAuth.instance.currentUser == null) {
+      print(FirebaseAuth.instance.currentUser);
+    } else {
+      FirebaseFirestore.instance
+          .collection("profile")
+          .where("uid", isEqualTo: FirebaseAuth.instance.currentUser!.uid)
+          .snapshots()
+          .listen((data) {
+        data.docs.forEach((doc) {
+          name = doc.data()['username'];
+          super.onInit();
+        });
       });
-    });
+    }
   }
 
   postTulisan() async {
+  var uid = FirebaseAuth.instance.currentUser!.uid;
+
     final String judul = cJudul.text;
     final String isi = cJudul.text;
     final String img = cImg.text;

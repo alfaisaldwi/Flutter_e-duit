@@ -16,7 +16,6 @@ class KontenEduController extends GetxController {
       FirebaseFirestore.instance.collection('profile');
   Stream qSnapShot =
       FirebaseFirestore.instance.collection('konten').snapshots();
-  var uid = FirebaseAuth.instance.currentUser!.uid;
   RxInt likeCount = 0.obs;
   var liked = [];
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
@@ -100,17 +99,24 @@ class KontenEduController extends GetxController {
 
   @override
   void onInit() {
-    super.onInit();
-    FirebaseFirestore.instance
-        .collection("profile")
-        .where("uid", isEqualTo: FirebaseAuth.instance.currentUser!.uid)
-        .snapshots()
-        .listen((data) {
-      data.docs.forEach((doc) {
-        liked = doc.data()['listliked'];
+    // super.onInit();
+    if (FirebaseAuth.instance.currentUser != null) {
+      FirebaseFirestore.instance
+          .collection("profile")
+          .where("uid", isEqualTo: FirebaseAuth.instance.currentUser!.uid)
+          .snapshots()
+          .listen((data) {
+        data.docs.forEach((doc) {
+          liked = doc.data()['listliked'];
+        });
+
+        print('---------------$liked');
       });
-      print('---------------$liked');
-    });
+      super.onInit();
+    } else {
+      // super.onInit();
+    }
+    print(FirebaseAuth.instance.currentUser);
     getData();
   }
 
@@ -136,6 +142,8 @@ class KontenEduController extends GetxController {
         fontSize: 14.0,
       );
     } else {
+      var uid = FirebaseAuth.instance.currentUser!.uid;
+
       List<dynamic> tambahObjekKeList() {
         var newObjek = docId;
         liked.add(newObjek);

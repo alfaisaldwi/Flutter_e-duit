@@ -47,14 +47,15 @@ class KirimTulisanView extends GetView<KirimTulisanController> {
                         pageTransitionAnimation:
                             PageTransitionAnimation.cupertino,
                       );
+                    } else {
+                      PersistentNavBarNavigator.pushNewScreen(
+                        context,
+                        screen: BuatTulisanView(),
+                        withNavBar: true, // OPTIONAL VALUE. True by default.
+                        pageTransitionAnimation:
+                            PageTransitionAnimation.cupertino,
+                      );
                     }
-                    PersistentNavBarNavigator.pushNewScreen(
-                      context,
-                      screen: BuatTulisanView(),
-                      withNavBar: true, // OPTIONAL VALUE. True by default.
-                      pageTransitionAnimation:
-                          PageTransitionAnimation.cupertino,
-                    );
                   },
                   child: Container(
                     width: 147,
@@ -179,7 +180,7 @@ class KirimTulisanView extends GetView<KirimTulisanController> {
                                   Container(
                                     width: 30,
                                     child: Text(
-                                      konten['poin'].toString() ?? ' 0 ',
+                                      konten['poin'].toString(),
                                       textAlign: TextAlign.justify,
                                       style: GoogleFonts.inter(
                                         color: Color(0xff656464),

@@ -1,3 +1,4 @@
+import 'package:eduit/app/modules/utang_apbn/views/utang_apbn_next_view.dart';
 import 'package:eduit/app/modules/utang_terkini/views/utang_terkini_view.dart';
 import 'package:flutter/material.dart';
 
@@ -75,116 +76,123 @@ class UtangApbnView extends GetView<UtangApbnController> {
                     fit: BoxFit.fill,
                   ),
                 ),
-                Card(
-                  child: Padding(
-                    padding:
-                        const EdgeInsets.only(left: 16, right: 16, bottom: 10),
-                    child: Text(
-                      'Adanya kebutuhan belanja yang tidak bisa ditunda, misalnya penyediaan fasilitas kesehatan, pendidikan, perlindungan sosial dan ketahanan pangan. Pembiayaan pada pembangunan infrastruktur juga menjadi fokus pemerintah dengan harapan Indeks Pembangunan Manusia (IPM) meningkat dan setara dengan negara-negara maju kedepannya.',
-                      textAlign: TextAlign.justify,
-                      style: GoogleFonts.inter(
-                          fontSize: 14, color: Color(0xff034779)),
-                    ),
-                  ),
-                ),
                 SizedBox(
-                  height: 15,
+                  height: 7,
                 ),
                 Container(
-                  height: 88,
-                  width: double.infinity,
-                  padding: EdgeInsets.all(6),
-                  //color: Colors.purple,
-                  alignment: Alignment.center,
-                  child: Image.asset(
-                    'assets/images/belajar2.png',
-                    height: double.infinity,
-                    width: double.infinity,
-                    fit: BoxFit.fill,
-                  ),
-                ),
-                Card(
-                  child: Padding(
-                    padding:
-                        const EdgeInsets.only(left: 16, right: 16, bottom: 10),
-                    child: Text(
-                      'Legacy atau warisan yang baik muncul ketika utang digunakan untuk membiayai hal-hal yang produktif dan memberikan manfaat bagi generasi mendatang, seperti belanja pembangunan infrastruktur, kesehatan dan pendidikan. Serta dapat memberikan keadilan dengan adanya aset yang diwariskan kepada generasi selanjutnya.',
-                      textAlign: TextAlign.justify,
-                      style: GoogleFonts.inter(
-                          fontSize: 14, color: Color(0xff034779)),
+                  child: Column(children: [
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        'Pendapatan Negara dan Hibah',
+                        style: GoogleFonts.inter(
+                            fontWeight: FontWeight.w600,
+                            fontSize: 15,
+                            color: Color(0xff034779)),
+                      ),
                     ),
-                  ),
-                ),
-                SizedBox(
-                  height: 15,
-                ),
-                Container(
-                  height: 88,
-                  width: double.infinity,
-                  padding: EdgeInsets.all(6),
-                  //color: Colors.purple,
-                  alignment: Alignment.center,
-                  child: Image.asset(
-                    'assets/images/belajar3.png',
-                    height: double.infinity,
-                    width: double.infinity,
-                    fit: BoxFit.fill,
-                  ),
-                ),
-                Card(
-                  child: Padding(
-                    padding:
-                        const EdgeInsets.only(left: 16, right: 16, bottom: 10),
-                    child: Text(
-                      'Dengan kebijakan berutang, ekonomi Indonesia mampu tumbuh pada level saat ini. Sebagai contoh, jika pembangunan jembatan di tahun 2020 senilai Rp250miliar ditunda hingga Indonesia memiliki dana tersebut ditahun 2023, biaya pembangunan jembatan tersebut tidak lagi sama seperti tahun 2020, akan ada kenaikan harga baik dari bahan baku dan jasa, maka pemerintah mengambil kebijakan berutang untuk mengurangi kenaikan harga dan mempercepat pertumbuhan ekonomi. ',
-                      textAlign: TextAlign.justify,
-                      style: GoogleFonts.inter(
-                          fontSize: 14, color: Color(0xff034779)),
+                    SizedBox(
+                      height: 5,
                     ),
-                  ),
-                ),
-                SizedBox(
-                  height: 15,
-                ),
-                Container(
-                  height: 88,
-                  width: double.infinity,
-                  padding: EdgeInsets.all(6),
-                  //color: Colors.purple,
-                  alignment: Alignment.center,
-                  child: Image.asset(
-                    'assets/images/belajar4.png',
-                    height: double.infinity,
-                    width: double.infinity,
-                    fit: BoxFit.fill,
-                  ),
-                ),
-                Card(
-                  child: Padding(
-                    padding:
-                        const EdgeInsets.only(left: 16, right: 16, bottom: 10),
-                    child: Text(
-                      'Indonesia memilik instrumen utang Pemerintah yang diperdagangkan di pasar keuangan, yang digunakan sebagai acuan (benchmark) bagi industri keuangan. Penerbitan instrumen utang Pemerintah merupakan alternatif investasi yang ditawarkan kepada masyarakat.',
-                      textAlign: TextAlign.justify,
+                    Text(
+                      'Pendapatan negara didefinisikan sebagai hak pemerintah pusat yang diakui sebagai penambah aset (nilai kekayaan bersih).',
                       style: GoogleFonts.inter(
-                          fontSize: 14, color: Color(0xff034779)),
+                        fontSize: 13,
+                      ),
+                      textAlign: TextAlign.justify,
                     ),
-                  ),
+                  ]),
                 ),
                 SizedBox(
                   height: 20,
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: Text(
-                    'Kita sudah membahas mengapa pemerintah berutang, lalu kenapa utang masuk ke dalam APBN? Yuk kita cari tahu!',
-                    textAlign: TextAlign.justify,
-                    style: GoogleFonts.inter(
-                        fontSize: 14, color: Color(0xff034779)),
-                  ),
+                Container(
+                  child: Column(children: [
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        'Belanja Negara',
+                        style: GoogleFonts.inter(
+                            fontWeight: FontWeight.w600,
+                            fontSize: 15,
+                            color: Color(0xff034779)),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Text(
+                      'Seluruh kewajiban Pemerintah Pusat yang diakui sebagai pengurang nilai kekayaan bersih (Pendapatan Negara dan Hibah).',
+                      style: GoogleFonts.inter(
+                        fontSize: 13,
+                      ),
+                      textAlign: TextAlign.justify,
+                    ),
+                  ]),
                 ),
                 SizedBox(
-                  height: 25,
+                  height: 20,
+                ),
+                Container(
+                  child: Column(children: [
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        'Surplus/Defisit Anggaran',
+                        style: GoogleFonts.inter(
+                            fontWeight: FontWeight.w600,
+                            fontSize: 15,
+                            color: Color(0xff034779)),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Text(
+                      'Surplus Anggaran merupakan keadaan saat pendapatan negara itu lebih besar dari belanja negara. Defisit Anggaran merupakan suatu keadaan dimana belanja negara itu lebih besar dari pendapatan negara.',
+                      style: GoogleFonts.inter(
+                        fontSize: 13,
+                      ),
+                      textAlign: TextAlign.justify,
+                    ),
+                  ]),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Container(
+                  child: Column(children: [
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        'Pembiayaan Negara',
+                        style: GoogleFonts.inter(
+                            fontWeight: FontWeight.w600,
+                            fontSize: 15,
+                            color: Color(0xff034779)),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Text(
+                      'Penerimaan yang wajib untuk dibayarkan kembali serta juga pengeluaran yang kemudian akan diterima kembali, baik itu ditahun anggaran yang bersangkutan atau pun juga ditahun anggaran berikutnya.',
+                      style: GoogleFonts.inter(
+                        fontSize: 13,
+                      ),
+                      textAlign: TextAlign.justify,
+                    ),
+                  ]),
+                ),
+                SizedBox(
+                  height: 50,
+                ),
+                Text(
+                  'Utang ternyata bisa membantu dalam realisasi APBN ya, jenis utang apa ya, yang selama ini digunakan oleh Indonesia?',
+                  style: GoogleFonts.inter(color: Color(0xff656464)),
+                ),
+                SizedBox(
+                  height: 30,
                 ),
                 Center(
                   child: Container(
@@ -201,7 +209,7 @@ class UtangApbnView extends GetView<UtangApbnController> {
                       onPressed: () async {
                         await PersistentNavBarNavigator.pushNewScreen(
                           context,
-                          screen: UtangApbnView(),
+                          screen: UtangApbnNextView(),
                           withNavBar: true, // OPTIONAL VALUE. True by default.
                           pageTransitionAnimation: PageTransitionAnimation.fade,
                         );

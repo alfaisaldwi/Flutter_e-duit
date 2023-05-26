@@ -11,6 +11,7 @@ import 'package:eduit/app/navbottom.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -126,6 +127,14 @@ class AccountPageView extends GetView<AccountPageController> {
                                 if (FirebaseAuth.instance.currentUser?.uid !=
                                     null) {
                                   Get.offAndToNamed('/navbar-page');
+                                  Fluttertoast.showToast(
+                                    msg: 'Login Berhasil',
+                                    toastLength: Toast.LENGTH_SHORT,
+                                    gravity: ToastGravity.BOTTOM,
+                                    backgroundColor: Colors.grey[800],
+                                    textColor: Colors.white,
+                                    fontSize: 14.0,
+                                  );
                                 } else {
                                   showDialog(
                                       context: Get.context!,
@@ -477,6 +486,14 @@ class AccountPageView extends GetView<AccountPageController> {
                                         onPressed: () async {
                                           controllerInfo.asignOutUser();
                                           Get.offAndToNamed('/navbar-page');
+                                          Fluttertoast.showToast(
+                                            msg: 'Akun telah logout',
+                                            toastLength: Toast.LENGTH_SHORT,
+                                            gravity: ToastGravity.BOTTOM,
+                                            backgroundColor: Colors.grey[800],
+                                            textColor: Colors.white,
+                                            fontSize: 14.0,
+                                          );
                                         }),
                                   ),
                                   SizedBox(

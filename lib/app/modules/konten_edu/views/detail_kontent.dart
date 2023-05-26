@@ -1,4 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../controllers/konten_edu_controller.dart';
@@ -91,9 +93,20 @@ class DetailKontentView extends GetView<KontenEduController> {
                     Wrap(children: [
                       GestureDetector(
                         onTap: () async {
-                          controller.getLikeCount(konten[1]);
-                          controller.postLike(konten[1]);
-                          print(controller.likeCount);
+                          if (FirebaseAuth.instance.currentUser != null) {
+                            controller.getLikeCount(konten[1]);
+                            controller.postLike(konten[1]);
+                            print(controller.likeCount);
+                          } else {
+                            Fluttertoast.showToast(
+                              msg: 'Silahkan lakukan Login terlebih dahulu',
+                              toastLength: Toast.LENGTH_SHORT,
+                              gravity: ToastGravity.BOTTOM,
+                              backgroundColor: Colors.grey[800],
+                              textColor: Colors.white,
+                              fontSize: 14.0,
+                            );
+                          }
                         },
                         child: Icon(
                           Icons.thumb_up_alt_outlined,
