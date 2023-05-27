@@ -131,8 +131,8 @@ class KirimTulisanView extends GetView<KirimTulisanController> {
                       ),
                     ]),
               ),
-              StreamBuilder(
-                  stream: controller.qSnapShot,
+              StreamBuilder<QuerySnapshot>(
+                  stream: FirebaseFirestore.instance.collection('konten').snapshots(),
                   builder: (context, snapshot) {
                     if (snapshot.connectionState == ConnectionState.waiting ||
                         snapshot.connectionState == ConnectionState.none) {
@@ -142,9 +142,9 @@ class KirimTulisanView extends GetView<KirimTulisanController> {
                         shrinkWrap: true,
                         scrollDirection: Axis.vertical,
                         physics: ScrollPhysics(),
-                        itemCount: snapshot.data.docs.length,
+                        itemCount: snapshot.data!.docs.length,
                         itemBuilder: (context, index) {
-                          DocumentSnapshot konten = snapshot.data.docs[index];
+                          DocumentSnapshot konten = snapshot.data!.docs[index];
 
                           return Container(
                             padding: EdgeInsets.symmetric(

@@ -1,4 +1,5 @@
 import 'package:anim_search_bar/anim_search_bar.dart';
+import 'package:eduit/app/data/kamusModel.dart';
 import 'package:eduit/app/modules/account_info/views/account_info_view.dart';
 import 'package:eduit/app/modules/account_page/views/account_page_view.dart';
 import 'package:eduit/app/modules/artikel_podcast/controllers/artikel_podcast_controller.dart';
@@ -49,14 +50,8 @@ class HomePageView extends GetView<HomePageController> {
                       },
                       onSubmitted: (value) {
                         cSearch.filterDic(value);
+                        cSearch.foundDic = value as Rx<List<KamusModel>>;
                         Get.to(() => KamusKeuanganPageView(), arguments: value);
-                        PersistentNavBarNavigator.pushNewScreen(
-                          context,
-                          screen: KamusKeuanganPageView(),
-                          withNavBar: true, // OPTIONAL VALUE. True by default.
-                          pageTransitionAnimation:
-                              PageTransitionAnimation.cupertino,
-                        );
                         print(value);
                       },
                     ),

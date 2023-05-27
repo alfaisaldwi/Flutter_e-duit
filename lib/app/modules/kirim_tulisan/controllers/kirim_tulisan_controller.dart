@@ -9,6 +9,7 @@ class KirimTulisanController extends GetxController {
   TextEditingController cJudul = TextEditingController();
   TextEditingController cIsi = TextEditingController();
   TextEditingController cImg = TextEditingController();
+  RxBool isUploaded = false.obs;
   FirebaseFirestore firestore = FirebaseFirestore.instance;
   final CollectionReference dbKonten =
       FirebaseFirestore.instance.collection('konten');

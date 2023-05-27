@@ -24,6 +24,7 @@ class NavbarPageBinding extends Bindings {
     );
     Get.lazyPut<KirimTulisanController>(
       () => KirimTulisanController(),
+      fenix: true,
     );
     Get.lazyPut<ArtikelPodcastController>(
       () => ArtikelPodcastController(),

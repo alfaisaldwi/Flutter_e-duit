@@ -99,48 +99,137 @@ class BuatTulisanView extends GetView<KirimTulisanController> {
                         ),
                       ),
                     ),
-                    Container(
-                      width: 300,
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            side: BorderSide(color: Colors.black),
-                            backgroundColor: Colors.white),
-                        child: Text(
-                          'Pilih Cover',
-                          style: GoogleFonts.inter(
-                              fontWeight: FontWeight.w600, color: Colors.black),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Obx(
+                      () => AnimatedContainer(
+                        duration: Duration(milliseconds: 100),
+                        curve: Curves.easeInOut,
+                        height: controller.isUploaded.isFalse ? 30 : 1,
+                        width: double.infinity,
+                        child: Container(
+                          width: 300,
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                                side: BorderSide(color: Colors.black),
+                                backgroundColor: Colors.white),
+                            child: Text(
+                              'Pilih Cover',
+                              style: GoogleFonts.inter(
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.black),
+                            ),
+                            onPressed: () async {
+                              ImagePicker imagePicker = ImagePicker();
+                              XFile? file = await imagePicker.pickImage(
+                                  source: ImageSource.gallery);
+                              print('${file?.path}');
+
+                              if (file == null) return;
+
+                              String uniqueFileName = DateTime.now()
+                                  .microsecondsSinceEpoch
+                                  .toString();
+                              Reference referenceRoot =
+                                  FirebaseStorage.instance.ref();
+                              Reference referenceDirImage =
+                                  referenceRoot.child('images');
+
+                              Reference referenceImagetoUpload =
+                                  referenceDirImage.child(uniqueFileName);
+
+                              referenceImagetoUpload.putFile(File(file.path));
+
+                              try {
+                                await referenceImagetoUpload
+                                    .putFile(File(file.path));
+
+                                controller.cImg.text =
+                                    await referenceImagetoUpload
+                                        .getDownloadURL();
+                                controller.isUploaded.value = true;
+                                print(controller.cImg.text);
+                              } catch (e) {}
+                            },
+                          ),
                         ),
-                        onPressed: () async {
-                          ImagePicker imagePicker = ImagePicker();
-                          XFile? file = await imagePicker.pickImage(
-                              source: ImageSource.gallery);
-                          print('${file?.path}');
-
-                          if (file == null) return;
-
-                          String uniqueFileName =
-                              DateTime.now().microsecondsSinceEpoch.toString();
-                          Reference referenceRoot =
-                              FirebaseStorage.instance.ref();
-                          Reference referenceDirImage =
-                              referenceRoot.child('images');
-
-                          Reference referenceImagetoUpload =
-                              referenceDirImage.child(uniqueFileName);
-
-                          referenceImagetoUpload.putFile(File(file.path));
-
-                          try {
-                            await referenceImagetoUpload
-                                .putFile(File(file.path));
-
-                            controller.cImg.text =
-                                await referenceImagetoUpload.getDownloadURL();
-                            print(controller.cImg.text);
-                          } catch (e) {}
-                        },
                       ),
                     ),
+                    Obx(() => Column(
+                          children: [
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 18.0),
+                              child: AnimatedContainer(
+                                duration: Duration(milliseconds: 100),
+                                curve: Curves.easeInOut,
+                                height: controller.isUploaded.isTrue ? 30 : 1,
+                                width: double.infinity,
+                                child: Align(
+                                  alignment: Alignment.center,
+                                  child: Text(
+                                    'Upload Cover Berhasil',
+                                    style: GoogleFonts.inter(
+                                        fontStyle: FontStyle.italic,
+                                        color: Colors.green),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 18.0),
+                              child: AnimatedContainer(
+                                duration: Duration(milliseconds: 100),
+                                curve: Curves.easeInOut,
+                                height: controller.isUploaded.isTrue ? 30 : 0,
+                                width: double.infinity,
+                                child: Align(
+                                  alignment: Alignment.center,
+                                  child: ElevatedButton(
+                                    onPressed: () {
+                                      showDialog(
+                                          context: context,
+                                          builder: (context) => AlertDialog(
+                                                title: Text(
+                                                    'Yakin Mengganti Cover ?'),
+                                                actions: <Widget>[
+                                                  ElevatedButton(
+                                                      onPressed: () {
+                                                        Navigator.pop(context);
+                                                        controller.cImg.text =
+                                                            '';
+                                                        controller.isUploaded
+                                                            .value = false;
+                                                      },
+                                                      child: Text('Ok'))
+                                                ],
+                                              ));
+                                      print(controller.isUploaded.value);
+                                    },
+                                    style: ElevatedButton.styleFrom(
+                                        side: BorderSide(color: Colors.black),
+                                        backgroundColor: Colors.white),
+                                    child: Text(
+                                      'Ganti Cover',
+                                      style: GoogleFonts.inter(
+                                          fontWeight: FontWeight.w500,
+                                          color: Colors.black),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        )),
+                    SizedBox(
+                      height: 50,
+                    )
                   ],
                 ),
               ),
@@ -177,6 +266,7 @@ class BuatTulisanView extends GetView<KirimTulisanController> {
                                         onPressed: () {
                                           Navigator.pop(context);
                                           controller.cImg.text = '';
+                                          print(controller.isUploaded.value);
                                         },
                                         child: Text('Ok'))
                                   ],

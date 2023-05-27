@@ -67,17 +67,19 @@ class DetailKontentLokalView extends GetView<KontenEduController> {
                       ),
                       GestureDetector(
                         onTap: () async {
-                           String title =
-                              '${[konten.judul]}\n Link : ${[konten.link]} \nAyo download aplikasi e-duit untuk melihat artikel ini!';
-                          String imageUrl = '${konten[0]['imgUrl']}';
+                          String title = '${konten.judul}\n Link : ${
+                            konten.link
+                          } \nAyo download aplikasi e-duit untuk melihat artikel ini!';
+                          String imageUrl = '${konten.img}';
                           String imagePath =
                               await controller.downloadImage(imageUrl);
-                          controller.shareImage(imagePath,title);
-                         
+                          controller.shareImage(imagePath, title);
+
                           // Share.share('${[konten.img]}',
                           //     subject: '${[konten.judul]}\n Link : ${[
                           //       konten.link
                           //     ]}');
+                          print(konten.link);
                         },
                         child: Icon(
                           Icons.share,
