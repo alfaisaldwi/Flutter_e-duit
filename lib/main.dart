@@ -9,7 +9,7 @@ void main() async {
   runApp(
     GetMaterialApp(
       title: "E-duit",
-      debugShowCheckedModeBanner: true,
+      debugShowCheckedModeBanner: false,
       initialRoute: AppPages.INITIAL,
       getPages: AppPages.routes,
     ),

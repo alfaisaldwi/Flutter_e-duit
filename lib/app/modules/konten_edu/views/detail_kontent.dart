@@ -52,7 +52,7 @@ class DetailKontentView extends GetView<KontenEduController> {
                       GestureDetector(
                         onTap: () async {
                           String title =
-                              'Ayo download aplikasi e-duit untuk melihat artikel ini!';
+                              '${konten[0]['judul']}\nAyo download aplikasi e-duit untuk melihat artikel ini!';
                           String imageUrl = '${konten[0]['imgUrl']}';
                           String imagePath =
                               await controller.downloadImage(imageUrl);

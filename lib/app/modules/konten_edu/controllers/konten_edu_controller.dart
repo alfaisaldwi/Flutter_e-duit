@@ -92,6 +92,7 @@ class KontenEduController extends GetxController {
 
   void shareImage(String imagePath, String title) async {
     await FlutterShare.shareFile(
+      text: title,
       title: title,
       filePath: imagePath,
     );

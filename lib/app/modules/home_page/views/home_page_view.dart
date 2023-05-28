@@ -1,5 +1,6 @@
 import 'package:anim_search_bar/anim_search_bar.dart';
 import 'package:eduit/app/data/kamusModel.dart';
+import 'package:eduit/app/data/list_kamus.dart';
 import 'package:eduit/app/modules/account_info/views/account_info_view.dart';
 import 'package:eduit/app/modules/account_page/views/account_page_view.dart';
 import 'package:eduit/app/modules/artikel_podcast/controllers/artikel_podcast_controller.dart';
@@ -19,6 +20,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_custom_carousel_slider/flutter_custom_carousel_slider.dart';
 
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
 import '../controllers/home_page_controller.dart';
@@ -26,6 +28,7 @@ import '../controllers/home_page_controller.dart';
 class HomePageView extends GetView<HomePageController> {
   @override
   Widget build(BuildContext context) {
+    Get.put(KamusKeuanganPageController);
     var cSearch = KamusKeuanganPageController();
     return Scaffold(
       // bottomNavigationBar: Nammm()
@@ -40,6 +43,7 @@ class HomePageView extends GetView<HomePageController> {
                 Column(
                   children: [
                     AnimSearchBar(
+                      boxShadow: true,
                       rtl: true,
                       width: 400,
                       helpText: 'Cari..',
@@ -48,11 +52,14 @@ class HomePageView extends GetView<HomePageController> {
                       onSuffixTap: () {
                         controller.tsearch.clear();
                       },
-                      onSubmitted: (value) {
-                        cSearch.filterDic(value);
-                        cSearch.foundDic = value as Rx<List<KamusModel>>;
-                        Get.to(() => KamusKeuanganPageView(), arguments: value);
-                        print(value);
+                      onSubmitted: (query) {
+                        showSearch(
+                            context: context,
+                            delegate: searchSuggest(),
+                            query: query);
+                        // cSearch.filterDic(value);
+                        // // Get.to(() => KamusKeuanganPageView(), arguments: value);
+                        // print(value);
                       },
                     ),
                     GestureDetector(
@@ -269,7 +276,7 @@ class HomePageView extends GetView<HomePageController> {
                       ],
                     ),
                     SizedBox(
-                      height: 15,
+                      height: 50,
                     ),
                   ],
                 ),
@@ -277,6 +284,92 @@ class HomePageView extends GetView<HomePageController> {
             ),
           ),
         ),
+      ),
+    );
+  }
+}
+
+class searchSuggest extends SearchDelegate {
+  var cSearch = KamusKeuanganPageController();
+  var nf = '';
+
+  @override
+  List<Widget>? buildActions(BuildContext context) {}
+
+  @override
+  Widget? buildLeading(BuildContext context) {
+    IconButton(
+        icon: Icon(Icons.clear),
+        onPressed: () {
+          if (query.isEmpty) {
+            close(context, null);
+          } else {
+            query = '';
+          }
+        });
+  }
+
+  @override
+  Widget buildResults(BuildContext context) {
+    return SizedBox(
+      height: 20,
+    );
+  }
+
+  @override
+  Widget buildSuggestions(BuildContext context) {
+    final suggest = kamusData.where((kamus) {
+      final kataTitle = kamus.kata!.toLowerCase();
+      final input = query.toLowerCase();
+
+      return kataTitle.contains(input);
+    }).toList();
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+      child: ListView.builder(
+        shrinkWrap: true,
+        scrollDirection: Axis.vertical,
+        physics: ScrollPhysics(),
+        itemCount: suggest.length,
+        itemBuilder: (context, index) {
+          final sugg = suggest[index];
+          if (sugg.kata!.length <= 1 || suggest.length <= 1) {
+            nf = 'Maaf pencarian tidak ditemukan';
+            return Text(
+              nf,
+              style: GoogleFonts.inter(
+                  fontSize: 15.0, fontWeight: FontWeight.bold),
+            );
+          } else {
+            return Column(
+              children: [
+                Table(
+                  children: [
+                    TableRow(children: [
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 8.0),
+                        child: Text(
+                          "${sugg.kata}",
+                          textAlign: TextAlign.justify,
+                          style: GoogleFonts.inter(
+                              fontSize: 15.0, fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                      Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 8.0),
+                          child: Text(
+                            "${sugg.arti}",
+                            style: GoogleFonts.inter(
+                              fontSize: 15.0,
+                            ),
+                          )),
+                    ]),
+                  ],
+                ),
+              ],
+            );
+          }
+        },
       ),
     );
   }
