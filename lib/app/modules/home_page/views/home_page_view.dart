@@ -122,7 +122,7 @@ class HomePageView extends GetView<HomePageController> {
                         width: double.infinity,
                         //color: Colors.purple,
                         alignment: Alignment.center,
-                        padding: const EdgeInsets.all(10),
+                        padding: const EdgeInsets.all(6),
                         decoration: BoxDecoration(
                           border:
                               Border.all(color: Color(0xff5EE8D1), width: 2),

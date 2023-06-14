@@ -1,15 +1,10 @@
-import 'package:eduit/app/modules/account_info/views/account_info_view.dart';
 import 'package:eduit/app/modules/account_page/views/account_page_view.dart';
-import 'package:eduit/app/modules/home/views/home_view.dart';
 import 'package:eduit/app/modules/home_page/views/home_page_view.dart';
-import 'package:eduit/app/modules/kirim_tulisan/views/kirim_tulisan_view.dart';
+import 'package:eduit/app/modules/kalkulator_duit/views/kalkulator_duit_view.dart';
 import 'package:eduit/app/modules/navbar_page/controllers/navbar_page_controller.dart';
-import 'package:eduit/app/modules/signup_page/views/signup_page_view.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
 class NavbarPageView extends GetView<NavbarPageController> {
@@ -25,7 +20,7 @@ class NavbarPageView extends GetView<NavbarPageController> {
 
   List<Widget> _buildScreen() {
     return [
-      KirimTulisanView(),
+      KalkulatorDuitView(),
       HomePageView(),
       AccountPageView(),
     ];
@@ -34,9 +29,9 @@ class NavbarPageView extends GetView<NavbarPageController> {
   List<PersistentBottomNavBarItem> _navbarItem() {
     return [
       PersistentBottomNavBarItem(
-          title: 'Kirim Tulisan',
+          title: 'Kalkulator Duit',
           icon: Icon(
-            Icons.border_color_rounded,
+            Icons.calculate_outlined,
             color: Color.fromRGBO(36, 54, 101, 1.0),
           ),
           activeColorPrimary: Color(0xffF8C800),

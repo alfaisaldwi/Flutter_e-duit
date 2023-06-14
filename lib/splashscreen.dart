@@ -16,9 +16,8 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-   
-      Timer(Duration(seconds: 4), () => Get.offAndToNamed(Routes.NAVBAR_PAGE));
 
+    Timer(Duration(seconds: 4), () => Get.offAndToNamed(Routes.NAVBAR_PAGE));
   }
 
   @override
@@ -43,7 +42,7 @@ class _SplashScreenState extends State<SplashScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 SizedBox(
-                  height: 250,
+                  height: 100,
                 ),
                 Image.asset(
                   "assets/images/logo.png",
@@ -52,28 +51,53 @@ class _SplashScreenState extends State<SplashScreen> {
                 ),
               ],
             ),
-            CircularProgressIndicator(
-              valueColor: AlwaysStoppedAnimation<Color>(Colors.orange),
+            Column(
+              children: [
+                CircularProgressIndicator(
+                  valueColor: AlwaysStoppedAnimation<Color>(Colors.orange),
+                ),
+                SizedBox(
+                  height: 90,
+                ),
+                Text(
+                  'Temukan investasi yang',
+                  style:
+                      GoogleFonts.inter(color: Color(0xff989393), fontSize: 14),
+                ),
+                SizedBox(
+                  height: 5,
+                ),
+                Text('tepat khusus untuk kamu',
+                    style: GoogleFonts.inter(
+                        color: Color(0xff989393), fontSize: 14)),
+                SizedBox(
+                  height: 20,
+                ),
+                Container(
+                  width: 90,
+                  height: 30,
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: Color(0xff5EE8D1),
+                      width: 1,
+                    ),
+                    borderRadius: BorderRadius.circular(11),
+                    color: Colors.white,
+                  ),
+                  child: Center(
+                      child: Padding(
+                    padding: const EdgeInsets.all(1.0),
+                    child: Text(
+                      'Disini',
+                      style: GoogleFonts.inter(
+                          fontSize: 14, color: Color(0xff034779)),
+                    ),
+                  )),
+                ),
+              ],
             ),
-            Container(
-              width: 170,
-              height: 30,
-              decoration: BoxDecoration(
-                border: Border.all(
-                  color: Color(0xff5EE8D1),
-                  width: 1,
-                ),
-                borderRadius: BorderRadius.circular(11),
-                color: Colors.white,
-              ),
-              child: Center(
-                  child: Padding(
-                padding: const EdgeInsets.all(1.0),
-                child: Text(
-                  'Ayo belajar bersama!',
-                  style: GoogleFonts.inter(fontSize: 12, color: Colors.black),
-                ),
-              )),
+            SizedBox(
+              height: 70,
             ),
           ],
         ),

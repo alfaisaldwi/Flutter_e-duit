@@ -14,6 +14,8 @@ import 'package:eduit/app/modules/home/bindings/home_binding.dart';
 import 'package:eduit/app/modules/home/views/home_view.dart';
 import 'package:eduit/app/modules/home_page/bindings/home_page_binding.dart';
 import 'package:eduit/app/modules/home_page/views/home_page_view.dart';
+import 'package:eduit/app/modules/kalkulator_duit/bindings/kalkulator_duit_binding.dart';
+import 'package:eduit/app/modules/kalkulator_duit/views/kalkulator_duit_view.dart';
 import 'package:eduit/app/modules/kamus_keuangan_page/bindings/kamus_keuangan_page_binding.dart';
 import 'package:eduit/app/modules/kamus_keuangan_page/views/kamus_keuangan_page_view.dart';
 import 'package:eduit/app/modules/kirim_tulisan/bindings/kirim_tulisan_binding.dart';
@@ -148,6 +150,11 @@ class AppPages {
       name: _Paths.UTANG_APBN,
       page: () => UtangApbnView(),
       binding: UtangApbnBinding(),
+    ),
+    GetPage(
+      name: _Paths.KALKULATOR_DUIT,
+      page: () => KalkulatorDuitView(),
+      binding: KalkulatorDuitBinding(),
     ),
   ];
 }
