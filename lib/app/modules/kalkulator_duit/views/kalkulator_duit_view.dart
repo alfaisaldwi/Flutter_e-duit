@@ -68,7 +68,8 @@ class KalkulatorDuitView extends GetView<KalkulatorDuitController> {
                               Container(
                                 width: 150,
                                 child: TextFormField(
-                                  controller: controller.c_utang,
+                                  controller:
+                                      controller.initialInvestmentController,
                                   inputFormatters: [
                                     FilteringTextInputFormatter(RegExp("[0-9]"),
                                         allow: true),
@@ -99,7 +100,8 @@ class KalkulatorDuitView extends GetView<KalkulatorDuitController> {
                                     width: 30,
                                     child: Center(
                                       child: TextFormField(
-                                        controller: controller.c_waktu,
+                                        controller: controller
+                                            .investmentDurationController,
                                         inputFormatters: [
                                           FilteringTextInputFormatter(
                                               RegExp("[0-9]"),
@@ -153,7 +155,8 @@ class KalkulatorDuitView extends GetView<KalkulatorDuitController> {
                                   Container(
                                     width: 150,
                                     child: TextFormField(
-                                      controller: controller.c_target,
+                                      controller: controller
+                                          .monthlyInvestmentController,
                                       inputFormatters: [
                                         FilteringTextInputFormatter(
                                             RegExp("[0-9]"),
@@ -196,7 +199,7 @@ class KalkulatorDuitView extends GetView<KalkulatorDuitController> {
                                   Container(
                                     width: 150,
                                     child: TextFormField(
-                                      controller: controller.c_jenis,
+                                      controller: controller.cjenis,
                                       inputFormatters: [
                                         FilteringTextInputFormatter(
                                             RegExp("[0-9]"),
@@ -229,15 +232,14 @@ class KalkulatorDuitView extends GetView<KalkulatorDuitController> {
                                   Container(
                                     width: 40,
                                     child: TextFormField(
+                                      controller:
+                                          controller.interestRateController,
                                       inputFormatters: [
                                         FilteringTextInputFormatter(
                                             RegExp("[0-9]"),
                                             allow: true),
                                       ],
-                                      controller: controller.c_perkiraan,
-                                      keyboardType:
-                                          TextInputType.numberWithOptions(
-                                              decimal: false),
+                                      keyboardType: TextInputType.number,
                                       decoration: InputDecoration(),
                                     ),
                                   ),
@@ -299,30 +301,39 @@ class KalkulatorDuitView extends GetView<KalkulatorDuitController> {
                             fontSize: 12, color: Colors.black),
                       ),
                       onPressed: () async {
-                        if (controller.c_utang.text.isNotEmpty &&
-                            controller.c_waktu.text.isNotEmpty &&
-                            controller.c_target.text.isNotEmpty &&
-                            controller.c_perkiraan.text.isNotEmpty &&
-                            controller.c_jenis.text.isNotEmpty) {
-                          var parseUtang =
-                              int.tryParse(controller.c_utang.text);
+                        if (controller.initialInvestmentController.text.isNotEmpty &&
+                            controller
+                                .investmentDurationController.text.isNotEmpty &&
+                            controller
+                                .monthlyInvestmentController.text.isNotEmpty &&
+                            controller.interestRateController.text.isNotEmpty &&
+                            controller.cjenis.text.isNotEmpty) {
+                          var parseUtang = int.tryParse(
+                              controller.initialInvestmentController.text);
                           String utang =
                               NumberFormat.decimalPattern().format(parseUtang);
-                          var parseWaktu =
-                              int.tryParse(controller.c_waktu.text);
+                          var parseWaktu = int.tryParse(
+                              controller.investmentDurationController.text);
                           String waktu =
                               NumberFormat.decimalPattern().format(parseWaktu);
-                          var parseTarget =
-                              int.tryParse(controller.c_target.text);
+                          var parseTarget = int.tryParse(
+                              controller.monthlyInvestmentController.text);
                           String target =
                               NumberFormat.decimalPattern().format(parseTarget);
-                          var parsePerkiraan =
-                              int.tryParse(controller.c_perkiraan.text);
+                          var parsePerkiraan = int.tryParse(
+                              controller.interestRateController.text);
                           String perkiraan = NumberFormat.decimalPattern()
                               .format(parsePerkiraan);
+                          print(controller.initialInvestmentController.text);
+                          print(controller.investmentDurationController.text);
+                          print(
+                              '${controller.monthlyInvestmentController.text} target');
+                          print(controller.interestRateController.text);
+                          print(controller.cjenis.text);
+                          controller.calculateInvestmentResult();
 
-                          Get.to(() => ResultKalkulatorView(),
-                              arguments: [utang, waktu, target, perkiraan]);
+                          // Get.to(() => ResultKalkulatorView(),
+                          //     arguments: [utang, waktu, target, perkiraan]);
                         } else {
                           Fluttertoast.showToast(
                             msg: 'Tolong isi semua kolomnya',

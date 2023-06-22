@@ -122,15 +122,6 @@ class KontenEduController extends GetxController {
   }
 
   void postLike(String docId) async {
-    // finds id
-    // final querySnapshot = await dbKonten.get();
-    // final documents = querySnapshot.docs;
-
-    // for (var document in documents) {
-    //   final idDokumen = document.id;
-    //   print('ID Dokumen: $idDokumen');
-    // }
-
     if (liked.contains(docId)) {
       print('cancel');
 
