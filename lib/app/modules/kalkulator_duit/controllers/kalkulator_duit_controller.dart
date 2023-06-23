@@ -8,8 +8,42 @@ class KalkulatorDuitController extends GetxController {
   TextEditingController monthlyInvestmentController = TextEditingController();
   TextEditingController interestRateController = TextEditingController();
   TextEditingController taxRateController = TextEditingController();
-  TextEditingController cjenis = TextEditingController();
-  TextEditingController chasil = TextEditingController();
+  double? taxRate;
+  // 9 / 100;
+
+  RxString? onselectedValue = ''.obs;
+  void onItemSelected(String value) {
+    onselectedValue = value.obs;
+    // taxRate = double.parse(taxRateController.text.replaceAll(',', ''));
+
+    if (onselectedValue?.value == 'Reksadana Saham') {
+      taxRate = 0.14;
+    } else if (onselectedValue?.value == 'Reksadana Campuran') {
+      taxRate = 0.09;
+    } else if (onselectedValue?.value == 'Reksadana Pendapatan Tetap') {
+      taxRate = 0.08;
+    } else if (onselectedValue?.value == 'Reksadana Pasar Uang') {
+      taxRate = 0.06;
+    } else if (onselectedValue?.value == 'Emas') {
+      taxRate = 0.05;
+    } else if (onselectedValue?.value == 'Surat Berharga Negara') {
+      taxRate = 0.065;
+    } else if (onselectedValue?.value == 'Deposito') {
+      taxRate = 0.04;
+    } else {
+      taxRate = 333;
+    }
+  }
+
+  final List<String> items = [
+    'Reksadana Saham',
+    'Reksadana Campuran',
+    'Reksadana Pendapatan Tetap',
+    'Reksadana Pasar Uang',
+    'Emas',
+    'Surat Berharga Negara',
+    'Deposito',
+  ];
 
   void calculateInvestmentResult() {
     double initialInvestment =
@@ -18,7 +52,6 @@ class KalkulatorDuitController extends GetxController {
         double.parse(monthlyInvestmentController.text.replaceAll(',', ''));
     double annualInterestRate =
         (double.parse(interestRateController.text) / 100) / 12;
-    double taxRate = 9 / 100;
     int investmentDurationMonths =
         int.parse(investmentDurationController.text) * 12;
 
@@ -31,7 +64,7 @@ class KalkulatorDuitController extends GetxController {
     //     (100 / 100 - taxRate);
 
     for (int i = 0; i <= investmentDurationMonths; i++) {
-      growth = currentInvestment * annualInterestRate * (1 - taxRate);
+      growth = currentInvestment * annualInterestRate * (1 - taxRate!);
       totalgrowth += growth;
       currentInvestment += growth + monthlyInvestment;
     }
@@ -44,12 +77,14 @@ class KalkulatorDuitController extends GetxController {
     print('current $currentInvestment');
     print('total pertambahan $totalgrowth');
     print('growth $growth');
+    String formattedValue = currentInvestment.toStringAsFixed(0);
+    String hasil =
+        NumberFormat.decimalPattern().format(int.parse(formattedValue));
 
     Get.dialog(
       AlertDialog(
         title: Text('Investment Result'),
-        content: Text(
-            'Total Investment Result: Rp ${currentInvestment.toStringAsFixed(2)}'),
+        content: Text('Total Investment Result: Rp $hasil'),
         actions: [
           TextButton(
             onPressed: () => Get.back(),

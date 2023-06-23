@@ -1,3 +1,4 @@
+import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:eduit/app/modules/kalkulator_duit/controllers/kalkulator_duit_controller.dart';
 import 'package:eduit/app/modules/kalkulator_duit/views/result_kalkulator.dart';
 import 'package:flutter/material.dart';
@@ -182,34 +183,59 @@ class KalkulatorDuitView extends GetView<KalkulatorDuitController> {
                               style: GoogleFonts.inter(
                                   fontSize: 14, color: Colors.black),
                             ),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 10.0),
-                              child: Row(
-                                children: [
-                                  Text(
-                                    'Rp.',
-                                    style: GoogleFonts.inter(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 14,
-                                        color: Colors.black),
-                                  ),
-                                  SizedBox(
-                                    width: 10,
-                                  ),
-                                  Container(
-                                    width: 150,
-                                    child: TextFormField(
-                                      controller: controller.cjenis,
-                                      inputFormatters: [
-                                        FilteringTextInputFormatter(
-                                            RegExp("[0-9]"),
-                                            allow: true),
-                                      ],
-                                      keyboardType: TextInputType.number,
-                                      decoration: InputDecoration(),
+                            const SizedBox(height: 20),
+                            Container(
+                              padding: EdgeInsets.only(left: 10),
+                              width: 270,
+                              height: 45,
+                              child: DropdownButtonHideUnderline(
+                                child: DropdownButtonFormField2<String>(
+                                  isExpanded: true,
+                                  decoration: InputDecoration(
+                                    // Add Horizontal padding using menuItemStyleData.padding so it matches
+                                    // the menu padding when button's width is not specified.
+                                    contentPadding:
+                                        const EdgeInsets.symmetric(vertical: 4),
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(8),
                                     ),
+                                    // Add more decoration..
                                   ),
-                                ],
+                                  hint: Obx(() => Text(
+                                        '${controller.onselectedValue ?? ' Pilih Jenis Investasi'}',
+                                        style: TextStyle(
+                                          fontSize: 14,
+                                          color: Theme.of(context).hintColor,
+                                        ),
+                                      )),
+                                  items: controller.items
+                                      .map((String item) =>
+                                          DropdownMenuItem<String>(
+                                            value: item,
+                                            child: Text(
+                                              item,
+                                              style: const TextStyle(
+                                                fontSize: 14,
+                                              ),
+                                            ),
+                                          ))
+                                      .toList(),
+                                  onChanged: (String? value) {
+                                    // controller.onselectedValue!(value);
+                                    controller.onItemSelected(value!);
+                                    print(controller.taxRate);
+                                    print(controller.onselectedValue);
+                                  },
+                                  buttonStyleData: const ButtonStyleData(
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 16),
+                                    height: 60,
+                                    width: 140,
+                                  ),
+                                  menuItemStyleData: const MenuItemStyleData(
+                                    height: 40,
+                                  ),
+                                ),
                               ),
                             ),
                           ],
@@ -307,7 +333,7 @@ class KalkulatorDuitView extends GetView<KalkulatorDuitController> {
                             controller
                                 .monthlyInvestmentController.text.isNotEmpty &&
                             controller.interestRateController.text.isNotEmpty &&
-                            controller.cjenis.text.isNotEmpty) {
+                            controller.taxRate != null) {
                           var parseUtang = int.tryParse(
                               controller.initialInvestmentController.text);
                           String utang =
@@ -329,12 +355,18 @@ class KalkulatorDuitView extends GetView<KalkulatorDuitController> {
                           print(
                               '${controller.monthlyInvestmentController.text} target');
                           print(controller.interestRateController.text);
-                          print(controller.cjenis.text);
+                          print(controller.taxRate);
                           controller.calculateInvestmentResult();
 
                           // Get.to(() => ResultKalkulatorView(),
                           //     arguments: [utang, waktu, target, perkiraan]);
                         } else {
+                          print(controller.initialInvestmentController.text);
+                          print(controller.investmentDurationController.text);
+                          print(
+                              '${controller.monthlyInvestmentController.text} target');
+                          print(controller.interestRateController.text);
+                          print(controller.taxRate);
                           Fluttertoast.showToast(
                             msg: 'Tolong isi semua kolomnya',
                             toastLength: Toast.LENGTH_SHORT,
