@@ -45,9 +45,9 @@ class ResultKalkulatorView extends GetView<KalkulatorDuitController> {
                         height: 5,
                       ),
                       Text(
-                        'Reksadana Campuran ',
+                        '${controller.onselectedValue} ',
                         style: GoogleFonts.inter(
-                            fontWeight: FontWeight.bold,
+                            fontWeight: FontWeight.w400,
                             fontSize: 14,
                             color: Colors.white),
                       ),
@@ -67,7 +67,7 @@ class ResultKalkulatorView extends GetView<KalkulatorDuitController> {
                     Text(
                       'Uang kamu saat ini',
                       style: GoogleFonts.inter(
-                          fontWeight: FontWeight.bold,
+                          fontWeight: FontWeight.w400,
                           fontSize: 15,
                           color: Colors.black),
                     ),
@@ -76,13 +76,18 @@ class ResultKalkulatorView extends GetView<KalkulatorDuitController> {
                     ),
                     Text(
                       'Rp. ${data[0]}',
-                      style:
-                          GoogleFonts.inter(fontSize: 15, color: Colors.black),
+                      style: GoogleFonts.inter(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.black),
+                    ),
+                    SizedBox(
+                      height: 20,
                     ),
                     Text(
                       'Lama Investasi',
                       style: GoogleFonts.inter(
-                          fontWeight: FontWeight.bold,
+                          fontWeight: FontWeight.w400,
                           fontSize: 15,
                           color: Colors.black),
                     ),
@@ -91,16 +96,18 @@ class ResultKalkulatorView extends GetView<KalkulatorDuitController> {
                     ),
                     Text(
                       ' ${data[1]} Tahun',
-                      style:
-                          GoogleFonts.inter(fontSize: 15, color: Colors.black),
+                      style: GoogleFonts.inter(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.black),
                     ),
                     SizedBox(
-                      height: 10,
+                      height: 20,
                     ),
                     Text(
                       'Uang yang diinvestasikan pertahun',
                       style: GoogleFonts.inter(
-                          fontWeight: FontWeight.bold,
+                          fontWeight: FontWeight.w400,
                           fontSize: 15,
                           color: Colors.black),
                     ),
@@ -109,13 +116,18 @@ class ResultKalkulatorView extends GetView<KalkulatorDuitController> {
                     ),
                     Text(
                       'Rp. ${data[2] ?? 0} ',
-                      style:
-                          GoogleFonts.inter(fontSize: 15, color: Colors.black),
+                      style: GoogleFonts.inter(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.black),
+                    ),
+                    SizedBox(
+                      height: 20,
                     ),
                     Text(
-                      'Uang kamu saat ini',
+                      'Imbal hasil investasimu',
                       style: GoogleFonts.inter(
-                          fontWeight: FontWeight.bold,
+                          fontWeight: FontWeight.w400,
                           fontSize: 15,
                           color: Colors.black),
                     ),
@@ -123,27 +135,57 @@ class ResultKalkulatorView extends GetView<KalkulatorDuitController> {
                       height: 10,
                     ),
                     Text(
-                      'Rp. ${data[3]}',
-                      style:
-                          GoogleFonts.inter(fontSize: 15, color: Colors.black),
+                      ' ${data[3]}% pertahun',
+                      style: GoogleFonts.inter(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.black),
+                    ),
+                    SizedBox(
+                      height: 20,
                     ),
                     Text(
-                      'Uang kamu saat ini',
+                      'Hasil investasi kamu',
                       style: GoogleFonts.inter(
-                          fontWeight: FontWeight.bold,
+                          fontWeight: FontWeight.w400,
                           fontSize: 15,
-                          color: Colors.black),
+                          color: Color(0xff034779)),
                     ),
                     SizedBox(
                       height: 10,
                     ),
                     Text(
-                      'Rp. ${data[0]}',
-                      style:
-                          GoogleFonts.inter(fontSize: 15, color: Colors.black),
+                      'Rp. ${controller.hasil}',
+                      style: GoogleFonts.inter(
+                          fontSize: 15,
+                          color: Color(0xff034779),
+                          fontWeight: FontWeight.bold),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                      'perkiraan setelah dipotong pajak 9%',
+                      style: GoogleFonts.inter(
+                          fontSize: 12, color: Color(0xff989393)),
+                    ),
+                    SizedBox(
+                      height: 25,
                     ),
                   ],
                 ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  'Disclaimer: Angka diatas merupakan ilustrasi. Tidak ada jaminan atas hasil investasi, perkiraan keuntungan bergantung pada kondisi pasar yang dapat berubah sewaktu-waktu. Pilihan investasi sepenuhnya ada pada pengguna, Eduit hanya memberikan edukasi dalam bentuk ilustrasi investasi.',
+                  style:
+                      GoogleFonts.inter(fontSize: 14, color: Color(0xff989393)),
+                  textAlign: TextAlign.justify,
+                ),
+              ),
+              SizedBox(
+                height: 50,
               )
             ],
           ),

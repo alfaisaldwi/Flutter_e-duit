@@ -358,8 +358,8 @@ class KalkulatorDuitView extends GetView<KalkulatorDuitController> {
                           print(controller.taxRate);
                           controller.calculateInvestmentResult();
 
-                          // Get.to(() => ResultKalkulatorView(),
-                          //     arguments: [utang, waktu, target, perkiraan]);
+                          Get.to(() => ResultKalkulatorView(),
+                              arguments: [utang, waktu, target, perkiraan]);
                         } else {
                           print(controller.initialInvestmentController.text);
                           print(controller.investmentDurationController.text);
@@ -383,6 +383,7 @@ class KalkulatorDuitView extends GetView<KalkulatorDuitController> {
                 SizedBox(
                   height: 50,
                 ),
+                
               ],
             ),
           ),

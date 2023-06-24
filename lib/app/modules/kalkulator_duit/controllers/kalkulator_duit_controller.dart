@@ -9,6 +9,7 @@ class KalkulatorDuitController extends GetxController {
   TextEditingController interestRateController = TextEditingController();
   TextEditingController taxRateController = TextEditingController();
   double? taxRate;
+  var hasil;
   // 9 / 100;
 
   RxString? onselectedValue = ''.obs;
@@ -78,20 +79,6 @@ class KalkulatorDuitController extends GetxController {
     print('total pertambahan $totalgrowth');
     print('growth $growth');
     String formattedValue = currentInvestment.toStringAsFixed(0);
-    String hasil =
-        NumberFormat.decimalPattern().format(int.parse(formattedValue));
-
-    Get.dialog(
-      AlertDialog(
-        title: Text('Investment Result'),
-        content: Text('Total Investment Result: Rp $hasil'),
-        actions: [
-          TextButton(
-            onPressed: () => Get.back(),
-            child: Text('OK'),
-          ),
-        ],
-      ),
-    );
+    hasil = NumberFormat.decimalPattern().format(int.parse(formattedValue));
   }
 }
